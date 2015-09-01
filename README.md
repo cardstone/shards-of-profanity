@@ -1,7 +1,7 @@
 # Shards of Profanity
 
 ## The Idea
-A web replica of the popular party game, Cards Against Humanity
+A web replica of the popular party game, [Cards Against Humanity](https://cardsagainsthumanity.com/)
 
 # The Features
 * private game sessions
