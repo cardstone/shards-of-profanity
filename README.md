@@ -16,6 +16,6 @@ A web replica of the popular party game, Cards Against Humanity
 
 # The Team
 * [Anthony Maldarelli](https://github.com/amaldare93)
-* []()
+* [Andrew Miloslavsky](https://github.com/andrewmilo)
 * []()
 * []()
