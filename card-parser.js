@@ -4,22 +4,25 @@
  *
  * USE: node card-parser [file]
  *
- * TODO: write to file instead od process.stdout
  * TODO: write to database
  **/
 
 var through = require('through2'),
   fs = require('fs'),
   split = require('split'),
-  file = process.argv[2];
+  readFile = process.argv[2],
+  writeFile = 'cards/output.txt';
 
-// transform function
+// transform stream
 var tr = through(function(buffer, _, next) {
   this.push(buffer.toString() + '\n');
   next();
 });
 
-fs.createReadStream(file)
+//
+var write = fs.createWriteStream(writeFile);
+
+fs.createReadStream(readFile)
   .pipe(split('<>'))
   .pipe(tr)
-  .pipe(process.stdout);
+  .pipe(write);
