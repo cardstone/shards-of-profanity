@@ -12,7 +12,7 @@ A web replica of the popular party game, [Cards Against Humanity](https://cardsa
 * Express.js for back-end server
 * Socket.io for peer-to-peer chat and communications
 * Ember.js for front-end MVC JS framework
-* ??? for a database
+* MongoDB for a database
 
 # The Team
 * [Anthony Maldarelli](https://github.com/amaldare93)
