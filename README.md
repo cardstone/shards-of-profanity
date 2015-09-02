@@ -11,11 +11,11 @@ A web replica of the popular party game, [Cards Against Humanity](https://cardsa
 # The Tech Stack
 * Express.js for back-end server
 * Socket.io for peer-to-peer chat and communications
-* ??? for front-end MVC JS framework
+* Ember.js for front-end MVC JS framework
 * ??? for a database
 
 # The Team
 * [Anthony Maldarelli](https://github.com/amaldare93)
 * [Andrew Miloslavsky](https://github.com/andrewmilo)
-* []()
+* [Alvin Zablan](https://github.com/azablan)
 * []()
