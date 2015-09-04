@@ -1,0 +1,25 @@
+{
+  "name": "shards-of-profanity",
+  "version": "0.0.0",
+  "description": "a game for sick people",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cardstone/shards-of-profanity.git"
+  },
+  "author": "cardstone",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cardstone/shards-of-profanity/issues"
+  },
+  "homepage": "https://github.com/cardstone/shards-of-profanity#readme",
+  "dependencies": {
+    "express": "~4.13.3",
+    "mongoose": "~4.1.5",
+    "body-parser": "~1.13.3",
+    "method-override": "~2.3.5"
+  }
+}

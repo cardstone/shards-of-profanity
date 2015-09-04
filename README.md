@@ -20,7 +20,6 @@ A web replica of the popular party game, [Cards Against Humanity](https://cardsa
 # Languages
 * Javascript
 * HTML/CSS
-* MongoDB Query Language
 
 # The Team
 * [Anthony Maldarelli](https://github.com/amaldare93)
