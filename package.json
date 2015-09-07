@@ -17,9 +17,23 @@
   },
   "homepage": "https://github.com/cardstone/shards-of-profanity#readme",
   "dependencies": {
-    "express": "~4.13.3",
-    "mongoose": "~4.1.5",
+    "angular": "^1.4.5",
+    "angular-route": "^1.4.5",
     "body-parser": "~1.13.3",
-    "method-override": "~2.3.5"
+    "express": "~4.13.3",
+    "method-override": "~2.3.5",
+    "mongoose": "~4.1.5"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.9.1",
+    "browserify": "^11.0.1",
+    "gulp": "^3.9.0",
+    "gulp-autoprefixer": "^3.0.1",
+    "gulp-plumber": "^1.0.1",
+    "gulp-sass": "^2.0.4",
+    "gulp-sourcemaps": "^1.5.2",
+    "gulp-util": "^3.0.6",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0"
   }
 }

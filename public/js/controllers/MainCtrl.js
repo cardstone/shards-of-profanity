@@ -1,5 +1,7 @@
-angular.module('MainCtrl', []).controller('MainController', function($scope) {
+//angular.module('MainCtrl', []).controller('MainController', function ($scope) {
+module.exports = function () {
+	var main = this;
 
-	$scope.tagline = 'To the moon and back!';	
+	main.tagline = 'This message was brought to you by the MainController';
 
-});
+};

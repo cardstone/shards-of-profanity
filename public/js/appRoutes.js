@@ -1,23 +1,22 @@
-angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+require('angular');
+require('angular-route');
 
-	$routeProvider
+module.exports = angular.module('appRoutes', [])
+	// $routeProvider and $locationProvider are built-in services being passed into the callback function
+	.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
 
-		// home page
-		.when('/', {
-			templateUrl: 'views/home.html',
-			controller: 'MainController'
-		})
+		$routeProvider
+			.when('/', {
+				templateUrl: 'views/home.html',
+				controller: 'MainController',
+				controllerAs: 'main'
+			})
+			// .when('/about', {
+			// 	templateUrl: 'views/about.html',
+			// 	controller: 'AboutController'
+			// })
+		;
 
-		.when('/nerds', {
-			templateUrl: 'views/nerd.html',
-			controller: 'NerdController'
-		})
+		$locationProvider.html5Mode(true);
 
-		.when('/geeks', {
-			templateUrl: 'views/geek.html',
-			controller: 'GeekController'	
-		});
-
-	$locationProvider.html5Mode(true);
-
-}]);
+	}]);

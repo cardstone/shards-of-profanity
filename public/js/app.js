@@ -1,1 +1,7 @@
-angular.module('sampleApp', ['ngRoute', 'appRoutes', 'MainCtrl', 'NerdCtrl', 'NerdService', 'GeekCtrl', 'GeekService']);
+require('angular');
+require('angular-route');
+
+var app = angular.module('app', ['ngRoute']);
+
+require('./appRoutes');
+require('./controllers');
