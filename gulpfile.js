@@ -3,7 +3,8 @@
 var gulp = require('gulp');
 var plumber = require('gulp-plumber');
 var gutil = require('gulp-util');
-var browserSync = require('browser-sync');
+var browserSync = require('browser-sync').create();
+var nodemon = require('gulp-nodemon');
 // For Javascripts
 var browserify = require('browserify');
 var source = require('vinyl-source-stream');
@@ -59,12 +60,29 @@ gulp.task('html', function () {
 });
 
 // browserSync Task
-gulp.task('sync', function () {
-  browserSync({
-    server: {
-      baseDir: './dist'
-    }
+gulp.task('sync', ['nodemon'], function () {
+  browserSync.init({
+    proxy: '127.0.0.1:5000',
+    //files: './public/**/*.*'
+    //notify: false
   });
+});
+
+// nodemon task
+// runs and refreshes node server
+// only called by browsersync
+gulp.task('nodemon', function (cb) {
+  var called = false;
+  return nodemon({
+      script: 'server.js',
+      ignore: ['gulpfile.js', 'node_modules/']
+    })
+    .on('start', function () {
+      if (!called) {
+        called = true;
+        cb();
+      }
+    });
 });
 
 // Watch task

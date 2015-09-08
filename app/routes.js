@@ -1,5 +1,5 @@
 module.exports = function (app) {
-
+	var path = require('path');
 	// server routes ===========================================================
 	// handle things like api calls
 	// authentication routes
@@ -7,7 +7,7 @@ module.exports = function (app) {
 	// frontend routes =========================================================
 	// route to handle all angular requests
 	app.get('*', function (req, res) {
-		res.sendfile('./dist/index.html');
+		res.sendFile(path.resolve('../../dist/index.html'));
 	});
 
 };
