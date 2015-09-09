@@ -61,33 +61,33 @@ gulp.task('html', function () {
 
 // nodemon task
 // runs and refreshes node server
-gulp.task('nodemon', function(cb) {
+gulp.task('nodemon', function (cb) {
   // We use this `called` variable to make sure the callback is only executed once
   var called = false;
   return nodemon({
-    script: 'server.js',
-    watch: ['server.js', 'server/**/*.*']
-  })
-  .on('start', function onStart() {
-    if (!called) {
-      cb();
-    }
-    called = true;
-  })
-  .on('restart', function onRestart() {
+      script: 'server.js',
+      watch: ['server.js', 'app/**/*.*']
+    })
+    .on('start', function onStart() {
+      if (!called) {
+        cb();
+      }
+      called = true;
+    })
+    .on('restart', function onRestart() {
 
-    // Also reload the browsers after a slight delay
-    setTimeout(function reload() {
-      browserSync.reload({
-        stream: false
-      });
-    }, 500);
-  });
+      // Also reload the browsers after a slight delay
+      setTimeout(function reload() {
+        browserSync.reload({
+          stream: true
+        });
+      }, 500);
+    });
 });
 
 // browserSync task
 // Make sure `nodemon` is started before running `browser-sync`.
-gulp.task('browser-sync', ['nodemon'], function() {
+gulp.task('browser-sync', ['nodemon'], function () {
   var port = process.env.PORT || 5000;
   browserSync.init({
 
@@ -95,16 +95,16 @@ gulp.task('browser-sync', ['nodemon'], function() {
     files: ['public/**/*.*'],
 
     // Tells BrowserSync on where the express app is running
-    proxy: 'http://localhost:' + port,
+    // so when this is localhost it doesnt load the page but when it is 127.0.0.1 it works
+    proxy: 'http://127.0.0.1:' + port,
 
-    // This port should be different from the express app port
+    // This port should be different from the express app çport
     port: 4000,
 
     // Which browser should we launch?
     browser: ['google chrome']
   });
 });
-
 
 // Watch task
 gulp.task('watch', function () {
