@@ -101,8 +101,9 @@ gulp.task('browser-sync', ['nodemon'], function () {
     // This port should be different from the express app çport
     port: 4000,
 
-    // Which browser should we launch?
-    browser: ['google chrome']
+    // Do not mirror any actions across browsers
+    ghostMode: false
+    
   });
 });
 

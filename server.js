@@ -1,6 +1,8 @@
 // modules =================================================
 var express = require('express');
 var app = express();
+var server  = require('http').createServer(app);
+var io      = require('socket.io').listen(server);
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
@@ -39,7 +41,25 @@ app.post('/', function(req, res){ // function sends information to the root of o
 // routes ==================================================
 require('./app/routes')(app); // pass our application into our routes
 
+// socket.io ===============================================
+// might want to separate this into another .js
+io.on('connection', function(socket){
+	//console.log('a user connected');
+
+	socket.on('disconnect', function(){
+	    //console.log('a user disconnected');
+	});
+
+	socket.on('chat message', function(msg){
+    	//console.log('message: ' + msg);
+  	});
+
+  	socket.on('chat message', function(msg){
+    	io.emit('chat message', msg);
+  	});
+});
+
 // start app ===============================================
-app.listen(port);
+server.listen(port);
 //console.log('Magic happens on port ' + port); // shoutout to the user
 exports = module.exports = app; // expose app
