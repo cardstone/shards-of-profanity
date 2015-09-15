@@ -1,9 +1,5 @@
 {
   "name": "shards-of-profanity",
   "version": "0.0.0",
-  "dependencies": {
-    "bitters": "~1.1.0",
-    "bourbon": "~4.2.4",
-    "neat": "~1.7.2"
-  }
+  "dependencies": {}
 }
