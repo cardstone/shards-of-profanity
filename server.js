@@ -48,22 +48,7 @@ app.post('/', function(req, res){ // function sends information to the root of o
 require('./app/routes')(app); // pass our application into our routes
 
 // socket.io ===============================================
-// might want to separate this into another .js
-io.on('connection', function(socket){
-	//console.log('a user connected');
-
-	socket.on('disconnect', function(){
-	    //console.log('a user disconnected');
-	});
-
-	socket.on('chat message', function(msg){
-    	//console.log('message: ' + msg);
-  	});
-
-  	socket.on('chat message', function(msg){
-    	io.emit('chat message', msg);
-  	});
-});
+require('./config/socket')(io); // configure socket
 
 // start app ===============================================
 server.listen(port);
