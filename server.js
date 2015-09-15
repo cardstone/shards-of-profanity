@@ -11,6 +11,12 @@ var methodOverride = require('method-override');
 
 // config files
 var db = require('./config/db');
+/*var db = mongoose.connect('./config/db', function(err){
+	if(err){
+		console.error('\x1b[31m','Could not connect to MongoDB');
+		console.log(err);
+	}
+});*/
 
 var port = process.env.PORT || 5000; // set our port
 // mongoose.connect(db.url); // connect to our mongoDB database (commented out after you enter in your own credentials)

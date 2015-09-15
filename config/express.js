@@ -13,7 +13,12 @@ var mean = require('meanio'),
   flash = require('connect-flash'),
   modRewrite = require('connect-modrewrite'),
   // seo = require('mean-seo'),
-  config = mean.loadConfig();
+  config = mean.loadConfig(),
+  cookieSession = require('cookie-session'),
+  favicon = require('serve-favicon');
+
+  var app = express();
+  app.use(favicon(__dirname + '/public/shard.png'));
 
 module.exports = function(app, db) {
 
@@ -33,6 +38,8 @@ module.exports = function(app, db) {
     level: 9
   }));
 
+  
+
   // Enable compression on bower_components
   app.use('/bower_components', express.static(config.root + '/bower_components'));
 
@@ -45,6 +52,18 @@ module.exports = function(app, db) {
   // set .html as the default extension
   app.set('view engine', 'html');
 
+  app.set('trust proxy', 1);
+  app.use(cookieSession({
+    name: 'cardsSession',
+    keys: ['key1', 'key2']
+  }));
+
+  app.set('views', './public/views');
+
+  //function to allow sessions to have different values
+  app.use(function(request, result, next){
+    request.sessionOptions.maxAge = request.cardsSession.maxAge || req.sessionOptions.maxAge;
+  });
 
   // Dynamic helpers
   app.use(helpers(config.app.name));
