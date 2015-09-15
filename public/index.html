@@ -16,57 +16,43 @@
 
 	<link rel="stylesheet" href="css/main.css">
 	<script src="js/bundle.js"></script>
+
 </head>
 <body ng-controller="MainController as main">
 		<!-- HEADER -->
-		<nav>
-			<h2>Shards of Profanity</h2>
+		<nav class="navbar navbar-inverse">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="/">Shards of Profanity</a>
+			</div>
+			<ul class="nav navbar-nav">
+				<!-- <li><a href="/about">About</a></li> -->
+			</ul>
 		</nav>
-
-
+		<div class="jumbotron text-center">
 			<h1>Sharks five-evr</h1>
 			<p>{{ main.tagline }}</p>
-
+		</div>
 		<!-- ANGULAR DYNAMIC CONTENT -->
 		<div ng-view></div>
 
-		<script src="js/bundle.js"></script>
-	</head>
-	<body ng-controller="MainController as main">
-			<!-- HEADER -->
-			<nav class="navbar navbar-inverse">
-				<div class="navbar-header">
-					<a class="navbar-brand" href="/">Shards of Profanity</a>
-				</div>
-				<ul class="nav navbar-nav">
-					<!-- <li><a href="/about">About</a></li> -->
-				</ul>
-			</nav>
-			<div class="jumbotron text-center">
-				<h1>Sharks five-evr</h1>
-				<p>{{ main.tagline }}</p>
-			</div>
-			<!-- ANGULAR DYNAMIC CONTENT -->
-			<div ng-view></div>
-
-			<!-- chat mockup -->
-			<ul id="messages">TEST MESSAGES:</ul>
-			    <form action="">
-			      <input id="m" autocomplete="off" /><button>Send</button>
-			    </form>
-			    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
-			    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
-			    <script>
-			     	var socket = io();
-			      	$('form').submit(function(){
-			        	socket.emit('chat message', $('#m').val());
-			        	$('#m').val('');
-			        	return false;
-			      	});
-			      	socket.on('chat message', function(msg){
-			        	$('#messages').append($('<li>').text(msg));
-			      	});
-			    </script>
+		<!-- chat mockup -->
+		<ul id="messages">TEST MESSAGES:</ul>
+		    <form action="">
+		      <input id="m" autocomplete="off" /><button>Send</button>
+		    </form>
+		    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+		    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+		    <script>
+		     	var socket = io();
+		      	$('form').submit(function(){
+		        	socket.emit('chat message', $('#m').val());
+		        	$('#m').val('');
+		        	return false;
+		      	});
+		      	socket.on('chat message', function(msg){
+		        	$('#messages').append($('<li>').text(msg));
+		      	});
+		    </script>
 
 	</body>
 </html>
