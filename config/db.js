@@ -1,4 +1,4 @@
 // config object for database
 module.exports = {
-  url: 'mongodb://cardstone:capstone@ec2-52-6-28-27.compute-1.amazonaws.com:27017/admin'
+  url: 'mongodb://cardstone:capstone@ec2-52-6-28-27.compute-1.amazonaws.com:27017/shards-of-profanity'
 };
