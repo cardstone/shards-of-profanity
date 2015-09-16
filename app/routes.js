@@ -1,3 +1,4 @@
+/* global __dirname */
 module.exports = function (app) {
 	var path = require('path');
 	// server routes ===========================================================

@@ -2,10 +2,10 @@
 var mongoose = require('mongoose'),
   Schema = mongoose.Schema,
   fs = require('fs'),
-  Lazy = require("lazy"),
-  db = mongoose.connect('mongodb://ec2-52-6-28-27.compute-1.amazonaws.com:27017/shard')
-  ;
+  Lazy = require('lazy'),
+  db = mongoose.connect(require('../config/db'));
 
+//Schema
 var cardSchema = new Schema({
   color: String,
   text: String
@@ -13,6 +13,7 @@ var cardSchema = new Schema({
 
 var Card = mongoose.model('Card', cardSchema);
 
+//Input
 var whiteCards = __dirname + "\\white\\output.txt";
 var blackCards = __dirname + "\\black\\output.txt";
 
