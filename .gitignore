@@ -16,5 +16,7 @@ results
 npm-debug.log
 node_modules
 
-public/libs
+#public/libs
 dist
+
+_reports

@@ -4,42 +4,28 @@
 		<meta charset="UTF-8">
 		<base href="/">
 		<title>Sharks of Profanity</title>
+
 		<link rel="stylesheet" href="css/main.css">
-
-		<!-- just a style for the chat mockup -->
-		<style>
-	      * { margin: 0; padding: 0; box-sizing: border-box; }
-	      form { background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; }
-	      form input { border: 0; padding: 10px; width: 90%; margin-right: .5%; }
-	      form button { width: 9%; background: #363333; border: none; padding: 10px; }
-	    </style>
-
-	<link rel="stylesheet" href="css/main.css">
-	<script src="js/bundle.js"></script>
+		<script src="js/bundle.js"></script>
 
 </head>
 <body ng-controller="MainController as main">
-		<!-- HEADER -->
-		<nav class="navbar navbar-inverse">
-			<div class="navbar-header">
-				<a class="navbar-brand" href="/">Shards of Profanity</a>
-			</div>
-			<ul class="nav navbar-nav">
-				<!-- <li><a href="/about">About</a></li> -->
-			</ul>
-		</nav>
-		<div class="jumbotron text-center">
-			<h1>Sharks five-evr</h1>
-			<p>{{ main.tagline }}</p>
-		</div>
-		<!-- ANGULAR DYNAMIC CONTENT -->
-		<div ng-view></div>
+	<h1>Shards of Profanity</h1>
+	<h2>Sharks five-evr</h2>
+	<p>{{ main.tagline }}</p>
+	<!-- ANGULAR DYNAMIC CONTENT -->
+	<div ng-view></div>
 
 		<!-- chat mockup -->
-		<ul id="messages">TEST MESSAGES:</ul>
-		    <form action="">
-		      <input id="m" autocomplete="off" /><button>Send</button>
-		    </form>
+		<section class="chat">
+			<ul id="messages">TEST MESSAGES:
+			</ul>
+	    <form action="">
+	      <input id="m" autocomplete="off" autofocus/><button>Send</button>
+	    </form>
+		</section>
+
+
 		    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
 		    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
 		    <script>
