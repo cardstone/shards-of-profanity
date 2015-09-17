@@ -15,7 +15,6 @@
 	<p>{{ main.tagline }}</p>
 	<!-- ANGULAR DYNAMIC CONTENT -->
 		<section ng-controller="ChatController as chat" class="chat">
-			<p>{{ chat.tagline }}</p>
 			<ul id="messages">MESSAGES:
 				<li ng-repeat="message in chat.messages track by $index">{{ message }}</li>
 			</ul>
