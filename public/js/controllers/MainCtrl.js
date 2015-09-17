@@ -1,3 +1,3 @@
 module.exports = function () {
-	this.tagline = 'Yooooooooo this is the main controller!!!';
+	this.tagline = 'this is the main controller';
 };
