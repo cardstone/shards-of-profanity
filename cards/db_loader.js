@@ -2,8 +2,22 @@
 var mongoose = require('mongoose'),
   Schema = mongoose.Schema,
   fs = require('fs'),
-  Lazy = require('lazy'),
-  db = mongoose.connect(require('../config/db'));
+  Lazy = require('lazy');
+
+mongoose.connect(require('../config/db'));
+var db = mongoose.connection;
+
+//Feedback
+db.on('error', function (err) {
+  console.log('                     ');
+  console.log('Connection error', err);
+  console.log('                     ');
+});
+db.once('open', function () {
+  console.log('                     ');
+  console.log('Connected.');
+  console.log('                     ');
+});
 
 //Schema
 var cardSchema = new Schema({
@@ -21,7 +35,7 @@ load_db(whiteCards, 'white');
 load_db(blackCards, 'black');
 
 //Clear DB to avoid duplicates
-db.connection.collections['cards'].drop();
+db.collections['cards'].drop();
 
 //Load db
 function load_db(file, col) {
@@ -35,8 +49,11 @@ function load_db(file, col) {
              text: line
            }
          );
-         
-         Card.create(newCard);
+         newCard.save(function (err, data) {
+            if (err) console.log(err);
+            else console.log('[SAVED] ', data['text']  );
+         });
      }
  );
 }
+
