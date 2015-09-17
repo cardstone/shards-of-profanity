@@ -3,15 +3,16 @@
 var gulp = require('gulp');
 var plumber = require('gulp-plumber');
 var gutil = require('gulp-util');
+var sourcemaps = require('gulp-sourcemaps');
 var browserSync = require('browser-sync').create();
 var nodemon = require('gulp-nodemon');
 // For Javascripts
 var browserify = require('browserify');
 var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
-var sourcemaps = require('gulp-sourcemaps');
 // For CSS
 var sass = require('gulp-sass');
+var neat = require('node-neat');
 var prefix = require('gulp-autoprefixer');
 
 // ON error
@@ -40,7 +41,9 @@ gulp.task('javascript', function () {
 gulp.task('css', function () {
   return gulp.src('./public/css/main.sass')
     .pipe(plumber(onError))
-    .pipe(sass({}))
+    .pipe(sass({
+      includePaths: neat.includePaths
+    }))
     .pipe(prefix(['last 2 versions', 'ie 9'], {
       cascade: true
     }))
@@ -103,7 +106,7 @@ gulp.task('browser-sync', ['nodemon'], function () {
 
     // Do not mirror any actions across browsers
     ghostMode: false
-    
+
   });
 });
 
