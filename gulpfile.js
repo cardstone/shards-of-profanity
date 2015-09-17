@@ -30,7 +30,7 @@ gulp.task('javascript', function () {
     .pipe(buffer())
     .pipe(sourcemaps.init())
     .on('error', gutil.log)
-    .pipe(sourcemaps.write('./dist/js/'))
+    .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest('./dist/js/'))
     .pipe(browserSync.reload({
       stream: true
