@@ -1,6 +1,3 @@
-/* globals require */
-'use strict';
-
 /**
  * Module dependencies.
  */
@@ -17,10 +14,10 @@ var mean = require('meanio'),
   cookieSession = require('cookie-session'),
   favicon = require('serve-favicon');
 
-  var app = express();
-  app.use(favicon(__dirname + '/public/shard.png'));
+var app = express();
+app.use(favicon(__dirname + '/public/shard.png'));
 
-module.exports = function(app, db) {
+module.exports = function (app, db) {
 
   app.set('showStackError', true);
 
@@ -37,8 +34,6 @@ module.exports = function(app, db) {
     // no compression and 9 is best compression, but slowest
     level: 9
   }));
-
-  
 
   // Enable compression on bower_components
   app.use('/bower_components', express.static(config.root + '/bower_components'));
@@ -61,7 +56,7 @@ module.exports = function(app, db) {
   app.set('views', './public/views');
 
   //function to allow sessions to have different values
-  app.use(function(request, result, next){
+  app.use(function (request, result, next) {
     request.sessionOptions.maxAge = request.cardsSession.maxAge || req.sessionOptions.maxAge;
   });
 
@@ -72,8 +67,8 @@ module.exports = function(app, db) {
   app.use(flash());
 
   app.use(modRewrite([
-    
-    '!^/api/.*|\\_getModules|\\.html|\\.js|\\.css|\\.swf|\\.jp(e?)g|\\.png|\\.ico|\\.gif|\\.svg|\\.eot|\\.ttf|\\.woff|\\.pdf$ / [L]'    
+
+    '!^/api/.*|\\_getModules|\\.html|\\.js|\\.css|\\.swf|\\.jp(e?)g|\\.png|\\.ico|\\.gif|\\.svg|\\.eot|\\.ttf|\\.woff|\\.pdf$ / [L]'
 
   ]));
 

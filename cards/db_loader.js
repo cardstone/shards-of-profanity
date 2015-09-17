@@ -28,14 +28,14 @@ function load_db(file, col) {
   new Lazy(fs.createReadStream(file))
      .lines
      .forEach(function(line){
-       
+
          var newCard = new Card(
            {
              color: col,
              text: line
            }
          );
-         
+
          Card.create(newCard);
      }
  );

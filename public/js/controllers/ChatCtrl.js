@@ -10,7 +10,7 @@ module.exports = function (socketio) {
 	this.sendMessage = function () {
 		socketio.emit('send:message', this.msg);
 
-		this.messages.push(this.msg)
+		this.messages.push(this.msg);
 
 		this.msg = '';
 	};
