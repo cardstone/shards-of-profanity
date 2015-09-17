@@ -49,7 +49,7 @@ function load_db(file, col) {
              text: line
            }
          );
-<<<<<<< HEAD
+
          newCard.save(function (err, data) {
             if (err) console.log(err);
             else console.log('[SAVED] ', data['text']  );
@@ -57,11 +57,3 @@ function load_db(file, col) {
      }
  );
 }
-
-=======
-
-         Card.create(newCard);
-     }
- );
-}
->>>>>>> f487d2d61aa341b4051f597c66c1b4aec5e5df2c
