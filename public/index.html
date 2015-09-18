@@ -13,6 +13,9 @@
 		<h1>Shards of Profanity</h1>
 		<h2>Sharks five-evr</h2>
 		<p>{{ main.tagline }}</p>
+
+		<shard-card></shard-card>
+
 		<section ng-controller="ChatController as chat" class="chat">
 			<ul id="messages">MESSAGES:
 				<li ng-repeat="message in chat.messages track by $index">{{ message }}</li>

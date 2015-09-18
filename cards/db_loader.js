@@ -40,28 +40,16 @@ db.collections['cards'].drop();
 //Load db
 function load_db(file, col) {
   new Lazy(fs.createReadStream(file))
-     .lines
-     .forEach(function(line){
+    .lines
+    .forEach(function (line) {
 
-         var newCard = new Card(
-           {
-             color: col,
-             text: line
-           }
-         );
-<<<<<<< HEAD
-         newCard.save(function (err, data) {
-            if (err) console.log(err);
-            else console.log('[SAVED] ', data['text']  );
-         });
-     }
- );
+      var newCard = new Card({
+        color: col,
+        text: line
+      });
+      newCard.save(function (err, data) {
+        if (err) console.log(err);
+        else console.log('[SAVED] ', data['text']);
+      });
+    });
 }
-
-=======
-
-         Card.create(newCard);
-     }
- );
-}
->>>>>>> f487d2d61aa341b4051f597c66c1b4aec5e5df2c
