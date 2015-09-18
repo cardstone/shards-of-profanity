@@ -24,7 +24,7 @@ function onError(error) {
 
 // Javascript Task
 gulp.task('javascript', function () {
-  return browserify('./public/js/app.js')
+  return browserify('./public/js/app.module.js')
     .bundle()
     .pipe(source('bundle.js'))
     .pipe(buffer())

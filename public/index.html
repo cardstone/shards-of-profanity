@@ -9,10 +9,8 @@
 		<script src="js/bundle.js"></script>
 
 	</head>
-	<body ng-controller="MainController as main">
+	<body>
 		<h1>Shards of Profanity</h1>
-		<h2>Sharks five-evr</h2>
-		<p>{{ main.tagline }}</p>
 
 		<shard-card></shard-card>
 
@@ -20,9 +18,9 @@
 			<ul id="messages">MESSAGES:
 				<li ng-repeat="message in chat.messages track by $index">{{ message }}</li>
 			</ul>
-		    <form ng-submit="chat.sendMessage()">
-		     	<input ng-model="chat.msg" type="text" autofocus/><button>Send</button>
-		    </form>
+	    <form ng-submit="chat.sendMessage()">
+	     	<input ng-model="chat.msg" type="text" autofocus/><button>Send</button>
+	    </form>
 		</section>
 		<script src="/socket.io/socket.io.js"></script>
 	</body>

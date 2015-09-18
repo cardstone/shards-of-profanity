@@ -1,5 +1,8 @@
-// thanks briant ford http://briantford.com/blog/angular-socket-io
-module.exports = function ($rootScope) {
+angular
+  .module('app')
+  .factory('ChatService', ['$rootScope', ChatService]);
+
+function ChatService($rootScope) {
   var socket = io.connect();
   return {
     on: function (eventName, callback) {
@@ -21,4 +24,4 @@ module.exports = function ($rootScope) {
       });
     }
   };
-};
+}
