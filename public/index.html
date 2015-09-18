@@ -17,9 +17,9 @@
 			<ul id="messages">MESSAGES:
 				<li ng-repeat="message in chat.messages track by $index">{{ message }}</li>
 			</ul>
-	    <form ng-submit="chat.sendMessage()">
-	     	<input ng-model="chat.msg" type="text" autofocus/><button>Send</button>
-	    </form>
+		    <form ng-submit="chat.sendMessage()">
+		     	<input ng-model="chat.msg" type="text" autofocus/><button>Send</button>
+		    </form>
 		</section>
 		<script src="/socket.io/socket.io.js"></script>
 	</body>
