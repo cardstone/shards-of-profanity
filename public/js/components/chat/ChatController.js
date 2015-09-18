@@ -1,26 +1,24 @@
 angular
 	.module('app')
-	.controller('ChatController', ['ChatService',ChatController]);
+	.controller('ChatController', ['SocketService', ChatController]);
 
-
-function ChatController(ChatService) {
+function ChatController(SocketService) {
 	// map this to a variable to avoid scoping issues
 	//_?_ = this;
 
-	console.log(ChatService);
 	this.messages = [];
 	messages = this.messages;
 
-	ChatService.on('server:message', function (msg) {
+	SocketService.on('server:message', function (msg) {
 		messages.push(msg);
 	});
 
-	ChatService.on('user:message', function (msg) {
+	SocketService.on('user:message', function (msg) {
 		messages.push(msg);
 	});
 
 	this.sendMessage = function () {
-		ChatService.emit('user:message', this.msg);
+		SocketService.emit('user:message', this.msg);
 		this.messages.push(this.msg);
 		this.msg = '';
 	};

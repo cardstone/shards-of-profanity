@@ -1,8 +1,8 @@
 angular
   .module('app')
-  .factory('ChatService', ['$rootScope', ChatService]);
+  .factory('SocketService', ['$rootScope', SocketService]);
 
-function ChatService($rootScope) {
+function SocketService($rootScope) {
   var socket = io.connect();
   return {
     on: function (eventName, callback) {

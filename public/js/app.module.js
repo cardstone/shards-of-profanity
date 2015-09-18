@@ -1,6 +1,8 @@
+// Pull in angular source code
 require('angular');
-require('angular-route');
-require('angular-socket-io');
+// Pull in external modules
+require('angular-route'); //ngRoute
+require('angular-socket-io'); //btford.socket-io
 
 angular
   .module('app', [
@@ -8,10 +10,11 @@ angular
     'btford.socket-io',
   ]);
 
+// route file
 require('./app.routes');
 
-require('./components/chat/ChatController');
-require('./components/chat/ChatService');
+// components (by folder)
+require('./components/chat/');
 
-// require('./directives');
-// require('./services');
+// shared services (only one file for now, but possibly import whole folder in the future)
+require('./shared/services/SocketService');
