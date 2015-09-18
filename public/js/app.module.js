@@ -2,12 +2,10 @@
 require('angular');
 // Pull in external modules
 require('angular-route'); //ngRoute
-require('angular-socket-io'); //btford.socket-io
 
 angular
   .module('app', [
     'ngRoute',
-    'btford.socket-io',
   ]);
 
 // route file
