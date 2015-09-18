@@ -3,6 +3,7 @@ angular
 	.controller('ChatController', ['SocketService', ChatController]);
 
 // socket client
+// socket server in /config/socket.js
 function ChatController(SocketService) {
 	// map this to a variable to avoid scoping issues
 	chatCtrl = this; 
