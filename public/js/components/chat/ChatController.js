@@ -1,7 +1,7 @@
 angular
 	.module('app')
-	.controller('ChatController', [ChatController]);
-ChatController.$inject = ['ChatService'];
+	.controller('ChatController', ['ChatService',ChatController]);
+
 
 function ChatController(ChatService) {
 	// map this to a variable to avoid scoping issues
@@ -9,14 +9,14 @@ function ChatController(ChatService) {
 
 	console.log(ChatService);
 	this.messages = [];
-	// messages = this.messages;
+	messages = this.messages;
 
 	ChatService.on('server:message', function (msg) {
-		this.messages.push(msg);
+		messages.push(msg);
 	});
 
 	ChatService.on('user:message', function (msg) {
-		this.messages.push(msg);
+		messages.push(msg);
 	});
 
 	this.sendMessage = function () {
