@@ -14,5 +14,7 @@ require('./app.routes');
 // components (by folder)
 require('./components/chat/');
 
-// shared services (only one file for now, but possibly import whole folder in the future)
+// directives by folder
+require('./shared/card/');
+//shared services (only one file for now, but possibly import whole folder in the future)
 require('./shared/services/SocketService');
