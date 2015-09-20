@@ -7,9 +7,9 @@ var sourcemaps = require('gulp-sourcemaps');
 var browserSync = require('browser-sync').create();
 var nodemon = require('gulp-nodemon');
 // For Javascripts
-var browserify = require('browserify');
-var source = require('vinyl-source-stream');
-var buffer = require('vinyl-buffer');
+var concat = require('gulp-concat');
+// var source = require('vinyl-source-stream');
+// var buffer = require('vinyl-buffer');
 // For CSS
 var sass = require('gulp-sass');
 var neat = require('node-neat');
@@ -24,14 +24,14 @@ function onError(error) {
 
 // Javascript Task
 gulp.task('javascript', function () {
-  return browserify('./public/js/app.module.js')
-    .bundle()
-    .pipe(source('bundle.js'))
-    .pipe(buffer())
+  return gulp.src(['node_modules/angular/angular.min.js', 'public/js/app.module.js', 'public/js/**/*.js'])
+    .pipe(plumber(onError))
     .pipe(sourcemaps.init())
-    .on('error', gutil.log)
-    .pipe(sourcemaps.write('./'))
-    .pipe(gulp.dest('./dist/js/'))
+    .pipe(concat('app.js'))
+    // .pipe(ngAnnotate())
+    // .pipe(uglify())
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest('./dist/js'))
     .pipe(browserSync.reload({
       stream: true
     }));

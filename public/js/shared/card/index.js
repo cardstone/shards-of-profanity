@@ -1,1 +1,0 @@
-require('./CardDirective.js');

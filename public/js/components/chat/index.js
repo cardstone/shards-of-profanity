@@ -1,2 +1,0 @@
-require('./ChatController');
-//require('./ChatView');
