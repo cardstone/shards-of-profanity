@@ -24,7 +24,12 @@ function onError(error) {
 
 // Javascript Task
 gulp.task('javascript', function () {
-  return gulp.src(['node_modules/angular/angular.min.js', 'public/js/app.module.js', 'public/js/**/*.js'])
+  return gulp.src([
+      'node_modules/angular/angular.min.js',
+      'node_modules/angular-ui-router/release/angular-ui-router.min.js',
+      'public/js/app.module.js',
+      'public/js/**/*.js'
+    ])
     .pipe(plumber(onError))
     .pipe(sourcemaps.init())
     .pipe(concat('app.js'))
@@ -55,7 +60,10 @@ gulp.task('css', function () {
 
 // HTML Task
 gulp.task('html', function () {
-  return gulp.src('./public/index.html')
+  return gulp.src(['./public/index.html',
+      './public/js/components/home/home.html',
+      './public/js/components/chat/chatView.html'
+    ])
     .pipe(gulp.dest('./dist'))
     .pipe(browserSync.reload({
       stream: true

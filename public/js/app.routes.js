@@ -1,22 +1,19 @@
-// require('angular');
-// require('angular-route');
-//
-// module.exports = angular.module('appRoutes', [])
-// 	// $routeProvider and $locationProvider are built-in services being passed into the callback function
-// 	.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
-//
-// 		$routeProvider
-// 			.when('/', {
-// 				templateUrl: 'views/home.html',
-// 				controller: 'MainController',
-// 				controllerAs: 'main'
-// 			})
-// 			// .when('/about', {
-// 			// 	templateUrl: 'views/about.html',
-// 			// 	controller: 'AboutController'
-// 			// })
-// 		;
-//
-// 		$locationProvider.html5Mode(true);
-//
-// 	}]);
+angular
+	.module('app')
+	.config(function ($stateProvider, $urlRouterProvider) {
+		// For any unmatched url, redirect to /
+		$urlRouterProvider.otherwise('/');
+
+		// Set up the states
+		$stateProvider
+			.state('/', {
+				url: '/',
+				templateUrl: 'home.html'
+			})
+			.state('chat', {
+				url: "/chat",
+				templateUrl: 'chatView.html',
+				controller: 'ChatController',
+				controllerAs: 'chat'
+			});
+	});
