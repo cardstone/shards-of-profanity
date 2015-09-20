@@ -21,8 +21,8 @@
     "angular-ui-router": "^0.2.15",
     "body-parser": "~1.13.3",
     "cookie-session": "1.2.0",
-    "cookie-parser" : "1.4.0",
-    "express-session" : "1.11.3",
+    "cookie-parser": "1.4.0",
+    "express-session": "1.11.3",
     "express": "^4.10.2",
     "fs": "*",
     "lazy": "*",
@@ -36,6 +36,7 @@
   },
   "devDependencies": {
     "browser-sync": "^2.9.1",
+    "del": "^2.0.2",
     "forever": "*",
     "gulp": "^3.9.0",
     "gulp-autoprefixer": "^3.0.1",

@@ -2,6 +2,7 @@
 // // // // // // // // // // // // // // // //
 var gulp = require('gulp');
 var plumber = require('gulp-plumber');
+var del = require('del');
 var gutil = require('gulp-util');
 var sourcemaps = require('gulp-sourcemaps');
 var browserSync = require('browser-sync').create();
@@ -22,8 +23,14 @@ function onError(error) {
   this.emit('end');
 }
 
+// Clean old /dist directory task,
+// to make room for new /dist build
+gulp.task('clean', function () {
+    return del(['./dist/**/*']);
+});
+
 // Javascript Task
-gulp.task('javascript', function () {
+gulp.task('javascript', ['clean'] ,function () {
   return gulp.src([
       'node_modules/angular/angular.min.js',
       'node_modules/angular-ui-router/release/angular-ui-router.min.js',
@@ -43,7 +50,7 @@ gulp.task('javascript', function () {
 });
 
 // CSS Task
-gulp.task('css', function () {
+gulp.task('css', ['clean'], function () {
   return gulp.src('./public/css/main.sass')
     .pipe(plumber(onError))
     .pipe(sass({
@@ -59,7 +66,7 @@ gulp.task('css', function () {
 });
 
 // HTML Task
-gulp.task('html', function () {
+gulp.task('html', ['clean'], function () {
   return gulp.src(['./public/*.html', 
                     './public/js/components/**/*.html'
     ])
@@ -124,5 +131,7 @@ gulp.task('watch', function () {
   gulp.watch('./public/index.html', ['html']);
 });
 
+
+gulp.task('clearDist');
 // Default Task
-gulp.task('default', ['javascript', 'css', 'html', 'browser-sync', 'watch']);
+gulp.task('default', ['clean', 'javascript', 'css', 'html', 'browser-sync', 'watch']);
