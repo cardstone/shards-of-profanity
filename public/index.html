@@ -7,21 +7,13 @@
 
 		<link rel="stylesheet" href="css/main.css">
 		<script src="js/bundle.js"></script>
-
+		<script src="/socket.io/socket.io.js"></script>
 	</head>
 	<body>
 		<h1>Shards of Profanity</h1>
-
-		<shard-card></shard-card>
-
-		<section ng-controller="ChatController as chat" class="chat">
-			<ul id="messages">MESSAGES:
-				<li ng-repeat="message in chat.messages track by $index">{{ message }}</li>
-			</ul>
-	    <form ng-submit="chat.sendMessage()">
-	     	<input ng-model="chat.msg" type="text" autofocus/><button>Send</button>
-	    </form>
-		</section>
-		<script src="/socket.io/socket.io.js"></script>
+		<a ui-sref="/">HOME</a>
+		<a ui-sref="chat">CHAT</a>
+		<hr/>
+		<div ui-view></div>
 	</body>
 </html>

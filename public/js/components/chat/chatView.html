@@ -1,0 +1,10 @@
+<!-- ChatController as chat -->
+<h2>CHAT</h2>
+<div class="chat">
+	<ul id="messages">MESSAGES:
+		<li ng-repeat="message in chat.messages track by $index">{{ message }}</li>
+	</ul>
+    <form ng-submit="chat.sendMessage()">
+	<input ng-model="chat.msg" type="text" autofocus/><button>Send</button>
+    </form>
+</div>

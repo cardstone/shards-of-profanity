@@ -55,7 +55,10 @@ gulp.task('css', function () {
 
 // HTML Task
 gulp.task('html', function () {
-  return gulp.src('./public/index.html')
+  return gulp.src(['./public/index.html',
+                    './public/js/components/home/home.html',
+                    './public/js/components/chat/chatView.html'
+                  ])
     .pipe(gulp.dest('./dist'))
     .pipe(browserSync.reload({
       stream: true

@@ -1,12 +1,13 @@
 // Pull in angular source code
 require('angular');
+
 // Pull in external modules
-require('angular-route'); //ngRoute
+require('angular-ui-router');
 
 angular
   .module('app', [
-    'ngRoute',
-  ]);
+    'ui.router'
+  ]);	
 
 // route file
 require('./app.routes');
