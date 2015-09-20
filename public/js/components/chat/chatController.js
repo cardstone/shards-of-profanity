@@ -1,4 +1,6 @@
 (function () {
+	'use strict';
+
 	angular
 		.module('app')
 		.controller('ChatController', ['SocketService', ChatController]);
@@ -7,7 +9,7 @@
 	// socket server in /config/socket.js
 	function ChatController(SocketService) {
 		// map this to a variable to avoid scoping issues
-		chatCtrl = this;
+		var chatCtrl = this;
 		chatCtrl.messages = [];
 
 		// listen for socket events

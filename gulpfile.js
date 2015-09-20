@@ -6,11 +6,7 @@ var gutil = require('gulp-util');
 var sourcemaps = require('gulp-sourcemaps');
 var browserSync = require('browser-sync').create();
 var nodemon = require('gulp-nodemon');
-// For Javascripts
 var concat = require('gulp-concat');
-// var source = require('vinyl-source-stream');
-// var buffer = require('vinyl-buffer');
-// For CSS
 var sass = require('gulp-sass');
 var neat = require('node-neat');
 var prefix = require('gulp-autoprefixer');
@@ -60,9 +56,9 @@ gulp.task('css', function () {
 
 // HTML Task
 gulp.task('html', function () {
-  return gulp.src(['./public/index.html',
-      './public/js/components/home/home.html',
-      './public/js/components/chat/chatView.html'
+  return gulp.src([
+      './public/index.html',
+      './public/views/*.html'
     ])
     .pipe(gulp.dest('./dist'))
     .pipe(browserSync.reload({

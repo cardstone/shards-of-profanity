@@ -1,1 +1,9 @@
-angular.module('app', ['ui.router']);
+(function () {
+  'use strict';
+
+  angular
+    .module('app', [
+      'ui.router',
+    ]);
+
+})();
