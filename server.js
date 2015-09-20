@@ -7,16 +7,11 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 
+
 // configuration ===========================================
 
 // config files
 var db = require('./config/db');
-/*var db = mongoose.connect('./config/db', function(err){
-	if(err){
-		console.error('\x1b[31m','Could not connect to MongoDB');
-		console.log(err);
-	}
-});*/
 
 var port = process.env.PORT || 5000; // set our port
 // mongoose.connect(db.url); // connect to our mongoDB database (commented out after you enter in your own credentials)
@@ -54,3 +49,13 @@ require('./config/socket')(io); // configure socket
 server.listen(port);
 //console.log('Magic happens on port ' + port); // shoutout to the user
 exports = module.exports = app; // expose app
+
+/*  To be put in apps main javascript file
+	Creates a new game server for others to join
+
+function createNewGame(){
+	var gameId = (Math.random() * 100000) | 0;
+	this.emit('newGameCreated', {gameId: thihsGameId, mySocketId: this.id});
+	this.join(gameId.toString());
+}
+*/
