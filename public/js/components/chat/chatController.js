@@ -6,7 +6,7 @@
 	// socket client
 	// socket server in /config/socket.js
 	function ChatController(SocketService) {
-		// map this to a variable to avoid scoping issues
+		// map 'this' to a variable to avoid scoping issues
 		chatCtrl = this;
 		chatCtrl.messages = [];
 

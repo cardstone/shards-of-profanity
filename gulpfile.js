@@ -60,11 +60,10 @@ gulp.task('css', function () {
 
 // HTML Task
 gulp.task('html', function () {
-  return gulp.src(['./public/index.html',
-      './public/js/components/home/home.html',
-      './public/js/components/chat/chatView.html'
+  return gulp.src(['./public/*.html', 
+                    './public/js/components/**/*.html'
     ])
-    .pipe(gulp.dest('./dist'))
+    .pipe(gulp.dest('./dist/views'))
     .pipe(browserSync.reload({
       stream: true
     }));

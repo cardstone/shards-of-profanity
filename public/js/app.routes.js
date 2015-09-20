@@ -8,11 +8,11 @@ angular
 		$stateProvider
 			.state('/', {
 				url: '/',
-				templateUrl: 'home.html'
+				templateUrl: '/views/home/home.html'
 			})
 			.state('chat', {
 				url: "/chat",
-				templateUrl: 'chatView.html',
+				templateUrl: '/views/chat/chatView.html',
 				controller: 'ChatController',
 				controllerAs: 'chat'
 			});
