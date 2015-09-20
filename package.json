@@ -21,6 +21,8 @@
     "angular-ui-router": "^0.2.15",
     "body-parser": "~1.13.3",
     "cookie-session": "1.2.0",
+    "cookie-parser" : "1.4.0",
+    "express-session" : "1.11.3",
     "express": "^4.10.2",
     "fs": "*",
     "lazy": "*",

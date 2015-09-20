@@ -6,22 +6,12 @@ var io = require('socket.io').listen(server);
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
-var expressSession = require('express-session'),
-var cookieParser = require('cookie-parser'),
+
 
 // configuration ===========================================
 
 // config files
 var db = require('./config/db');
-
- app.use(cookieParser());
-  app.use(expressSession({  // generates a new session ID.
-    genid: function(req){
-      return genuuid()
-    },
-    secret:'cardTable'
-  }));
-
 
 var port = process.env.PORT || 5000; // set our port
 // mongoose.connect(db.url); // connect to our mongoDB database (commented out after you enter in your own credentials)
