@@ -9,11 +9,11 @@
 			$stateProvider
 				.state('/', {
 					url: '/',
-					templateUrl: 'homeView.html'
+					templateUrl: 'components/home/homeView.html'
 				})
 				.state('chat', {
 					url: "/chat",
-					templateUrl: 'chatView.html',
+					templateUrl: 'components/chat/chatView.html',
 					controller: 'ChatController',
 					controllerAs: 'chat'
 				});
