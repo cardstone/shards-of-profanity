@@ -1,2 +1,13 @@
+<!-- HomeController as home -->
 <h2>Home</h2>
-<p>SoP homepage yo. Click 'CHAT' at the top of the page.</p>
+
+<p>Message: {{ home.message }}</p>
+<p>Game ID: {{ home.gameId }}</p>
+
+<button ng-click="home.createNewGame()">NEW GAME</button>
+
+<form ng-submit="home.joinGame()">
+	<input ng-model="home.gameToJoin" type="text"/><button>JOIN GAME</button>
+</form>
+
+<button ng-click="home.sendMessage()">Send Message</button>
