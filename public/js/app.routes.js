@@ -1,23 +1,16 @@
 (function () {
 	'use strict';
 
-	angular
-		.module('app')
-		.config(function ($stateProvider, $urlRouterProvider) {
-			// For any unmatched url, redirect to /
-			$urlRouterProvider.otherwise('/');
-
-			// Set up the states
-			$stateProvider
-				.state('/', {
-					url: '/',
-					templateUrl: 'homeView.html'
-				})
-				.state('chat', {
-					url: "/chat",
-					templateUrl: 'chatView.html',
-					controller: 'ChatController',
-					controllerAs: 'chat'
-				});
+	// Set up the states
+	$stateProvider
+		.state('/', {
+			url: '/',
+			templateUrl: '/views/home/home.html'
+		})
+		.state('chat', {
+			url: "/chat",
+			templateUrl: '/views/chat/chatView.html',
+			controller: 'ChatController',
+			controllerAs: 'chat'
 		});
 })();

@@ -11,7 +11,6 @@ var mean = require('meanio'),
   modRewrite = require('connect-modrewrite'),
   // seo = require('mean-seo'),
   config = mean.loadConfig(),
-  cookieSession = require('cookie-session'),
   favicon = require('serve-favicon');
 
 var app = express();
@@ -35,6 +34,7 @@ module.exports = function (app, db) {
     level: 9
   }));
 
+ 
   // Enable compression on bower_components
   app.use('/bower_components', express.static(config.root + '/bower_components'));
 
@@ -46,12 +46,6 @@ module.exports = function (app, db) {
 
   // set .html as the default extension
   app.set('view engine', 'html');
-
-  app.set('trust proxy', 1);
-  app.use(cookieSession({
-    name: 'cardsSession',
-    keys: ['key1', 'key2']
-  }));
 
   app.set('views', './public/views');
 
