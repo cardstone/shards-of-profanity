@@ -1,25 +1,12 @@
 .DS_Store
 
-lib-cov
-*.seed
-*.log
-*.csv
-*.dat
-*.out
-*.pid
-*.gz
-
-pids
-logs
-results
-
 npm-debug.log
 node_modules
 
-#public/libs
 dist
 
 public/libs/
 public/shardsOfProfanity.js
+public/templates.js
 
 _reports

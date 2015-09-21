@@ -1,16 +1,24 @@
 // Gulp Plugins
 // // // // // // // // // // // // // // // //
+// SHARED
 var gulp = require('gulp');
 var plumber = require('gulp-plumber');
-var del = require('del');
 var gutil = require('gulp-util');
+// for clean task
+var del = require('del');
+// for javascript task
 var sourcemaps = require('gulp-sourcemaps');
-var browserSync = require('browser-sync').create();
-var nodemon = require('gulp-nodemon');
 var concat = require('gulp-concat');
+// for css task
 var sass = require('gulp-sass');
 var neat = require('node-neat');
 var prefix = require('gulp-autoprefixer');
+// for templates task
+var templateCache = require('gulp-angular-templatecache');
+// for browser-sync task
+var browserSync = require('browser-sync').create();
+// for nodemon task
+var nodemon = require('gulp-nodemon');
 
 // ON error
 function onError(error) {
@@ -26,7 +34,7 @@ gulp.task('clean', function () {
 });
 
 // Javascript Task
-gulp.task('javascript', ['clean'], function () {
+gulp.task('javascript', function () {
   return gulp.src([
       'node_modules/angular/angular.min.js',
       'node_modules/angular-ui-router/release/angular-ui-router.min.js',
@@ -46,7 +54,7 @@ gulp.task('javascript', ['clean'], function () {
 });
 
 // CSS Task
-gulp.task('css', ['clean'], function () {
+gulp.task('css', function () {
   return gulp.src('./public/css/main.sass')
     .pipe(plumber(onError))
     .pipe(sass({
@@ -62,13 +70,22 @@ gulp.task('css', ['clean'], function () {
 });
 
 // HTML Task
+gulp.task('html', function () {
+  return gulp.src(['./public/index.html'])
+    .pipe(gulp.dest('./dist'))
+    .pipe(browserSync.reload({
+      stream: true
+    }));
+});
 
-gulp.task('html', ['clean'], function () {
-  return gulp.src([
-      './public/*.html',
-      './public/js/components/**/*.html'
-    ])
-    .pipe(gulp.dest('./dist/views'))
+// templates task
+gulp.task('templates', function () {
+  return gulp.src('./public/views/**/*.html')
+    .pipe(templateCache({
+      standalone: true,
+      moduleSystem: 'IIFE'
+    }))
+    .pipe(gulp.dest('./public/js'))
     .pipe(browserSync.reload({
       stream: true
     }));
@@ -124,11 +141,19 @@ gulp.task('browser-sync', ['nodemon'], function () {
 
 // Watch task
 gulp.task('watch', function () {
+  gulp.watch('./public/js/**/*.{html,jade}', ['templates', 'javascript']);
   gulp.watch('./public/js/**/*.js', ['javascript']);
   gulp.watch('./public/css/**/*.{sass,scss}', ['css']);
   gulp.watch('./public/index.html', ['html']);
 });
 
-gulp.task('clearDist');
 // Default Task
-gulp.task('default', ['clean', 'javascript', 'css', 'html', 'browser-sync', 'watch']);
+gulp.task('default', [
+  'clean',
+  'templates',
+  'javascript',
+  'css',
+  'html',
+  'browser-sync',
+  'watch'
+]);
