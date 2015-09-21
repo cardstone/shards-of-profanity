@@ -80,8 +80,7 @@ gulp.task('html', function () {
 
 // templates task
 gulp.task('templates', function () {
-  // maybe fix the path
-  return gulp.src('./public/views/**/*.html')
+  return gulp.src('./public/js/**/*.{html,jade}')
     .pipe(templateCache({
       standalone: true,
       moduleSystem: 'IIFE'
