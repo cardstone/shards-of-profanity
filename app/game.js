@@ -17,7 +17,6 @@ exports.initGame = function(sio, socket){
     gameSocket.on('client:sendMessage', sendMessage);
 }
 
-
 function createNewGame () {
 	console.log('creating new game');
     var thisGameId = ( Math.random() * 100000 ) | 0;
@@ -28,9 +27,11 @@ function createNewGame () {
     io.sockets.emit('server:games', {games: gameIds});
 }
 
-function getGames () {
-    console.log('forwarding games list to client');
-    this.emit('server:games', {games: gameIds});
+function getGames() {
+  console.log('forwarding games list to client');
+  this.emit('server:games', {
+    games: gameIds
+  });
 }
 
 function joinGame (data) {
@@ -54,10 +55,10 @@ function joinGame (data) {
     //console.log(gameSocket.adapter.rooms);
 }
 
-function sendMessage (data) {
-	console.log('client sending message:');
-	console.log(data.gameId);
-	io.sockets.in(data.gameId).emit('server:message', {msg: 'YOU DID IT!'});
+function sendMessage(data) {
+  console.log('client sending message:');
+  console.log(data.gameId);
+  io.sockets.in(data.gameId).emit('server:message', {
+    msg: 'YOU DID IT!'
+  });
 }
-
-

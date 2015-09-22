@@ -91,6 +91,12 @@ gulp.task('templates', function () {
     }));
 });
 
+// images / icons
+gulp.task('icons', function () {
+  return gulp.src('public/images/*.*')
+    .pipe(gulp.dest('./dist/images'));
+});
+
 // nodemon task
 // runs and refreshes node server
 gulp.task('nodemon', function (cb) {
@@ -145,6 +151,7 @@ gulp.task('watch', function () {
   gulp.watch('./public/ngApp/**/*.js', ['javascript']);
   gulp.watch('./public/css/**/*.{sass,scss}', ['css']);
   gulp.watch('./public/index.html', ['html']);
+  gulp.watch('./public/images/*.*', ['icons']);
 });
 
 // Default Task
@@ -154,6 +161,7 @@ gulp.task('default', [
   'javascript',
   'css',
   'html',
+  'icons',
   'browser-sync',
   'watch'
 ]);

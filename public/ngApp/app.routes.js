@@ -4,7 +4,8 @@
 	angular
 		.module('app')
 		.config(function ($stateProvider, $locationProvider, $urlRouterProvider) {
-			// set up the states
+
+			// Set up the states
 			$stateProvider
 				.state('home', {
 					url: '/',
@@ -19,8 +20,6 @@
 					controller: 'GameController',
 					controllerAs: 'game'
 				});
-
-			// enable pretty urls with no // 
 			$locationProvider.html5Mode(true);
 		});
 })();

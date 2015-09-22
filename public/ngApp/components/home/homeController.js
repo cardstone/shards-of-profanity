@@ -12,7 +12,7 @@
     homeCtrl.joinedSocket = null;
 
     // ask the server for the list of games
-    SocketService.emit('server:getGames');
+    SocketService.emit('client:getGames');
 
     // listen for events from server
     SocketService.on('server:message', function (data) {
