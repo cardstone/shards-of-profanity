@@ -28,10 +28,8 @@ function createNewGame () {
 }
 
 function getGames() {
-  console.log('forwarding games list to client');
-  this.emit('server:games', {
-    games: gameIds
-  });
+    console.log('forwarding games list to client');
+    this.emit('server:games', {games: gameIds});
 }
 
 function joinGame (data) {

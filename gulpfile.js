@@ -156,7 +156,6 @@ gulp.task('watch', function () {
 
 // Default Task
 gulp.task('default', [
-  'clean',
   'templates',
   'javascript',
   'css',
