@@ -47,7 +47,7 @@ require('./app/routes')(app); // pass our application into our routes
 // socket.io ===============================================
 //require('./config/socket')(io); // configure socket
 io.sockets.on('connection', function (socket) {
-    console.log('client connected');
+    console.log('a client connected');
     game.initGame(io, socket);
 });
 
