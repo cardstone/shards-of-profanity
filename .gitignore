@@ -7,6 +7,6 @@ dist
 
 public/libs/
 public/shardsOfProfanity.js
-public/templates.js
+public/ngApp/templates.js
 
 _reports

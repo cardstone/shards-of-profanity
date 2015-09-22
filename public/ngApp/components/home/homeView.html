@@ -1,5 +1,18 @@
 <section class="homeView">
-  <p>
-    hello
-  </p>
+  <!-- HomeController as home -->
+  <h2>Home</h2>
+
+  <button ng-click="home.createNewGame()">NEW GAME</button>
+
+  <form ng-submit="home.joinGame()">
+  	<input ng-model="home.gameToJoin" type="text"/><button>JOIN GAME</button>
+  </form>
+
+  <ul>
+  	<button ng-click="home.refreshGames()">Refresh Games List</button>
+  	<li ng-repeat="game in home.games">
+  		{{ game }}
+  	</li>
+  </ul>
+
 </section>

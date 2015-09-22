@@ -7,6 +7,8 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 
+var game = require('./app/game');
+
 
 // configuration ===========================================
 
@@ -43,7 +45,11 @@ app.post('/', function (req, res) { // function sends information to the root of
 require('./app/routes')(app); // pass our application into our routes
 
 // socket.io ===============================================
-require('./config/socket')(io); // configure socket
+//require('./config/socket')(io); // configure socket
+io.sockets.on('connection', function (socket) {
+    console.log('client connected');
+    game.initGame(io, socket);
+});
 
 // start app ===============================================
 server.listen(port);
