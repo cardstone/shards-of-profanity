@@ -37,9 +37,9 @@ gulp.task('clean', function () {
 gulp.task('javascript', function () {
   return gulp.src([
       'node_modules/angular/angular.min.js',
-      'node_modules/angular-ui-router/release/angular-ui-router.min.js',
-      'public/js/app.module.js',
-      'public/js/**/*.js'
+      'node_modules/angular-ui-router/release/angular-ui-router.js',
+      'public/ngAPP/app.module.js',
+      'public/ngAPP/**/*.js'
     ])
     .pipe(plumber(onError))
     .pipe(sourcemaps.init())
@@ -80,15 +80,21 @@ gulp.task('html', function () {
 
 // templates task
 gulp.task('templates', function () {
-  return gulp.src('./public/js/**/*.{html,jade}')
+  return gulp.src('./public/ngAPP/**/*.html')
     .pipe(templateCache({
       standalone: true,
       moduleSystem: 'IIFE'
     }))
-    .pipe(gulp.dest('./public/js'))
+    .pipe(gulp.dest('./public/ngApp'))
     .pipe(browserSync.reload({
       stream: true
     }));
+});
+
+// images / icons
+gulp.task('icons', function () {
+  return gulp.src('public/images/*.*')
+    .pipe(gulp.dest('./dist/images'));
 });
 
 // nodemon task
@@ -141,10 +147,11 @@ gulp.task('browser-sync', ['nodemon'], function () {
 
 // Watch task
 gulp.task('watch', function () {
-  gulp.watch('./public/js/**/*.{html,jade}', ['templates', 'javascript']);
-  gulp.watch('./public/js/**/*.js', ['javascript']);
+  gulp.watch('./public/ngAPP/**/*.{html,jade}', ['templates', 'javascript']);
+  gulp.watch('./public/ngAPP/**/*.js', ['javascript']);
   gulp.watch('./public/css/**/*.{sass,scss}', ['css']);
   gulp.watch('./public/index.html', ['html']);
+  gulp.watch('./public/images/*.*', ['icons']);
 });
 
 // Default Task
@@ -154,6 +161,7 @@ gulp.task('default', [
   'javascript',
   'css',
   'html',
+  'icons',
   'browser-sync',
   'watch'
 ]);
