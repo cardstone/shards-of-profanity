@@ -36,7 +36,7 @@ gulp.task('clean', function () {
 // Javascript Task
 gulp.task('javascript', function () {
   return gulp.src([
-      'node_modules/angular/angular.min.js',
+      'node_modules/angular/angular.js',
       'node_modules/angular-ui-router/release/angular-ui-router.js',
       'public/ngAPP/app.module.js',
       'public/ngAPP/**/*.js'
