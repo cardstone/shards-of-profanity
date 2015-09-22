@@ -38,8 +38,8 @@ gulp.task('javascript', function () {
   return gulp.src([
       'node_modules/angular/angular.js',
       'node_modules/angular-ui-router/release/angular-ui-router.js',
-      'public/ngAPP/app.module.js',
-      'public/ngAPP/**/*.js'
+      'public/ngApp/app.module.js',
+      'public/ngApp/**/*.js'
     ])
     .pipe(plumber(onError))
     .pipe(sourcemaps.init())
@@ -80,7 +80,7 @@ gulp.task('html', function () {
 
 // templates task
 gulp.task('templates', function () {
-  return gulp.src('./public/ngAPP/**/*.html')
+  return gulp.src('./public/ngApp/**/*.{html,jade}')
     .pipe(templateCache({
       standalone: true,
       moduleSystem: 'IIFE'
@@ -147,8 +147,8 @@ gulp.task('browser-sync', ['nodemon'], function () {
 
 // Watch task
 gulp.task('watch', function () {
-  gulp.watch('./public/ngAPP/**/*.{html,jade}', ['templates', 'javascript']);
-  gulp.watch('./public/ngAPP/**/*.js', ['javascript']);
+  gulp.watch('./public/ngApp/**/*.{html,jade}', ['templates', 'javascript']);
+  gulp.watch('./public/ngApp/**/*.js', ['javascript']);
   gulp.watch('./public/css/**/*.{sass,scss}', ['css']);
   gulp.watch('./public/index.html', ['html']);
   gulp.watch('./public/images/*.*', ['icons']);
@@ -156,7 +156,6 @@ gulp.task('watch', function () {
 
 // Default Task
 gulp.task('default', [
-  'clean',
   'templates',
   'javascript',
   'css',

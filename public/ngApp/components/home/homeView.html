@@ -1,18 +1,10 @@
-<section class="homeView">
-  <!-- HomeController as home -->
-  <h2>Home</h2>
+<!-- HomeController as home -->
+<h2>Home</h2>
+<button ng-click="home.createNewGame()">CREATE NEW GAME</button>
+<form ng-submit="home.joinGame()">
+	<input ng-model="home.gameToJoin" type="text"/><button>JOIN GAME</button>
+</form>
+<ul>
+	<li ng-repeat="game in home.games">{{ game }}</li>
+</ul>
 
-  <button ng-click="home.createNewGame()">NEW GAME</button>
-
-  <form ng-submit="home.joinGame()">
-  	<input ng-model="home.gameToJoin" type="text"/><button>JOIN GAME</button>
-  </form>
-
-  <ul>
-  	<button ng-click="home.refreshGames()">Refresh Games List</button>
-  	<li ng-repeat="game in home.games">
-  		{{ game }}
-  	</li>
-  </ul>
-
-</section>
