@@ -38,8 +38,8 @@ gulp.task('javascript', function () {
   return gulp.src([
       'node_modules/angular/angular.min.js',
       'node_modules/angular-ui-router/release/angular-ui-router.min.js',
-      'public/js/app.module.js',
-      'public/js/**/*.js'
+      'public/ngApp/app.module.js',
+      'public/ngApp/**/*.js'
     ])
     .pipe(plumber(onError))
     .pipe(sourcemaps.init())
@@ -80,12 +80,12 @@ gulp.task('html', function () {
 
 // templates task
 gulp.task('templates', function () {
-  return gulp.src('./public/js/**/*.{html,jade}')
+  return gulp.src('./public/ngApp/**/*.{html,jade}')
     .pipe(templateCache({
       standalone: true,
       moduleSystem: 'IIFE'
     }))
-    .pipe(gulp.dest('./public/js'))
+    .pipe(gulp.dest('./public/ngApp'))
     .pipe(browserSync.reload({
       stream: true
     }));
@@ -141,8 +141,8 @@ gulp.task('browser-sync', ['nodemon'], function () {
 
 // Watch task
 gulp.task('watch', function () {
-  gulp.watch('./public/js/**/*.{html,jade}', ['templates', 'javascript']);
-  gulp.watch('./public/js/**/*.js', ['javascript']);
+  gulp.watch('./public/ngApp/**/*.{html,jade}', ['templates', 'javascript']);
+  gulp.watch('./public/ngApp/**/*.js', ['javascript']);
   gulp.watch('./public/css/**/*.{sass,scss}', ['css']);
   gulp.watch('./public/index.html', ['html']);
 });
