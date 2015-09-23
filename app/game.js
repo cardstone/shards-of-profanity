@@ -64,7 +64,7 @@ function sendMessage (data) {
   //console.log('client sending message...');
   var gameNum = '#' + data.gameId;
   //console.log('   to room ' + gameNum);
-  io.sockets.in(gameNum).emit('client:message', {msg: data.msg});
+  io.sockets.in(gameNum).emit('client:message', {playerName: data.playerName, msg: data.msg});
 }
 
 function disconnect () {

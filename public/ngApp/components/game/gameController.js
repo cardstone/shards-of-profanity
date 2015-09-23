@@ -12,9 +12,6 @@
 		$scope.myGameId = gameData.myGameId;
 
 		gameCtrl.myName = '';
-		//$scope.myName = 'placeholder-poopiebutthole-name';
-		//$state.go('game.components');
-
 
 		gameCtrl.enterName = function () {
 			$scope.myName = gameCtrl.myName;
