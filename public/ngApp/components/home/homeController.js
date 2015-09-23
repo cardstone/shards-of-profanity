@@ -22,7 +22,7 @@
     SocketService.on('server:joinSuccess', function (data) {
       var mySocket = SocketService;
       // pass our socket and unique gameId
-      $state.go('game', { 
+      $state.go('enterName', { 
         myParam: { 
           mySocket: mySocket, 
           myGameId: data.gameId

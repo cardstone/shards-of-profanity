@@ -13,6 +13,13 @@
 					controller: 'HomeController',
 					controllerAs: 'home'
 				})
+				.state('enterName', {
+					url: '',
+					params: {myParam: null},
+					templateUrl: 'components/gameSettings/nameView.html',
+					controller: 'NameController',
+					controllerAs: 'name'
+				})
 				.state('game', {
 					url: '',
 					params: {myParam: null},

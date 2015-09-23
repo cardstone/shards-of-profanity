@@ -10,14 +10,8 @@
 		var gameData = $stateParams.myParam;
 		$scope.mySocket = gameData.mySocket;
 		$scope.myGameId = gameData.myGameId;
+		$scope.myName = gameData.myName;
 
-		gameCtrl.myName = '';
-
-		gameCtrl.enterName = function () {
-			$scope.myName = gameCtrl.myName;
-			gameCtrl.myName = '';
-			$state.go('game.components');
-		};
-
+		$state.go('game.components');
 	}
 })();
