@@ -11,7 +11,7 @@ var through = require('through2'),
   fs = require('fs'),
   split = require('split'),
   readFile = process.argv[2],
-  writeFile = 'cards/output.txt';
+  writeFile = 'data/output.txt';
 
 // transform stream
 var tr = through(function (buffer, _, next) {
