@@ -5,14 +5,15 @@
 		.module('app')
 		.controller('ChatController', ['$stateParams', ChatController]);
 
-	// socket client
-	// socket server in /config/socket.js
+	// chat client
 	function ChatController($stateParams) {
 		// map 'this' to a variable to avoid scoping issues
 		var chatCtrl = this;
+		// get data passed into the state 
 		var gameData = $stateParams.myParam;
 	 	var myGameId = gameData.gameId;
 	 	var socket = gameData.socket;
+	 	chatCtrl.msg ='';
 	 	chatCtrl.messages = [];
 
 	 	chatCtrl.messages.push('Welcome to game ' + myGameId);

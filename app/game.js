@@ -20,28 +20,22 @@ exports.initGame = function (sio, socket) {
 };
 
 function createNewGame() {
-  console.log('creating new game');
+  //console.log('creating new game...');
   var thisGameId = (Math.random() * 100000) | 0;
   thisGameId = thisGameId.toString();
   this.join(thisGameId);
-  this.emit('server:joinSuccess', {
-    gameId: thisGameId
-  });
+  this.emit('server:joinSuccess', {gameId: thisGameId});
   gameIds.push(thisGameId);
-  io.sockets.emit('server:games', {
-    games: gameIds
-  });
+  io.sockets.emit('server:games', {games: gameIds});
 }
 
 function getGames() {
-  console.log('forwarding games list to client');
-  this.emit('server:games', {
-    games: gameIds
-  });
+ // console.log('forwarding games list to client...');
+  this.emit('server:games', {games: gameIds});
 }
 
 function joinGame(data) {
-  console.log('a client is attempting join a game...');
+  //console.log('a client is attempting join a game...');
   // A reference to the client's Socket.IO socket object
   var sock = this;
   // Look up the room ID in the Socket.IO manager object.
@@ -52,19 +46,18 @@ function joinGame(data) {
     data.mySocketId = sock.id;
     // Join the room
     sock.join(data.gameId);
+    // Tell the client we were successful 
     sock.emit('server:joinSuccess', {
       gameId: data.gameId
     });
-    console.log('	the client joined game ' + data.gameId + ' successfully.');
+    //console.log('	the client joined game ' + data.gameId + ' successfully.');
   } else {
     sock.emit('server:joinFailure');
-    console.log('	the client failed to join game ' + data.gameId);
+    //console.log('	the client failed to join game ' + data.gameId);
   }
-  //console.log(gameSocket.adapter.rooms);
 }
 
 function sendMessage(data) {
-  console.log('client sending message:');
-  console.log(data.gameId);
+  //console.log('client sending message...');
   io.sockets.in(data.gameId).emit('client:message', {msg: data.msg});
 }

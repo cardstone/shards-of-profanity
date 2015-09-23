@@ -9,22 +9,19 @@
     var homeCtrl = this;
     homeCtrl.gameToJoin = '';
     homeCtrl.games = [];
-    homeCtrl.joinedSocket = null;
 
     // ask the server for the list of games
     SocketService.emit('client:getGames');
 
     // listen for events from server
-    SocketService.on('server:message', function (data) {
-      homeCtrl.message = data.msg;
-    });
-
     SocketService.on('server:games', function (data) {
       homeCtrl.games = data.games;
     });
 
+    // if we successfully joined, go to game state
     SocketService.on('server:joinSuccess', function (data) {
       var mySocket = SocketService;
+      // pass our socket and unique gameId
       $state.go('game.components', { 
         myParam: { 
           socket: mySocket, 
@@ -34,10 +31,10 @@
     });
 
     SocketService.on('server:joinFailure', function () {
-
+      // to do.
     });
 
-
+    // controller functions
     homeCtrl.createNewGame = function () {
       SocketService.emit('client:createNewGame');
     };
@@ -53,7 +50,6 @@
     homeCtrl.joinGame = function () {
       SocketService.emit('client:joinGame', {gameId: homeCtrl.gameToJoin});
       homeCtrl.gameToJoin = '';
-
     };
 
     homeCtrl.sendMessage = function () {
