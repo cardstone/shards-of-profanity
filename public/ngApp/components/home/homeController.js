@@ -25,8 +25,7 @@
       $state.go('game', { 
         myParam: { 
           mySocket: mySocket, 
-          myGameId: data.gameId,
-          myName: 'placeholder-poopiebutthole-name'
+          myGameId: data.gameId
         }
       });
     });

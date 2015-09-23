@@ -9,7 +9,7 @@
 	function ChatController($scope) {
 		// map 'this' to a variable to avoid scoping issues
 		var chatCtrl = this;
-		// get data passed into the state 
+		// get variables from our parent state scope
 		var socket = $scope.mySocket;
 	 	var myGameId = $scope.myGameId;
 	 	var myName = $scope.myName;

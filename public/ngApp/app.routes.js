@@ -18,7 +18,7 @@
 					params: {myParam: null},
 					templateUrl: 'components/game/gameView.html',
 					controller: 'GameController',
-					controlelrAs: 'game'
+					controllerAs: 'game'
 				})
 				.state('game.components', {
 					views: {

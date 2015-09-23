@@ -6,11 +6,21 @@
 		.controller('GameController', ['$scope', '$state',  '$stateParams', GameController]);
 
 	function GameController ($scope, $state, $stateParams) {
+		var gameCtrl = this;
 		var gameData = $stateParams.myParam;
 		$scope.mySocket = gameData.mySocket;
 		$scope.myGameId = gameData.myGameId;
-		$scope.myName = gameData.myName;
-		$state.go('game.components');
+
+		gameCtrl.myName = '';
+		//$scope.myName = 'placeholder-poopiebutthole-name';
+		//$state.go('game.components');
+
+
+		gameCtrl.enterName = function () {
+			$scope.myName = gameCtrl.myName;
+			gameCtrl.myName = '';
+			$state.go('game.components');
+		};
 
 	}
 })();
