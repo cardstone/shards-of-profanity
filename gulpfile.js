@@ -19,6 +19,7 @@ var templateCache = require('gulp-angular-templatecache');
 var browserSync = require('browser-sync').create();
 // for nodemon task
 var nodemon = require('gulp-nodemon');
+var svgMin = require('gulp-svgmin');
 
 // ON error
 function onError(error) {
@@ -91,10 +92,21 @@ gulp.task('templates', function () {
     }));
 });
 
-// images / icons
+// icons task
 gulp.task('icons', function () {
-  return gulp.src('public/images/*.*')
-    .pipe(gulp.dest('./dist/images'));
+  return gulp.src('public/icons/*.svg')
+    .pipe(svgMin({
+      plugins: [{
+        mergePaths: false
+      }, {
+        cleanupIDs: false
+      }],
+      js2svg: {
+        pretty: true
+      }
+    }))
+    .pipe(gulp.dest('dist/icons/'))
+    .pipe(gulp.dest('public/icons/'));
 });
 
 // nodemon task
@@ -151,7 +163,7 @@ gulp.task('watch', function () {
   gulp.watch('./public/ngApp/**/*.js', ['javascript']);
   gulp.watch('./public/css/**/*.{sass,scss}', ['css']);
   gulp.watch('./public/index.html', ['html']);
-  gulp.watch('./public/images/*.*', ['icons']);
+  gulp.watch('./public/icons/*.svg', ['icons']);
 });
 
 // Default Task
