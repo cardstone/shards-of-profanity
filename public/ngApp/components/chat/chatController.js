@@ -3,20 +3,23 @@
 
 	angular
 		.module('app')
-		.controller('ChatController', ['$stateParams', ChatController]);
+		.controller('ChatController', ['$scope', ChatController]);
 
 	// chat client
-	function ChatController($stateParams) {
+	function ChatController($scope) {
 		// map 'this' to a variable to avoid scoping issues
 		var chatCtrl = this;
 		// get data passed into the state 
-		var gameData = $stateParams.myParam;
-	 	var myGameId = gameData.gameId;
-	 	var socket = gameData.socket;
+		var socket = $scope.mySocket;
+	 	var myGameId = $scope.myGameId;
+	 	var myName = $scope.myName;
+
 	 	chatCtrl.msg ='';
 	 	chatCtrl.messages = [];
 
-	 	chatCtrl.messages.push('Welcome to game ' + myGameId);
+	 	chatCtrl.messages.push('Waddup ' + myName + '.');
+	 	chatCtrl.messages.push('Welcome to game ' + myGameId + ' ya filthy animal.');
+
 
 		// listen for socket events
 		socket.on('server:message', function (data) {

@@ -15,10 +15,12 @@
 				})
 				.state('game', {
 					url: '',
-					templateUrl: 'components/game/gameView.html'
+					params: {myParam: null},
+					templateUrl: 'components/game/gameView.html',
+					controller: 'GameController',
+					controlelrAs: 'game'
 				})
 				.state('game.components', {
-					params: {myParam: null},
 					views: {
 						'chat': {
 							templateUrl: 'components/chat/chatView.html',

@@ -22,10 +22,11 @@
     SocketService.on('server:joinSuccess', function (data) {
       var mySocket = SocketService;
       // pass our socket and unique gameId
-      $state.go('game.components', { 
+      $state.go('game', { 
         myParam: { 
-          socket: mySocket, 
-          gameId: data.gameId
+          mySocket: mySocket, 
+          myGameId: data.gameId,
+          myName: 'placeholder-poopiebutthole-name'
         }
       });
     });
