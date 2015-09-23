@@ -17,35 +17,38 @@ exports.initGame = function (sio, socket) {
   gameSocket.on('client:getGames', getGames);
   gameSocket.on('client:joinGame', joinGame);
   gameSocket.on('client:message', sendMessage);
+  gameSocket.on('disconnect', disconnect);
 };
 
-function createNewGame() {
+function createNewGame () {
   //console.log('creating new game...');
   var thisGameId = (Math.random() * 100000) | 0;
   thisGameId = thisGameId.toString();
-  this.join(thisGameId);
+  this.join('#' + thisGameId);
   this.emit('server:joinSuccess', {gameId: thisGameId});
   gameIds.push(thisGameId);
-  io.sockets.emit('server:games', {games: gameIds});
+  //io.sockets.emit('server:games', {games: gameIds});
 }
 
-function getGames() {
- // console.log('forwarding games list to client...');
+function getGames () {
+  // console.log('forwarding games list to client...');
   this.emit('server:games', {games: gameIds});
 }
 
-function joinGame(data) {
+function joinGame (data) {
   //console.log('a client is attempting join a game...');
   // A reference to the client's Socket.IO socket object
   var sock = this;
   // Look up the room ID in the Socket.IO manager object.
-  var room = gameSocket.adapter.rooms[data.gameId];
+  var gameNum = '#' + data.gameId;
+  var room = gameSocket.adapter.rooms[gameNum];
+  //console.log(gameSocket.adapter.rooms);
   // If the room exists...
   if (room !== undefined) {
     // attach the socket id to the data object.
     data.mySocketId = sock.id;
     // Join the room
-    sock.join(data.gameId);
+    sock.join(gameNum);
     // Tell the client we were successful 
     sock.emit('server:joinSuccess', {
       gameId: data.gameId
@@ -57,7 +60,13 @@ function joinGame(data) {
   }
 }
 
-function sendMessage(data) {
+function sendMessage (data) {
   //console.log('client sending message...');
-  io.sockets.in(data.gameId).emit('client:message', {msg: data.msg});
+  var gameNum = '#' + data.gameId;
+  //console.log('   to room ' + gameNum);
+  io.sockets.in(gameNum).emit('client:message', {msg: data.msg});
+}
+
+function disconnect () {
+  //console.log('a client disconnected');
 }

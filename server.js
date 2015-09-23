@@ -45,23 +45,12 @@ app.post('/', function (req, res) { // function sends information to the root of
 require('./app/routes')(app); // pass our application into our routes
 
 // socket.io ===============================================
-//require('./config/socket')(io); // configure socket
 io.sockets.on('connection', function (socket) {
-    console.log('a client connected');
-    game.initGame(io, socket);
+    //console.log('a client connected');
+    game.initGame(io, socket); // pass sockets to our game
 });
 
 // start app ===============================================
 server.listen(port);
 //console.log('Magic happens on port ' + port); // shoutout to the user
 exports = module.exports = app; // expose app
-
-/*  To be put in apps main javascript file
-	Creates a new game server for others to join
-
-function createNewGame(){
-	var gameId = (Math.random() * 100000) | 0;
-	this.emit('newGameCreated', {gameId: thihsGameId, mySocketId: this.id});
-	this.join(gameId.toString());
-}
-*/

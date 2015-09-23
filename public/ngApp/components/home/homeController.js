@@ -11,7 +11,7 @@
     homeCtrl.games = [];
 
     // ask the server for the list of games
-    SocketService.emit('client:getGames');
+    //SocketService.emit('client:getGames');
 
     // listen for events from server
     SocketService.on('server:games', function (data) {
