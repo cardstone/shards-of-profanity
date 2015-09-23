@@ -1,14 +1,27 @@
 <!-- HomeController as home -->
 <section class="homeView">
-	<h2>Home</h2>
+	<h2>
+		Today on How They Do It: Plumbuses.
+	</h2>
+	<p>
+		Everyone has a plumbus in their home. First they take the dingle bop and they smooth it out with a bunch of schleem. The schleem is then...repurposed for later batches.
+		They take the dingle bop and they push it through the grumbo, where the fleeb is rubbed against it. It's important that the fleeb is rubbed, because the fleeb has all the fleeb juice.
+		Then, a schlami shows up, and he rubs it...and spits on it.
+		They cut the fleeb. There's several hizzards in the way.
+		The blamfs rub against the chumbles, and the...plubis, and grumbo are shaved away.
+		That leaves you with...a regular old plumbus.
+	</p>
 	<fieldset>
 		<button ng-click="home.createNewGame()">CREATE NEW GAME</button>
+		<hr>
+		<ul>
+			<li ng-repeat="game in home.games">{{ game }}</li>
+		</ul>
 		<form ng-submit="home.joinGame()">
-			<input ng-model="home.gameToJoin" type="text"/>
-			<button>JOIN GAME</button>
+			<input class='join-input' ng-model="home.gameToJoin" type="text"/>
+			<input type="submit" name="join" value="JOIN GAME">
 		</form>
 	</fieldset>
-	<ul>
-		<li ng-repeat="game in home.games">{{ game }}</li>
-	</ul>
+
+
 </section>
