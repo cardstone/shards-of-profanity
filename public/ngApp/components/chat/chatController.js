@@ -3,30 +3,32 @@
 
 	angular
 		.module('app')
-		.controller('ChatController', ['SocketService', ChatController]);
+		.controller('ChatController', ['$stateParams', ChatController]);
 
 	// socket client
 	// socket server in /config/socket.js
-	function ChatController(SocketService) {
-
+	function ChatController($stateParams) {
 		// map 'this' to a variable to avoid scoping issues
 		var chatCtrl = this;
+		var gameData = $stateParams.myParam;
+	 	var myGameId = gameData.gameId;
+	 	var socket = gameData.socket;
+	 	chatCtrl.messages = [];
 
-		chatCtrl.messages = [];
+	 	chatCtrl.messages.push('Welcome to game ' + myGameId);
 
 		// listen for socket events
-		SocketService.on('server:message', function (msg) {
-			chatCtrl.messages.push(msg);
+		socket.on('server:message', function (data) {
+			chatCtrl.messages.push(data.msg);
 		});
 
-		SocketService.on('user:message', function (msg) {
-			chatCtrl.messages.push(msg);
+		socket.on('client:message', function (data) {
+			chatCtrl.messages.push(data.msg);
 		});
 
 		// emit message event to server
 		chatCtrl.sendMessage = function () {
-			SocketService.emit('user:message', chatCtrl.msg);
-			chatCtrl.messages.push(chatCtrl.msg);
+			socket.emit('client:message', {gameId: myGameId, msg: chatCtrl.msg});
 			chatCtrl.msg = '';
 		};
 	}

@@ -16,7 +16,7 @@ exports.initGame = function (sio, socket) {
   gameSocket.on('client:createNewGame', createNewGame);
   gameSocket.on('client:getGames', getGames);
   gameSocket.on('client:joinGame', joinGame);
-  gameSocket.on('client:sendMessage', sendMessage);
+  gameSocket.on('client:message', sendMessage);
 };
 
 function createNewGame() {
@@ -66,7 +66,5 @@ function joinGame(data) {
 function sendMessage(data) {
   console.log('client sending message:');
   console.log(data.gameId);
-  io.sockets.in(data.gameId).emit('server:message', {
-    msg: 'YOU DID IT!'
-  });
+  io.sockets.in(data.gameId).emit('client:message', {msg: data.msg});
 }

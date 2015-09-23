@@ -15,11 +15,18 @@
 				})
 				.state('game', {
 					url: '',
-					templateUrl: 'components/game/gameView.html',
+					templateUrl: 'components/game/gameView.html'
+				})
+				.state('game.components', {
 					params: {myParam: null},
-					controller: 'GameController',
-					controllerAs: 'game'
-				});
+					views: {
+						'chat': {
+							templateUrl: 'components/chat/chatView.html',
+							controller: 'ChatController',
+							controllerAs: 'chat'
+						}
+					}
+				});  
 			$locationProvider.html5Mode(true);
 		});
 })();
