@@ -20,9 +20,9 @@
 			<input type="submit" name="join" value="JOIN GAME">
 		</form>
 	</fieldset>
-	<h3>Game List</h3>
-	<ul>
-		<li ng-repeat="game in home.games">{{ game }}</li>
-	</ul>
+	<h3>Active Game List</h3>
+	<select ng-model="home.gameToJoin">
+		<option ng-repeat="game in home.games">{{ game }}</option>
+	</select>
 
 </section>
