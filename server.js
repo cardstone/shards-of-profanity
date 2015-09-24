@@ -6,17 +6,13 @@ var io = require('socket.io').listen(server);
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
-
 var game = require('./app/game');
 
+// load db
+var db = mongoose.connect( require('./config/db') );
 
-// configuration ===========================================
-
-// config files
-var db = require('./config/db');
-
+// Set port
 var port = process.env.PORT || 5000; // set our port
-// mongoose.connect(db.url); // connect to our mongoDB database (commented out after you enter in your own credentials)
 
 /**
  *  I DONT KNOW WHAT THIS DOES BUT IT MAKES THE PAGE WORK
