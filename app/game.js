@@ -1,7 +1,6 @@
 var io;
 var gamesocket;
 
-var gameIds = [];
 
 exports.initGame = function (sio, socket) {
 
@@ -26,7 +25,7 @@ function createNewGame () {
   thisGameId = thisGameId.toString();
   this.join('#' + thisGameId);
   this.emit('server:joinSuccess', {gameId: thisGameId});
-  gameIds.push(thisGameId);
+  getGames();
   //io.sockets.emit('server:games', {games: gameIds});
 }
 
@@ -40,7 +39,7 @@ function getGames () {
       gameRooms.push(room.slice(1));
     }
   }
-  gameSocket.emit('server:games', {games: gameRooms});
+  io.sockets.emit('server:games', {games: gameRooms});
 }
 
 function joinGame (data) {
@@ -77,4 +76,5 @@ function sendMessage (data) {
 
 function disconnect () {
   //console.log('a client disconnected');
+  getGames();
 }
