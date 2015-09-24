@@ -1,7 +1,18 @@
+/**
+ * command line tool
+ * parses text files and stores each line as a card in the database
+ *
+ * USE: node db_loader [file] [color] [pack]
+ *
+ **/
+
 /* global __dirname */
 var mongoose = require('mongoose'),
   Schema = mongoose.Schema,
   fs = require('fs'),
+  readFile = process.argv[2],
+  color = process.argv[3],
+  pack = process.argv[4],
   Lazy = require('lazy');
 
 mongoose.connect(require('../config/db'));
@@ -22,34 +33,37 @@ db.once('open', function () {
 //Schema
 var cardSchema = new Schema({
   color: String,
-  text: String
+  text: String,
+  pack: String
 });
 
 var Card = mongoose.model('Card', cardSchema);
 
-//Input
-var whiteCards = __dirname + "\\white\\output.txt";
-var blackCards = __dirname + "\\black\\output.txt";
+// Call load
+load_db(readFile, color, pack);
 
-load_db(whiteCards, 'white');
-load_db(blackCards, 'black');
-
-//Clear DB to avoid duplicates
-db.collections['cards'].drop();
-
-//Load db
-function load_db(file, col) {
+//Loads db
+function load_db(file, col, pck) {
   new Lazy(fs.createReadStream(file))
     .lines
     .forEach(function (line) {
 
-      var newCard = new Card({
-        color: col,
-        text: line
-      });
-      newCard.save(function (err, data) {
-        if (err) console.log(err);
-        else console.log('[SAVED] ', data['text']);
-      });
+	    var newCard = new Card({
+			color: col,
+			text: line,
+			pack: pck
+	    });
+		
+		var q = { 'text': line };
+		
+		Card.find(q, function (err, doc) {
+			if (doc == 0){
+				newCard.save(function (err, data) {
+					if (err) console.log(err);
+					else console.log('[SAVED] ', data['text']);
+				});
+			}
+		});
     });
 }
+
