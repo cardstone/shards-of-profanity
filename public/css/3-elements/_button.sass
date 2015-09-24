@@ -20,12 +20,16 @@
   white-space: nowrap
   position: relative
 
-
   // TODO: fix focus / active outline
   &:hover,
   &:focus
     background-color: $base-background-color
     color: $action-color
+    outline: 0
+
+  &:active
+    transform: scale(.95, .95)
+    outline: 0
 
   &:disabled
     cursor: not-allowed
@@ -34,3 +38,14 @@
     &:hover
       background-color: $action-color
       color: $base-background-color
+
+.rainbow
+  animation:
+    name: colorShift
+    duration: 10s
+    timing-function: linear
+    delay: 0s
+    iteration-count: infinite
+    direction: alternate
+    play-state: running
+  +color-shift("background-color", "border-color")

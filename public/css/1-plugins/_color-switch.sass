@@ -1,0 +1,26 @@
+// props to @mackdoyle to codepen.io
+
+$color-a: red
+$color-b: orange
+$color-c: yellow
+$color-d: green
+$color-e: blue
+
+@mixin color-shift($property-1, $property-2)
+
+  @keyframes colorShift
+    0%
+      #{$property-1}: $color-a
+      #{$property-2}: $color-a
+    25%
+      #{$property-1}: $color-b
+      #{$property-2}: $color-b
+    50%
+      #{$property-1}: $color-c
+      #{$property-2}: $color-c
+    75%
+      #{$property-1}: $color-d
+      #{$property-2}: $color-d
+    100%
+      #{$property-1}: $color-e
+      #{$property-2}: $color-e
