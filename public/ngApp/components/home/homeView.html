@@ -14,14 +14,15 @@
 	<fieldset>
 		<button ng-click="home.createNewGame()">CREATE NEW GAME</button>
 		<hr>
-		<ul>
-			<li ng-repeat="game in home.games">{{ game }}</li>
-		</ul>
+
 		<form ng-submit="home.joinGame()">
 			<input class='join-input' ng-model="home.gameToJoin" type="text"/>
 			<input type="submit" name="join" value="JOIN GAME">
 		</form>
 	</fieldset>
-
+	<h3>Game List</h3><button ng-click="home.refreshGames()">Refresh</button>
+	<ul>
+		<li ng-repeat="game in home.games">{{ game }}</li>
+	</ul>
 
 </section>

@@ -31,8 +31,16 @@ function createNewGame () {
 }
 
 function getGames () {
-  // console.log('forwarding games list to client...');
-  this.emit('server:games', {games: gameIds});
+  //console.log('forwarding games list to client...');
+  var rooms = gameSocket.adapter.rooms;
+  var gameRooms = [];
+  for(var room in rooms) {
+    if(room[0] == '#') { 
+      //console.log(room);
+      gameRooms.push(room.slice(1));
+    }
+  }
+  gameSocket.emit('server:games', {games: gameRooms});
 }
 
 function joinGame (data) {
