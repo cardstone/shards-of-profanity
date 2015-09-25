@@ -12,7 +12,7 @@ var game = require('./app/game');
 var db = mongoose.connect( require('./config/db') );
 
 // Set port
-var port = process.env.PORT || 5000; // set our port
+var port = process.env.PORT || 8080; // set our port
 
 /**
  *  I DONT KNOW WHAT THIS DOES BUT IT MAKES THE PAGE WORK
