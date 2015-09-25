@@ -9,7 +9,7 @@ var methodOverride = require('method-override');
 var game = require('./app/game');
 
 // load db
-var db = mongoose.connect( require('./config/db') );
+// var db = mongoose.connect( require('./config/db') );
 
 // Set port
 var port = process.env.PORT || 8080; // set our port
