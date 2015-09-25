@@ -12,7 +12,7 @@
         console.log('loaded in shardCard');
       },
       // this templateUrl breaks the site
-      //templateUrl: './CardTemplate.html'
+      templateUrl: 'shared/card/CardTemplate.html'
     };
   }
 })();

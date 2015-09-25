@@ -38,14 +38,3 @@
     &:hover
       background-color: $action-color
       color: $base-background-color
-
-.rainbow
-  animation:
-    name: colorShift
-    duration: 10s
-    timing-function: linear
-    delay: 0s
-    iteration-count: infinite
-    direction: alternate
-    play-state: running
-  +color-shift("background-color", "border-color")

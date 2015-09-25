@@ -1,0 +1,40 @@
+// props to @mackdoyle to codepen.io
+// TODO: find out why this mixin overwirte everything no matter where it is scoped!
+$color-a: red
+$color-b: orange
+$color-c: yellow
+$color-d: green
+$color-e: blue
+
+@mixin color-shift($property-1)
+  animation:
+    name: colorShift
+    duration: 10s
+    timing-function: linear
+    delay: 0s
+    iteration-count: infinite
+    direction: alternate
+    play-state: running
+  @keyframes colorShift
+    0%
+      #{$property-1}: $color-a
+      // #{$property-2}: $color-a
+    25%
+      #{$property-1}: $color-b
+      // #{$property-2}: $color-b
+    50%
+      #{$property-1}: $color-c
+      // #{$property-2}: $color-c
+    75%
+      #{$property-1}: $color-d
+      // #{$property-2}: $color-d
+    100%
+      #{$property-1}: $color-e
+      // #{$property-2}: $color-e
+
+.rainbow
+  +color-shift("color")
+  border-color: currentColor
+  background-color: white
+  &:hover
+    background-color: black

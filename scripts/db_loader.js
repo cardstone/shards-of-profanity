@@ -48,22 +48,23 @@ function load_db(file, col, pck) {
     .lines
     .forEach(function (line) {
 
-	    var newCard = new Card({
-			color: col,
-			text: line,
-			pack: pck
-	    });
-		
-		var q = { 'text': line };
-		
-		Card.find(q, function (err, doc) {
-			if (doc == 0){
-				newCard.save(function (err, data) {
-					if (err) console.log(err);
-					else console.log('[SAVED] ', data['text']);
-				});
-			}
-		});
+      var newCard = new Card({
+        color: col,
+        text: line,
+        pack: pck
+      });
+
+      var q = {
+        'text': line
+      };
+
+      Card.find(q, function (err, doc) {
+        if (doc === 0) {
+          newCard.save(function (err, data) {
+            if (err) console.log(err);
+            else console.log('[SAVED] ', data.text);
+          });
+        }
+      });
     });
 }
-

@@ -9,7 +9,7 @@ var methodOverride = require('method-override');
 var game = require('./app/game');
 
 // load db
-var db = mongoose.connect( require('./config/db') );
+// var db = mongoose.connect( require('./config/db') );
 
 // Set port
 var port = process.env.PORT || 5000; // set our port
@@ -42,8 +42,8 @@ require('./app/routes')(app); // pass our application into our routes
 
 // socket.io ===============================================
 io.sockets.on('connection', function (socket) {
-    //console.log('a client connected');
-    game.initGame(io, socket); // pass sockets to our game
+	//console.log('a client connected');
+	game.initGame(io, socket); // pass sockets to our game
 });
 
 // start app ===============================================
