@@ -8,9 +8,7 @@
   function whiteCard( /*dependencies, services, etc*/ ) {
     return {
       restrict: 'E',
-      controller: function ($scope) {
-        var faceUp = true;
-      },
+      controller: function ($scope) {},
       // this templateUrl breaks the site
       templateUrl: 'shared/card/WhiteCardTemplate.html'
     };

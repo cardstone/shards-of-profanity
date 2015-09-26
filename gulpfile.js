@@ -136,9 +136,10 @@ gulp.task('nodemon', function (cb) {
 });
 
 // browserSync task
-// Make sure `nodemon` is started before running `browser-sync`.
+// TODO: Fix style injection so that page doesnt reload after sass files update
 gulp.task('browser-sync', ['nodemon'], function () {
   var port = process.env.PORT || 8080;
+
   browserSync.init({
 
     // All of the following files will be watched
