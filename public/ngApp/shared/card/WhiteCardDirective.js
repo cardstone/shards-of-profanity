@@ -3,16 +3,16 @@
 
   angular
     .module('app')
-    .directive('shardCard', shardCard);
+    .directive('whiteCard', whiteCard);
 
-  function shardCard( /*dependencies, services, etc*/ ) {
+  function whiteCard( /*dependencies, services, etc*/ ) {
     return {
       restrict: 'E',
       controller: function ($scope) {
-        console.log('loaded in shardCard');
+        var faceUp = true;
       },
       // this templateUrl breaks the site
-      templateUrl: 'shared/card/CardTemplate.html'
+      templateUrl: 'shared/card/WhiteCardTemplate.html'
     };
   }
 })();
