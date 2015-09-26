@@ -33,6 +33,11 @@
 							templateUrl: 'components/chat/chatView.html',
 							controller: 'ChatController',
 							controllerAs: 'chat'
+						},
+						'scoreboard': {
+							templateUrl: 'components/scoreboard/scoreboardView.html',
+							controller: 'ScoreboardController',
+							controllerAs: 'scoreboard'
 						}
 					}
 				});  

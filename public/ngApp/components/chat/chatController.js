@@ -6,7 +6,7 @@
 		.controller('ChatController', ['$scope', ChatController]);
 
 	// chat client
-	function ChatController($scope) {
+	function ChatController ($scope) {
 		// map 'this' to a variable to avoid scoping issues
 		var chatCtrl = this;
 		// get variables from our parent state scope

@@ -1,15 +1,27 @@
 var io;
 var gameSocket;
+var gamesObj;
 
-exports.initHome = function (sio, socket) {
+exports.initHome = function (sio, socket, games) {
 	io = sio;
 	gameSocket = socket;
+  gamesObj = games;
 
 	gameSocket.on('client:createNewGame', createNewGame);
 	gameSocket.on('client:getGames', getGames);
 	gameSocket.on('client:joinGame', joinGame);
+  gameSocket.on('client:joinSuccess', addPlayer);
 	gameSocket.on('disconnect', disconnect);
 };
+
+// game object constructor
+function game () {
+  this.players = [];
+} 
+
+function addPlayer (data) {
+  gamesObj[data.gameId].players.push(data.playerName);
+}
 
 function createNewGame () {
   // console.log('creating new game...');
@@ -20,7 +32,10 @@ function createNewGame () {
   // game rooms are identified with a leading '#'
   this.join('#' + thisGameId);
   this.emit('server:joinSuccess', {gameId: thisGameId});
+  // send new list of games to clients
   getGames();
+  // add this game to our 'global' games object 
+  gamesObj[thisGameId] = new game();
 }
 
 function getGames () {
