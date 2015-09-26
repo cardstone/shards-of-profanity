@@ -131,14 +131,14 @@ gulp.task('nodemon', function (cb) {
         browserSync.reload({
           stream: true
         });
-      }, 500);
+      }, 1000);
     });
 });
 
 // browserSync task
 // Make sure `nodemon` is started before running `browser-sync`.
 gulp.task('browser-sync', ['nodemon'], function () {
-  var port = process.env.PORT || 5000;
+  var port = process.env.PORT || 8080;
   browserSync.init({
 
     // All of the following files will be watched

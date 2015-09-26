@@ -13,5 +13,8 @@
 		$scope.myName = gameData.myName;
 
 		$state.go('game.components');
+
+		$scope.mySocket.emit('client:joinSuccess', {gameId: $scope.myGameId, 
+			playerName: $scope.myName});
 	}
 })();

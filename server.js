@@ -12,7 +12,7 @@ var game = require('./app/game');
 // var db = mongoose.connect( require('./config/db') );
 
 // Set port
-var port = process.env.PORT || 5000; // set our port
+var port = process.env.PORT || 8080; // set our port
 
 /**
  *  I DONT KNOW WHAT THIS DOES BUT IT MAKES THE PAGE WORK
@@ -41,9 +41,10 @@ app.post('/', function (req, res) { // function sends information to the root of
 require('./app/routes')(app); // pass our application into our routes
 
 // socket.io ===============================================
+var games = {}; // separate this?
 io.sockets.on('connection', function (socket) {
 	//console.log('a client connected');
-	game.initGame(io, socket); // pass sockets to our game
+	game.initGame(io, socket, games); // pass sockets and games object to our game
 });
 
 // start app ===============================================
