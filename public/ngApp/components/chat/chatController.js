@@ -23,7 +23,7 @@
 
 		// listen for socket events
 		socket.on('server:message', function (data) {
-			chatCtrl.messages.push(data.msg);
+			chatCtrl.messages.push('SERVER: ' + data.msg);
 		});
 
 		socket.on('client:message', function (data) {

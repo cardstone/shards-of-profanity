@@ -27,7 +27,6 @@ function socketInfo (room) {
   this.name = null;
 }
 
-
 function addPlayerName (data) {
   gamesObj[data.gameId].players.push(data.playerName);
   socketsObj[this.id].name = data.playerName;
@@ -85,15 +84,16 @@ function joinGame (data) {
   }
 }
 
+// TO DO: maybe clean this up and restructure
 function disconnect () {
-  var gameNum;
   if(socketsObj[this.id] !== undefined)
   {
-    gameNum = socketsObj[this.id].room;
+    var gameNum = socketsObj[this.id].room;
+    var name = socketsObj[this.id].name;
+    var leftMessage = name + ' has left the game. What a quitter.'
     io.sockets.in(gameNum).emit('server:playerDisconnected');
+    io.sockets.in(gameNum).emit('server:message', {msg: leftMessage});
     delete socketsObj[this.id];
   }
-  // when a client disconnects, resend an array of gameIDs because,
-  // if the last client in room disconnects, the room will be deleted
   getGames();
 }

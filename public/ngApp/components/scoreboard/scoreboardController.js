@@ -20,6 +20,5 @@
 	 	socket.on('server:playerDisconnected', function () {
 	 		socket.emit('client:getPlayerList');
 	 	});
-
 	}
 })();
