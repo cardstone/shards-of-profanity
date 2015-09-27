@@ -17,5 +17,9 @@
 	 		scoreboardCtrl.players = data.players;
 	 	});
 
+	 	socket.on('server:playerDisconnected', function () {
+	 		socket.emit('client:getPlayerList');
+	 	});
+
 	}
 })();

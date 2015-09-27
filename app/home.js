@@ -1,26 +1,36 @@
 var io;
 var gameSocket;
 var gamesObj;
+var socketsObj;
 
-exports.initHome = function (sio, socket, games) {
+exports.initHome = function (sio, socket, games, socketsInfo) {
 	io = sio;
 	gameSocket = socket;
   gamesObj = games;
+  socketsObj = socketsInfo;
+
 
 	gameSocket.on('client:createNewGame', createNewGame);
 	gameSocket.on('client:getGames', getGames);
 	gameSocket.on('client:joinGame', joinGame);
-  gameSocket.on('client:joinSuccess', addPlayer);
+  gameSocket.on('client:joinSuccess', addPlayerName);
 	gameSocket.on('disconnect', disconnect);
 };
 
 // game object constructor
 function game () {
   this.players = [];
-} 
+}
 
-function addPlayer (data) {
+function socketInfo (room) {
+  this.room = room;
+  this.name = null;
+}
+
+
+function addPlayerName (data) {
   gamesObj[data.gameId].players.push(data.playerName);
+  socketsObj[this.id].name = data.playerName;
 }
 
 function createNewGame () {
@@ -36,6 +46,7 @@ function createNewGame () {
   getGames();
   // add this game to our 'global' games object 
   gamesObj[thisGameId] = new game();
+  socketsObj[this.id] = new socketInfo('#' + thisGameId);
 }
 
 function getGames () {
@@ -66,6 +77,7 @@ function joinGame (data) {
     sock.emit('server:joinSuccess', {
       gameId: data.gameId
     });
+    socketsObj[this.id] = new socketInfo(gameNum);
     // console.log('	the client joined game ' + data.gameId + ' successfully.');
   } else {
     sock.emit('server:joinFailure');
@@ -74,7 +86,13 @@ function joinGame (data) {
 }
 
 function disconnect () {
-  // console.log('a client disconnected');
+  var gameNum;
+  if(socketsObj[this.id] !== undefined)
+  {
+    gameNum = socketsObj[this.id].room;
+    io.sockets.in(gameNum).emit('server:playerDisconnected');
+    delete socketsObj[this.id];
+  }
   // when a client disconnects, resend an array of gameIDs because,
   // if the last client in room disconnects, the room will be deleted
   getGames();

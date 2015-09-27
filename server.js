@@ -42,9 +42,11 @@ require('./app/routes')(app); // pass our application into our routes
 
 // socket.io ===============================================
 var games = {}; // separate this?
+var socketsInfo = {};
 io.sockets.on('connection', function (socket) {
 	//console.log('a client connected');
-	game.initGame(io, socket, games); // pass sockets and games object to our game
+	//console.log(socketsInfo);
+	game.initGame(io, socket, games, socketsInfo); // pass sockets and games object to our game
 });
 
 // start app ===============================================
