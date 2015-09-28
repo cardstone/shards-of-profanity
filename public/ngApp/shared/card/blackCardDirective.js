@@ -3,15 +3,15 @@
 
   angular
     .module('app')
-    .directive('whiteCard', whiteCard);
+    .directive('blackCard', blackCard);
   // this is the directive
-  function whiteCard() {
+  function blackCard() {
     var directive = {
       restrict: 'EA',
-      templateUrl: 'shared/card/whiteCardTemplate.html',
+      templateUrl: 'shared/card/blackCardTemplate.html',
       scope: {},
       link: linkFunc,
-      controller: WhiteCardController,
+      controller: BlackCardController,
       controllerAs: 'vm',
       bindToController: true
     };
@@ -23,9 +23,9 @@
     }
   }
   // this is where you inject dependencies for controller
-  WhiteCardController.$inject = [];
+  BlackCardController.$inject = [];
   // this is the controller
-  function WhiteCardController() {
+  function BlackCardController() {
     var vm = this;
     vm.faceUp = true;
     activate();
