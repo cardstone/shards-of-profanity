@@ -1,3 +1,8 @@
+.card
+  height: 160px
+  width: 115px
+  display: inline-block
+
 .front,
 .back
   height: 160px
@@ -6,8 +11,18 @@
   border-radius: $base-border-radius
   font-weight: bold
   padding: 5px
-  position: relative
+  position: absolute
   background-color: inherit
+
+.white > .front,
+.white > .back
+  background-color: white
+  color: black
+
+.black > .front,
+.black > .back
+  background-color: black
+  color: white
 
 .front
   font-size: 14px
@@ -20,17 +35,3 @@
 
 .back
   font-size: 22px
-
-white-card,
-black-card
-  height: 160px
-  width: 115px
-
-white-card
-  background-color: white
-  color: black
-
-
-black-card
-  background-color: black
-  color: white
