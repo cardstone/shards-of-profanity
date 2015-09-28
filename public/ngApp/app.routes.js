@@ -20,6 +20,11 @@
 					controller: 'NameController',
 					controllerAs: 'name'
 				})
+				.state('joinGame', {
+					url: '/join/:gameId',
+					controller: 'JoinGameController',
+					controllerAs: 'join'
+				})
 				.state('game', {
 					url: 'game',
 					params: {myParam: null},
