@@ -14,7 +14,7 @@
 					controllerAs: 'home'
 				})
 				.state('enterName', {
-					url: 'entername',
+					url: '/entername',
 					params: {myParam: null},
 					templateUrl: 'components/gameSettings/nameView.html',
 					controller: 'NameController',
@@ -26,7 +26,7 @@
 					controllerAs: 'join'
 				})
 				.state('game', {
-					url: 'game',
+					url: '/game',
 					params: {myParam: null},
 					templateUrl: 'components/game/gameView.html',
 					controller: 'GameController',

@@ -11,6 +11,7 @@
 
 		SocketService.on('server:joinSuccess', function (data) {
 	      	$state.go('game', { 
+	      		gameId: gameId,
 		        myParam: { 
 					mySocket: SocketService, 
 					myGameId: gameId,

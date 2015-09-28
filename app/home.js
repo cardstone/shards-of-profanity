@@ -86,6 +86,7 @@ function joinGame (data) {
 
 // TO DO: maybe clean this up and restructure
 function disconnect () {
+  //console.log('disconnect');
   if(socketsObj[this.id] !== undefined)
   {
     var gameNum = socketsObj[this.id].room;
