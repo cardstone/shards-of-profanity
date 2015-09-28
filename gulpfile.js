@@ -64,10 +64,7 @@ gulp.task('css', function () {
     .pipe(prefix(['last 2 versions', 'ie 9'], {
       cascade: true
     }))
-    .pipe(gulp.dest('./dist/css/'))
-    .pipe(browserSync.reload({
-      stream: true
-    }));
+    .pipe(gulp.dest('./dist/css/'));
 });
 
 // HTML Task
@@ -149,7 +146,7 @@ gulp.task('browser-sync', ['nodemon'], function () {
     // so when this is localhost it doesnt load the page but when it is 127.0.0.1 it works
     proxy: 'http://127.0.0.1:' + port,
 
-    // This port should be different from the express app çport
+    // This port should be different from the express app port
     port: 4000,
 
     // Do not mirror any actions across browsers

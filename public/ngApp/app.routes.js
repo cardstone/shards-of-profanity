@@ -40,7 +40,7 @@
 							controllerAs: 'scoreboard'
 						}
 					}
-				});  
+				});
 			$locationProvider.html5Mode(true);
 		});
 })();
