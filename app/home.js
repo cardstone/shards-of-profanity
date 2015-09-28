@@ -14,6 +14,7 @@ exports.initHome = function (sio, socket, games, socketsInfo) {
 	gameSocket.on('client:getGames', getGames);
 	gameSocket.on('client:joinGame', joinGame);
   gameSocket.on('client:joinSuccess', addPlayerName);
+  gameSocket.on('client:enterName', enterName);
 	gameSocket.on('disconnect', disconnect);
 };
 
@@ -32,6 +33,11 @@ function addPlayerName (data) {
   socketsObj[this.id].name = data.playerName;
 }
 
+function enterName (data) {
+  socketsObj[this.id].name = data.playerName;
+}
+
+
 function createNewGame () {
   // console.log('creating new game...');
   // make gameId a random number in certain range hue hue hue
@@ -40,12 +46,13 @@ function createNewGame () {
   // 'this' is a reference to the calling client's socket.io object 
   // game rooms are identified with a leading '#'
   this.join('#' + thisGameId);
-  this.emit('server:joinSuccess', {gameId: thisGameId});
+  // this.emit('server:joinSuccess', {gameId: thisGameId});
   // send new list of games to clients
   getGames();
   // add this game to our 'global' games object 
   gamesObj[thisGameId] = new game();
   socketsObj[this.id] = new socketInfo('#' + thisGameId);
+  this.emit('server:createSuccess', {gameId: thisGameId});
 }
 
 function getGames () {

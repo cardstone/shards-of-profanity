@@ -4,6 +4,6 @@ exports.initGame = function (io, socket, games, socketsInfo) {
 	var scoreboard = require('./scoreboard');
 
 	home.initHome(io, socket, games, socketsInfo);
-	chat.initChat(io, socket);
+	chat.initChat(io, socket, socketsInfo);
 	scoreboard.initScoreboard(io, socket, games, socketsInfo);
 };

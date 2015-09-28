@@ -27,12 +27,12 @@
 		});
 
 		socket.on('client:message', function (data) {
-			chatCtrl.messages.push(data.playerName + ': ' + data.msg);
+			chatCtrl.messages.push(data.msg);
 		});
 
 		// emit message event to server
 		chatCtrl.sendMessage = function () {
-			socket.emit('client:message', {gameId: myGameId, playerName:myName, msg: chatCtrl.msg});
+			socket.emit('client:message', {msg: chatCtrl.msg});
 			chatCtrl.msg = '';
 		};
 	}

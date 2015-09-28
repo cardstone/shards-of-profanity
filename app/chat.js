@@ -1,24 +1,26 @@
 var io;
 var gameSocket;
+var socketsObj;
 
-exports.initChat = function (sio, socket) {
+exports.initChat = function (sio, socket, socketsInfo) {
 	io = sio;
 	gameSocket = socket;
-	
+	socketsObj = socketsInfo;
+
 	gameSocket.on('client:message', sendMessage);
 	gameSocket.on('client:joinSuccess', messagePlayerJoined);
 };
 
 function sendMessage (data) {
-	// console.log('client sending message...');
-	var gameNum = '#' + data.gameId;
-	// console.log('   to room ' + gameNum);
-	io.sockets.in(gameNum).emit('client:message', {playerName: data.playerName,
-		msg: data.msg});
+	var gameNum = socketsObj[this.id].room;
+	var name = socketsObj[this.id].name;
+	var msg = name + ': ' + data.msg;
+	io.sockets.in(gameNum).emit('client:message', {msg: msg});
 }
 
 function messagePlayerJoined (data) {
-	var gameNum = '#' + data.gameId;
-	var joinedMessage = data.playerName + ' joined the game.';
+	var gameNum = socketsObj[this.id].room;
+	var name = socketsObj[this.id].name;
+	var joinedMessage = name + ' joined the game.';
 	io.sockets.in(gameNum).emit('server:message', {msg: joinedMessage});
 }

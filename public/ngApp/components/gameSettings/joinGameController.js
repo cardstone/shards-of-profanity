@@ -10,12 +10,11 @@
 		SocketService.emit('client:joinGame', {gameId: gameId});
 
 		SocketService.on('server:joinSuccess', function (data) {
-	      	$state.go('game', { 
-	      		gameId: gameId,
+	      	$state.go('game', {
 		        myParam: { 
 					mySocket: SocketService, 
 					myGameId: gameId,
-					myName: 'Anonymous-filthy-casual-guest'
+					myName: 'Anonymous-filthy-casual-default-name'
 		        }
 			});
 		});

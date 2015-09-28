@@ -30,6 +30,11 @@
       });
     });
 
+    SocketService.on('server:createSuccess', function (data) {
+      $state.go('joinGame', {gameId: data.gameId});
+    });
+
+
     SocketService.on('server:joinFailure', function () {
       // to do.
     });
