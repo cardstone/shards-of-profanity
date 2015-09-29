@@ -43,7 +43,12 @@
 							controllerAs: 'enterName'
 						}
 					}
+				})
+				.state('notFound', {
+					url: '/notFound',
+					templateUrl: 'components/misc/notFoundView.html'
 				});
+			$urlRouterProvider.otherwise('/notFound');
 			$locationProvider.html5Mode(true);
 		});
 })();

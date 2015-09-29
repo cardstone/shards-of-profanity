@@ -17,7 +17,6 @@
 		}
 
 		enterNameCtrl.enter = function () {
-			console.log('enter');
 			socket.emit('client:enterName', {playerName: enterNameCtrl.myName});
 			socket.emit('client:getPlayerList');
 			socket.emit('client:updateName');
