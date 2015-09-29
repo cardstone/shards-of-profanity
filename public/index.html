@@ -12,22 +12,7 @@
 		<script src="/socket.io/socket.io.js"></script>
 	</head>
 	<body>
-		<header>
-			<div class="nav-wrapper">
-
-				<figure class="logo" ui-sref="home">
-					<i class="poo" ng-include="'./icons/poo.svg'"></i>
-  				<h3>
-  					Shards of Profanity
-  				</h3>
-				</figure>
-				<nav>
-					<!-- other links -->
-				</nav>
-
-			</div>
-		</header>
-
+		<header ng-include="'components/home/headerView.html'"></header>
 		<div class="primary-view" ui-view></div>
 	</body>
 </html>
