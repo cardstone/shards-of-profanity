@@ -37,8 +37,16 @@ app.post('/', function (req, res) { // function sends information to the root of
 	res.json(req.body);
 });
 
+
+
 // routes ==================================================
 require('./app/routes')(app); // pass our application into our routes
+
+app.get('/public/ngApp/components/gameSettings/', function(req, res){
+	var gameId = req.param('gameId');
+
+	res.send(gameId);
+});
 
 // socket.io ===============================================
 var games = {}; // separate this?
