@@ -14,10 +14,9 @@
 		        myParam: { 
 					mySocket: SocketService, 
 					myGameId: gameId,
-					myName: 'Anonymous-filthy-casual-default-name'
+					myName: 'noob-default-name'
 		        }
 			});
 		});
 	}
-	
 })();

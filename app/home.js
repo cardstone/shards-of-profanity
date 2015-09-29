@@ -9,12 +9,12 @@ exports.initHome = function (sio, socket, games, socketsInfo) {
   gamesObj = games;
   socketsObj = socketsInfo;
 
-
+  // listen for events from clients
 	gameSocket.on('client:createNewGame', createNewGame);
-	gameSocket.on('client:getGames', getGames);
 	gameSocket.on('client:joinGame', joinGame);
-  gameSocket.on('client:joinSuccess', addPlayerName);
+  gameSocket.on('client:joinSuccess', addDefaultName);
   gameSocket.on('client:enterName', enterName);
+  gameSocket.on('client:getGames', getGames);
 	gameSocket.on('disconnect', disconnect);
 };
 
@@ -23,20 +23,11 @@ function game () {
   this.players = [];
 }
 
+// socketInfo object constructor
 function socketInfo (room) {
   this.room = room;
   this.name = null;
 }
-
-function addPlayerName (data) {
-  gamesObj[data.gameId].players.push(data.playerName);
-  socketsObj[this.id].name = data.playerName;
-}
-
-function enterName (data) {
-  socketsObj[this.id].name = data.playerName;
-}
-
 
 function createNewGame () {
   // console.log('creating new game...');
@@ -46,26 +37,12 @@ function createNewGame () {
   // 'this' is a reference to the calling client's socket.io object 
   // game rooms are identified with a leading '#'
   this.join('#' + thisGameId);
-  // this.emit('server:joinSuccess', {gameId: thisGameId});
-  // send new list of games to clients
+  // send new list of games to clients in home state
   getGames();
   // add this game to our 'global' games object 
   gamesObj[thisGameId] = new game();
   socketsObj[this.id] = new socketInfo('#' + thisGameId);
   this.emit('server:createSuccess', {gameId: thisGameId});
-}
-
-function getGames () {
-  // console.log('forwarding games list to a client...');
-  var rooms = gameSocket.adapter.rooms;
-  var gameRooms = [];
-  for(var room in rooms) {
-    if(room[0] == '#') { 
-      gameRooms.push(room.slice(1));
-    }
-  }
-  // send array of gameIDs to all clients
-  io.sockets.emit('server:games', {games: gameRooms});
 }
 
 function joinGame (data) {
@@ -84,11 +61,38 @@ function joinGame (data) {
       gameId: data.gameId
     });
     socketsObj[this.id] = new socketInfo(gameNum);
-    // console.log('	the client joined game ' + data.gameId + ' successfully.');
+    // console.log('  the client joined game ' + data.gameId + ' successfully.');
   } else {
     sock.emit('server:joinFailure');
-    // console.log('	the client failed to join game ' + data.gameId);
+    // console.log('  the client failed to join game ' + data.gameId);
   }
+}
+
+function addDefaultName (data) {
+  gamesObj[data.gameId].players.push(data.playerName);
+  socketsObj[this.id].name = data.playerName;
+}
+
+function enterName (data) {
+  var newName = data.playerName;
+  var oldName = socketsObj[this.id].name;
+  var gameNum = socketsObj[this.id].room;
+  socketsObj[this.id].name = newName;
+  var msg = oldName + ' has been renamed ' + newName;
+  io.sockets.in(gameNum).emit('server:message', {msg: msg});
+}
+
+function getGames () {
+  // console.log('forwarding games list to a client...');
+  var rooms = gameSocket.adapter.rooms;
+  var gameRooms = [];
+  for(var room in rooms) {
+    if(room[0] == '#') { 
+      gameRooms.push(room.slice(1));
+    }
+  }
+  // send array of gameIDs to all clients in home state
+  io.sockets.emit('server:games', {games: gameRooms});
 }
 
 // TO DO: maybe clean this up and restructure

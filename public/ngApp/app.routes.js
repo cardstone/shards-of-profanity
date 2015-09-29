@@ -13,13 +13,6 @@
 					controller: 'HomeController',
 					controllerAs: 'home'
 				})
-				.state('enterName', {
-					url: '/entername',
-					params: {myParam: null},
-					templateUrl: 'components/gameSettings/nameView.html',
-					controller: 'NameController',
-					controllerAs: 'name'
-				})
 				.state('joinGame', {
 					url: '/join/:gameId',
 					controller: 'JoinGameController',

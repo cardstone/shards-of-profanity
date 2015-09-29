@@ -17,9 +17,8 @@
 	 	chatCtrl.msg ='';
 	 	chatCtrl.messages = [];
 
-	 	chatCtrl.messages.push('Waddup ' + myName + '.');
 	 	chatCtrl.messages.push('Welcome to game ' + myGameId + ' ya filthy animal.');
-
+		chatCtrl.messages.push('Misery loves company so give this url to a friend: localhost:4000/join/' + myGameId);
 
 		// listen for socket events
 		socket.on('server:message', function (data) {

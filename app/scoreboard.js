@@ -10,7 +10,8 @@ exports.initScoreboard = function (sio, socket, games, socketsInfo) {
 	socketsObj = socketsInfo;
 	
 	gameSocket.on('client:joinSuccess', updatePlayerLists);
-	gameSocket.on('client:getPlayerList', sendPlayerList);
+	gameSocket.on('client:updateName', updatePlayerLists);
+	gameSocket.on('client:getUpdatedPlayerList', sendPlayerList);
 };
 
 function getPlayerList (gameNum) {
