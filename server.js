@@ -7,6 +7,7 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var game = require('./app/game');
+var router = express.Router();
 
 // load db
 // var db = mongoose.connect(require('./config/db'));
@@ -42,11 +43,29 @@ app.post('/', function (req, res) { // function sends information to the root of
 // routes ==================================================
 require('./app/routes')(app); // pass our application into our routes
 
-app.get('/public/ngApp/components/gameSettings/', function(req, res){
+app.get('/public/ngApp/components/gameSettings', function(req, res){
 	var gameId = req.param('gameId');
 
-	res.send(gameId);
+	res.redirect('/join/:gameId');
 });
+
+//home page route
+router.get('/', function(req,res){
+	res.send('home page');
+});
+
+//game page route (http://localhhost:8080/game)
+router.get('/game', function(req, res){
+	res.send('game page');
+});
+
+router.get('/join/:gameId', function(req, res){
+	var gameId = req.param('gameId');
+
+	res.redirect('join/:gameId');
+})
+
+app.use('/', router);
 
 // socket.io ===============================================
 var games = {}; // separate this?
