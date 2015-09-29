@@ -39,10 +39,10 @@ db.once('open', function () {
 });
 
 // Call load
-load_db( readFile, color, pack );
+load_cards( readFile, color, pack );
 
 //Loads db
-function load_db( file, col, pck ) {
+function load_cards( file, col, pck ) {
   new Lazy(fs.createReadStream( file ))
     .lines
     .forEach( function ( line ) {
