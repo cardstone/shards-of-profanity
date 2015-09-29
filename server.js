@@ -49,11 +49,9 @@ app.get('/public/ngApp/components/gameSettings/', function(req, res){
 });
 
 // socket.io ===============================================
-var games = {}; // separate this?
+var games = {}; // not being used, yet.
 var socketsInfo = {};
 io.sockets.on('connection', function (socket) {
-	//console.log('a client connected');
-	//console.log(socketsInfo);
 	game.initGame(io, socket, games, socketsInfo); // pass sockets and games object to our game
 });
 

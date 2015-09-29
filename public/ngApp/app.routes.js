@@ -44,7 +44,10 @@
 						}
 					}
 				})
-				.state('notFound', {
+				.state('gameNotFound', {
+					templateUrl: 'components/misc/gameNotFoundView.html'
+				})
+				.state('404NotFound', {
 					url: '/notFound',
 					templateUrl: 'components/misc/notFoundView.html'
 				});

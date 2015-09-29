@@ -18,5 +18,9 @@
 		        }
 			});
 		});
+
+		SocketService.on('server:joinFailure', function () {
+			$state.go('gameNotFound');
+		});
 	}
 })();
