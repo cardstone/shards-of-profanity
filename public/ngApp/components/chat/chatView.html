@@ -1,12 +1,13 @@
 <!-- ChatController as chat -->
 <aside class="chat">
 
-	<ul id="messages">
-		<li ng-repeat="message in chat.messages track by $index">{{ message }}</li>
-	</ul>
+	<div class="messages-wrap" scroll-glue>
+		<ul id="messages">
+			<li ng-repeat="message in chat.messages track by $index">{{ message }}</li>
+		</ul>
+	</div>
 
   <form ng-submit="chat.sendMessage()">
 		<input ng-model="chat.msg" type="text" autofocus/>
-		<button>Send</button>
   </form>
 </aside>

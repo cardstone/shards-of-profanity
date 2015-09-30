@@ -39,6 +39,7 @@ gulp.task('javascript', function () {
   return gulp.src([
       'node_modules/angular/angular.js',
       'node_modules/angular-ui-router/release/angular-ui-router.js',
+      'node_modules/angularjs-scroll-glue/src/scrollglue.js',
       'public/ngApp/app.module.js',
       'public/ngApp/**/*.js'
     ])
@@ -170,7 +171,6 @@ gulp.task('default', [
   'javascript',
   'css',
   'html',
-  'icons',
   'browser-sync',
   'watch'
 ]);
