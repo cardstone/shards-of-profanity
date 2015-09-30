@@ -69,7 +69,7 @@ function joinGame (data) {
 }
 
 function addDefaultName (data) {
-  gamesObj[data.gameId].players.push(data.playerName);
+  //gamesObj[data.gameId].players.push(data.playerName);
   socketsObj[this.id].name = data.playerName;
 }
 
@@ -97,7 +97,7 @@ function getGames () {
 
 // TO DO: maybe clean this up and restructure
 function disconnect () {
-  //console.log('disconnect');
+  //console.log('client ' + this.id + ' disconnected');
   if(socketsObj[this.id] !== undefined)
   {
     var gameNum = socketsObj[this.id].room;

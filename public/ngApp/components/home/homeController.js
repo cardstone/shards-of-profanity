@@ -18,20 +18,8 @@
       homeCtrl.games = data.games;
     });
 
-    // if we successfully joined, go to game state
-    SocketService.on('server:joinSuccess', function (data) {
-      var mySocket = SocketService;
-      // pass our socket and unique gameId
-      $state.go('joinGame', {gameId: data.gameId});
-    });
-
     SocketService.on('server:createSuccess', function (data) {
       $state.go('joinGame', {gameId: data.gameId});
-    });
-
-
-    SocketService.on('server:joinFailure', function () {
-      // to do.
     });
 
     // controller functions
@@ -48,12 +36,8 @@
     };
 
     homeCtrl.joinGame = function () {
-      SocketService.emit('client:joinGame', {gameId: homeCtrl.gameToJoin});
+      $state.go('joinGame', {gameId: homeCtrl.gameToJoin});
       homeCtrl.gameToJoin = '';
-    };
-
-    homeCtrl.sendMessage = function () {
-      SocketService.emit('client:sendMessage', {gameId: homeCtrl.gameId});
     };
   }
 })();

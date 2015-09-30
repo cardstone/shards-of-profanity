@@ -43,7 +43,15 @@
 							controllerAs: 'enterName'
 						}
 					}
+				})
+				.state('gameNotFound', {
+					templateUrl: 'components/misc/gameNotFoundView.html'
+				})
+				.state('404NotFound', {
+					url: '/notFound',
+					templateUrl: 'components/misc/notFoundView.html'
 				});
+			$urlRouterProvider.otherwise('/notFound');
 			$locationProvider.html5Mode(true);
 		});
 })();
