@@ -3,11 +3,15 @@
 
 	<div class="messages-wrap" scroll-glue>
 		<ul id="messages">
-			<li ng-repeat="message in chat.messages track by $index">{{ message }}</li>
+			<li ng-repeat="message in chat.messages track by $index">
+				<i class="avatar" ng-include="'icons/sad-cookie.svg'"></i>
+				<span class="name">{{ message.name }}: </span>
+				<span class="message">{{ message.msg }}</span>
+			</li>
 		</ul>
 	</div>
 
   <form ng-submit="chat.sendMessage()">
-		<input ng-model="chat.msg" type="text" autofocus/>
+		<input ng-model="chat.msg" type="text" autocomplete="off" autofocus/>
   </form>
 </aside>
