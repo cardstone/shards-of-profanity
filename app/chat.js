@@ -15,9 +15,11 @@ function sendMessage(data) {
 	var gameNum = socketsObj[this.id].room;
 	var name = socketsObj[this.id].name;
 	var msg = data.msg;
+	console.log(data);
 	io.sockets.in(gameNum).emit('client:message', {
 		name: name,
-		msg: msg
+		msg: data.msg,
+		avatar: data.avatar
 	});
 }
 

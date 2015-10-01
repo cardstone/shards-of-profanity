@@ -13,16 +13,19 @@
 		var socket = $scope.mySocket;
 		var myGameId = $scope.myGameId;
 		var myName = $scope.myName;
+		var myAvatar = $scope.myAvatar;
 
 		chatCtrl.msg = '';
 		chatCtrl.messages = [];
 
 		chatCtrl.messages.push({
 			name: 'SERVER',
+			avatar: 'icons/robot.svg',
 			msg: 'Welcome to game ' + myGameId + ' ya filthy animal.'
 		});
 		chatCtrl.messages.push({
 			name: 'SERVER',
+			avatar: 'icons/robot.svg',
 			msg: 'Misery loves company so give this url to a friend: localhost:4000/join/' + myGameId
 		});
 
@@ -30,6 +33,7 @@
 		socket.on('server:message', function (data) {
 			chatCtrl.messages.push({
 				name: 'SERVER',
+				avatar: 'icons/robot.svg',
 				msg: data.msg
 			});
 		});
@@ -41,7 +45,8 @@
 		// emit message event to server
 		chatCtrl.sendMessage = function () {
 			socket.emit('client:message', {
-				msg: chatCtrl.msg
+				msg: chatCtrl.msg,
+				avatar: myAvatar
 			});
 			chatCtrl.msg = '';
 		};

@@ -17,6 +17,20 @@
     word-wrap: break-word
     margin-bottom: 10px
 
+  .avatar
+    +size(20px)
+    display: inline-block
+
+    svg
+      background-color: pink
+    //&::after
+      width: 16px
+      content: " "
+      background-color: pink
+      position: absolute
+      z-index: 1
+      height:20px
+
   .name
     font-weight: bold
   form

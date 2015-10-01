@@ -11,10 +11,11 @@
 
 		SocketService.on('server:joinSuccess', function (data) {
 	      	$state.go('game', {
-		        myParam: { 
-					mySocket: SocketService, 
-					myGameId: gameId,
-					myName: 'noob-default-name'
+		        myParam: {
+							mySocket: SocketService,
+							myGameId: gameId,
+							myName: 'noob-default-name',
+							myAvatar: 'icons/cheese.svg'
 		        }
 			});
 		});

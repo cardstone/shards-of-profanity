@@ -71,7 +71,6 @@ function joinGame (data) {
 function addDefaultName (data) {
   //gamesObj[data.gameId].players.push(data.playerName);
   socketsObj[this.id].name = data.playerName;
-	socketsObj[this.id].avatar = 'icons/cheese.svg';
 }
 
 function enterName (data) {
