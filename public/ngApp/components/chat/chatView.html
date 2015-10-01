@@ -11,7 +11,18 @@
 		</ul>
 	</div>
 
-  <form ng-submit="chat.sendMessage()">
+	<!-- enter optional name -->
+	<div ng-controller= "EnterNameController as enterName" ng-show="enterName.show">
+		<h4>Enter name or use default name</h4>
+		<form ng-submit="enterName.enter()">
+			<input ng-model="enterName.myName" type="text"/>
+		</form>
+		<button ng-click="enterName.turnOffThisView()">Use default name.</button>
+	</div>
+	<!-- end enter optional name -->
+
+	<form ng-submit="chat.sendMessage()">
 		<input ng-model="chat.msg" type="text" autocomplete="off" autofocus/>
-  </form>
+	</form>
+
 </aside>
