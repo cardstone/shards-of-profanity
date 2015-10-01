@@ -40,8 +40,7 @@ function createNewGame () {
   // send new list of games to clients in home state
   getGames();
   // add this game to our 'global' games object 
-  gamesObj[thisGameId] = new game();
-  socketsObj[this.id] = new socketInfo('#' + thisGameId);
+  gamesObj['#' + thisGameId] = new game();
   this.emit('server:createSuccess', {gameId: thisGameId});
 }
 
@@ -61,6 +60,7 @@ function joinGame (data) {
       gameId: data.gameId
     });
     socketsObj[this.id] = new socketInfo(gameNum);
+    gamesObj[gameNum].players.push(this.id);
     // console.log('  the client joined game ' + data.gameId + ' successfully.');
   } else {
     sock.emit('server:joinFailure');
@@ -68,8 +68,8 @@ function joinGame (data) {
   }
 }
 
+// add to default name to corresponding socketsObj
 function addDefaultName (data) {
-  //gamesObj[data.gameId].players.push(data.playerName);
   socketsObj[this.id].name = data.playerName;
 }
 
