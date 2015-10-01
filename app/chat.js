@@ -24,7 +24,7 @@ function sendMessage(data) {
 function messagePlayerJoined(data) {
 	var gameNum = socketsObj[this.id].room;
 	var name = socketsObj[this.id].name;
-	var joinedMessage = name + ' joined the game.';
+	var joinedMessage = `${name} joined the game.`;
 	io.sockets.in(gameNum).emit('server:message', {
 		msg: joinedMessage
 	});
