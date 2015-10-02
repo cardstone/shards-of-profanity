@@ -46,7 +46,10 @@ gulp.task('javascript', function () {
     ])
     .pipe(plumber(onError))
     .pipe(sourcemaps.init())
-    .pipe(babel())
+    .pipe(babel({
+      // this makes my gulp build super slow??
+      //compact: false
+    }))
     .pipe(concat('app.js'))
     // .pipe(ngAnnotate())
     // .pipe(uglify())
