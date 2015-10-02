@@ -3,11 +3,32 @@
 
 	<div class="messages-wrap" scroll-glue>
 		<ul id="messages">
-			<li ng-repeat="message in chat.messages track by $index">{{ message }}</li>
+			<li ng-repeat="message in chat.messages track by $index">
+				<span class="avatar" ng-include='message.avatar'></span>
+				<span class="name">{{ message.name }}: </span>
+				<span class="message">{{ message.msg }}</span>
+			</li>
 		</ul>
 	</div>
 
+<<<<<<< HEAD
   <form ng-submit="chat.sendMessage()">
 		<input ng-model="chat.msg" type="text" autocomplete="off" autofocus/>
   </form>
+=======
+	<!-- enter optional name -->
+	<div ng-controller= "EnterNameController as enterName" ng-show="enterName.show">
+		<h4>Enter name or use default name</h4>
+		<form ng-submit="enterName.enter()">
+			<input ng-model="enterName.myName" type="text"/>
+		</form>
+		<button ng-click="enterName.turnOffThisView()">Use default name.</button>
+	</div>
+	<!-- end enter optional name -->
+
+	<form ng-submit="chat.sendMessage()">
+		<input ng-model="chat.msg" type="text" autocomplete="off" autofocus/>
+	</form>
+
+>>>>>>> a7f57d5fbada904e314fb5906c9d086cba9e27e2
 </aside>

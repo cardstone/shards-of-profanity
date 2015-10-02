@@ -32,16 +32,15 @@ function socketInfo (room) {
 function createNewGame () {
   // console.log('creating new game...');
   // make gameId a random number in certain range hue hue hue
-  var thisGameId = Math.floor((Math.random() * 3141592) + 1); 
+  var thisGameId = Math.floor((Math.random() * 3141592) + 1);
   thisGameId = thisGameId.toString();
-  // 'this' is a reference to the calling client's socket.io object 
+  // 'this' is a reference to the calling client's socket.io object
   // game rooms are identified with a leading '#'
   this.join('#' + thisGameId);
   // send new list of games to clients in home state
   getGames();
-  // add this game to our 'global' games object 
-  gamesObj[thisGameId] = new game();
-  socketsObj[this.id] = new socketInfo('#' + thisGameId);
+  // add this game to our 'global' games object
+  gamesObj['#' + thisGameId] = new game();
   this.emit('server:createSuccess', {gameId: thisGameId});
 }
 
@@ -56,11 +55,12 @@ function joinGame (data) {
   if (room !== undefined) {
     // join the room
     sock.join(gameNum);
-    // tell the client we were successful 
+    // tell the client we were successful
     sock.emit('server:joinSuccess', {
       gameId: data.gameId
     });
     socketsObj[this.id] = new socketInfo(gameNum);
+    gamesObj[gameNum].players.push(this.id);
     // console.log('  the client joined game ' + data.gameId + ' successfully.');
   } else {
     sock.emit('server:joinFailure');
@@ -68,8 +68,8 @@ function joinGame (data) {
   }
 }
 
+// add to default name to corresponding socketsObj
 function addDefaultName (data) {
-  //gamesObj[data.gameId].players.push(data.playerName);
   socketsObj[this.id].name = data.playerName;
 }
 
@@ -87,7 +87,7 @@ function getGames () {
   var rooms = gameSocket.adapter.rooms;
   var gameRooms = [];
   for(var room in rooms) {
-    if(room[0] == '#') { 
+    if(room[0] == '#') {
       gameRooms.push(room.slice(1));
     }
   }
@@ -102,7 +102,7 @@ function disconnect () {
   {
     var gameNum = socketsObj[this.id].room;
     var name = socketsObj[this.id].name;
-    var leftMessage = name + ' has left the game. What a quitter.'
+    var leftMessage = name + ' has left the game. What a quitter.';
     io.sockets.in(gameNum).emit('server:playerDisconnected');
     io.sockets.in(gameNum).emit('server:message', {msg: leftMessage});
     delete socketsObj[this.id];

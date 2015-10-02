@@ -36,11 +36,6 @@
 							templateUrl: 'components/scoreboard/scoreboardView.html',
 							controller: 'ScoreboardController',
 							controllerAs: 'scoreboard'
-						},
-						'enterName': {
-							templateUrl: 'components/gameSettings/enterNameView.html',
-							controller: 'EnterNameController',
-							controllerAs: 'enterName'
 						}
 					}
 				})
