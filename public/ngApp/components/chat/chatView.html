@@ -4,7 +4,7 @@
 	<div class="messages-wrap" scroll-glue>
 		<ul id="messages">
 			<li ng-repeat="message in chat.messages track by $index">
-				<div class="avatar" style="background: url({{message.avatar}})"></div>
+				<span class="avatar" ng-include='message.avatar'></span>
 				<span class="name">{{ message.name }}: </span>
 				<span class="message">{{ message.msg }}</span>
 			</li>

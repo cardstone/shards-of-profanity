@@ -18,18 +18,12 @@
     margin-bottom: 10px
 
   .avatar
-    +size(20px)
-    display: inline-block
+    padding: 5px
+  .avatar svg
+    +size(24px)
+    border-radius: 50%
+    background-color: yellow
 
-    svg
-      background-color: pink
-    //&::after
-      width: 16px
-      content: " "
-      background-color: pink
-      position: absolute
-      z-index: 1
-      height:20px
 
   .name
     font-weight: bold
