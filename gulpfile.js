@@ -7,6 +7,7 @@ var gutil = require('gulp-util');
 // for clean task
 var del = require('del');
 // for javascript task
+var babel = require('gulp-babel');
 var sourcemaps = require('gulp-sourcemaps');
 var concat = require('gulp-concat');
 // for css task
@@ -45,6 +46,7 @@ gulp.task('javascript', function () {
     ])
     .pipe(plumber(onError))
     .pipe(sourcemaps.init())
+    .pipe(babel())
     .pipe(concat('app.js'))
     // .pipe(ngAnnotate())
     // .pipe(uglify())
