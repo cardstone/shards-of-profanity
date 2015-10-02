@@ -47,8 +47,7 @@ gulp.task('javascript', function () {
     .pipe(plumber(onError))
     .pipe(sourcemaps.init())
     .pipe(babel({
-      // this makes my gulp build super slow??
-      //compact: false
+      only: 'public/ngApp/**/*.js'
     }))
     .pipe(concat('app.js'))
     // .pipe(ngAnnotate())
@@ -108,8 +107,8 @@ gulp.task('icons', function () {
         pretty: true
       }
     }))
-    .pipe(gulp.dest('dist/icons/'))
-    .pipe(gulp.dest('public/icons/'));
+    .pipe(gulp.dest('dist/icons/'));
+    //.pipe(gulp.dest('public/icons/'));
 });
 
 // nodemon task
@@ -176,6 +175,7 @@ gulp.task('default', [
   'javascript',
   'css',
   'html',
+  'icons',
   'browser-sync',
   'watch'
 ]);
