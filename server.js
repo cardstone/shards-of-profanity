@@ -7,7 +7,6 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var game = require('./app/game');
-var router = express.Router();
 
 // load db
 // var db = mongoose.connect(require('./config/db'));
@@ -20,8 +19,7 @@ var port = process.env.PORT || 8080; // set our port
  *  when it is commented out, the code in app/routes.js sends the index.html file for every request, and break the simulate
  *  so this code stops that, there might be a cleaner solution but whatever, it works for now
  */
-
-// get all data/stuff of the body (POST) parameters
+//get all data/stuff of the body (POST) parameters
 app.use(bodyParser.json()); // parse application/json
 app.use(bodyParser.json({
 	type: 'application/vnd.api+json'
@@ -37,35 +35,6 @@ app.post('/', function (req, res) { // function sends information to the root of
 	console.log(req.body);
 	res.json(req.body);
 });
-
-
-
-// routes ==================================================
-require('./app/routes')(app); // pass our application into our routes
-
-app.get('/public/ngApp/components/gameSettings', function(req, res){
-	var gameId = req.param('gameId');
-
-	res.redirect('/join/:gameId');
-});
-
-//home page route
-router.get('/', function(req,res){
-	res.send('home page');
-});
-
-//game page route (http://localhhost:8080/game)
-router.get('/game', function(req, res){
-	res.send('game page');
-});
-
-router.get('/join/:gameId', function(req, res){
-	var gameId = req.param('gameId');
-
-	res.redirect('join/:gameId');
-})
-
-app.use('/', router);
 
 // socket.io ===============================================
 var games = {}; // not being used, yet.
