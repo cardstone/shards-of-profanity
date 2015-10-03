@@ -6,15 +6,15 @@
 		.controller('ScoreboardController', ['$scope', ScoreboardController]);
 
 	function ScoreboardController ($scope) {
-		var scoreboardCtrl = this;
+		var scoreboard = this;
 		var socket = $scope.mySocket;
 	 	var myGameId = $scope.myGameId;
 	 	var myName = $scope.myName;
 
-	 	scoreboardCtrl.players = [];
+	 	scoreboard.players = [];
 
 	 	socket.on('server:players', function (data) {
-	 		scoreboardCtrl.players = data.players;
+	 		scoreboard.players = data.players;
 	 	});
 
 	 	socket.on('server:playerDisconnected', function () {

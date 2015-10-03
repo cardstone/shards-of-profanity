@@ -5,10 +5,7 @@ node_modules
 
 dist
 
-public/libs/
-public/shardsOfProfanity.js
 public/ngApp/templates.js
-
-public/icons/poo.svg
+public/icons/
 
 _reports

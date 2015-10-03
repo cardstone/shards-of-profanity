@@ -6,16 +6,16 @@
     .controller('HomeController', ['$state', '$stateParams', 'SocketService', HomeController]);
 
   function HomeController ($state, $stateParams , SocketService) {
-    var homeCtrl = this;
-    homeCtrl.gameToJoin = '';
-    homeCtrl.games = [];
+    var home = this;
+    home.gameToJoin = '';
+    home.games = [];
 
     // ask the server for the list of games
     SocketService.emit('client:getGames');
 
     // listen for events from server
     SocketService.on('server:games', function (data) {
-      homeCtrl.games = data.games;
+      home.games = data.games;
     });
 
     SocketService.on('server:createSuccess', function (data) {
@@ -23,21 +23,21 @@
     });
 
     // controller functions
-    homeCtrl.createNewGame = function () {
+    home.createNewGame = function () {
       SocketService.emit('client:createNewGame');
     };
 
-    homeCtrl.refreshGames = function () {
+    home.refreshGames = function () {
       SocketService.emit('client:getGames');
     };
 
-    homeCtrl.selectGame = function () {
+    home.selectGame = function () {
       // to do?
     };
 
-    homeCtrl.joinGame = function () {
-      $state.go('joinGame', {gameId: homeCtrl.gameToJoin});
-      homeCtrl.gameToJoin = '';
+    home.joinGame = function () {
+      $state.go('joinGame', {gameId: home.gameToJoin});
+      home.gameToJoin = '';
     };
   }
 })();

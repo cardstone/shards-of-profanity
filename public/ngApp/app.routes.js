@@ -19,7 +19,7 @@
 					controllerAs: 'join'
 				})
 				.state('game', {
-					url: '/game',
+					url: '/game/:gameId',
 					params: {myParam: null},
 					templateUrl: 'components/game/gameView.html',
 					controller: 'GameController',

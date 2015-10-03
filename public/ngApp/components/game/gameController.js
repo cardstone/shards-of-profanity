@@ -6,10 +6,8 @@
 		.controller('GameController', ['$scope', '$state',  '$stateParams', GameController]);
 
 	function GameController ($scope, $state, $stateParams) {
+		var game = this;
 
-		console.log('gamectrl');
-
-		var gameCtrl = this;
 		var gameData = $stateParams.myParam;
 		$scope.mySocket = gameData.mySocket;
 		$scope.myGameId = gameData.myGameId;
