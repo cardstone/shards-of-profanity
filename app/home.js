@@ -27,6 +27,7 @@ function game () {
 function socketInfo (room) {
   this.room = room;
   this.name = null;
+  this.avatar = null;
 }
 
 function createNewGame () {
@@ -71,6 +72,7 @@ function joinGame (data) {
 // add to default name to corresponding socketsObj
 function addDefaultName (data) {
   socketsObj[this.id].name = data.playerName;
+  socketsObj[this.id].avatar = data.avatar;
 }
 
 function enterName (data) {

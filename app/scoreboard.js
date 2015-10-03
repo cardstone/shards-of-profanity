@@ -19,7 +19,10 @@ function getPlayerList (gameNum) {
 	var sockets = gameSocket.adapter.rooms[gameNum];
 	sockets = Object.keys(sockets);
 	for (var i = 0; i<sockets.length; i++) {
-		players.push(socketsObj[sockets[i]].name);
+		players.push({
+			name: socketsObj[sockets[i]].name,
+			avatar: socketsObj[sockets[i]].avatar
+		});
 	}
 	return players;
 }
