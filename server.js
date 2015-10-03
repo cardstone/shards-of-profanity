@@ -36,6 +36,12 @@ app.post('/', function (req, res) { // function sends information to the root of
 	res.json(req.body);
 });
 
+// serve the main page/angular app
+var path = require('path');
+app.get('*', function (req, res) {
+	res.sendFile(path.join(__dirname, './dist', 'index.html'));
+});
+
 // socket.io ===============================================
 var games = {}; // not being used, yet.
 var socketsInfo = {};
