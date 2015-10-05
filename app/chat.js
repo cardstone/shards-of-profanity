@@ -15,11 +15,10 @@ function sendMessage(data) {
 	var gameNum = socketsObj[this.id].room;
 	var name = socketsObj[this.id].name;
 	var msg = data.msg;
-	console.log(data);
 	io.sockets.in(gameNum).emit('client:message', {
 		name: name,
 		msg: data.msg,
-		avatar: data.avatar
+		avatar: socketsObj[this.id].avatar
 	});
 }
 
@@ -27,7 +26,6 @@ function messagePlayerJoined(data) {
 	var gameNum = socketsObj[this.id].room;
 	var name = socketsObj[this.id].name;
 	var joinedMessage = name + ' joined the game.';
-	//var joinedMessage = `${name} joined the game.`;
 	io.sockets.in(gameNum).emit('server:message', {
 		msg: joinedMessage
 	});

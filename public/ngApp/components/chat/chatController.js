@@ -9,12 +9,10 @@
 	function ChatController($scope) {
 		// map 'this' to a variable to avoid scoping issues
 		var chat = this;
-		console.log(chat);
 		// get variables from our parent state scope
 		var socket = $scope.mySocket;
 		var myGameId = $scope.myGameId;
 		var myName = $scope.myName;
-		var myAvatar = $scope.myAvatar;
 
 		chat.msg = ``;
 		chat.messages = [];
@@ -46,8 +44,7 @@
 		// emit message event to server
 		chat.sendMessage = function () {
 			socket.emit('client:message', {
-				msg: chat.msg,
-				avatar: myAvatar
+				msg: chat.msg
 			});
 			chat.msg = '';
 		};

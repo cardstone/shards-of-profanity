@@ -3,9 +3,14 @@
 
 	angular
 		.module('app')
-		.controller('JoinGameController', ['$state', '$stateParams', 'SocketService', JoinGameController]);
+		.controller('JoinGameController', [
+			'$state',
+			'$stateParams',
+			'SocketService',
+			'AvatarService',
+			JoinGameController]);
 
-	function JoinGameController ($state, $stateParams, SocketService) {
+	function JoinGameController ($state, $stateParams, SocketService, AvatarService) {
 		var gameId = $stateParams.gameId;
 		SocketService.emit('client:joinGame', {gameId: gameId});
 
@@ -15,7 +20,7 @@
 							mySocket: SocketService,
 							myGameId: gameId,
 							myName: 'noob-default-name',
-							myAvatar: 'icons/cheese.svg'
+							myAvatar: AvatarService.get()
 		        }
 			});
 		});
