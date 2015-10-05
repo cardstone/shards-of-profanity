@@ -5,7 +5,7 @@
 		<ul id="messages">
 			<li ng-repeat="message in chat.messages track by $index">
 				<span class="avatar" ng-include='message.avatar'></span>
-				<span class="name">{{ message.name }}: </span>
+				<span class="user-name">{{ message.name }}: </span>
 				<span class="message">{{ message.msg }}</span>
 			</li>
 		</ul>
