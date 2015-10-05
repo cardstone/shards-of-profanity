@@ -21,5 +21,12 @@
 		});
 
 		$state.go('game.components');
+
+		$scope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){ 
+		    if((fromState.name=='game.components')&&(toState.name=='joinGame')) {
+		    	event.preventDefault();
+		    	$state.go('home');
+		    } 
+		});
 	}
 })();
