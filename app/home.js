@@ -15,6 +15,7 @@ exports.initHome = function (sio, socket, games, socketsInfo) {
   gameSocket.on('client:joinSuccess', addDefaultName);
   gameSocket.on('client:enterName', enterName);
   gameSocket.on('client:getGames', getGames);
+  gameSocket.on('client:leaveGame', leaveGame);
 	gameSocket.on('disconnect', disconnect);
 };
 
@@ -67,6 +68,18 @@ function joinGame (data) {
     sock.emit('server:joinFailure');
     // console.log('  the client failed to join game ' + data.gameId);
   }
+}
+
+// TODO: leaveGame() and disconnect() have similar code,
+// put common code in helper function
+function leaveGame (data) {
+  var gameNum = socketsObj[this.id].room;
+  var name = socketsObj[this.id].name;
+  this.leave(gameNum);
+  socketsObj[this.id].room = null;
+  var leftMessage = name + ' has left the game. What a quitter.';
+  io.sockets.in(gameNum).emit('server:playerDisconnected');
+  io.sockets.in(gameNum).emit('server:message', {msg: leftMessage});
 }
 
 // add to default name to corresponding socketsObj

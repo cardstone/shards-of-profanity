@@ -23,7 +23,13 @@
 		$state.go('game.components');
 
 		$scope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){ 
-		    if((fromState.name=='game.components')&&(toState.name=='joinGame')) {
+			console.log('FROM: ' + fromState.name);
+			console.log('TO: ' + toState.name);
+			if(fromState.name == 'game.components') {
+				$scope.mySocket.emit('client:leaveGame');
+				console.log('leaving game');
+			}
+		    if((fromState.name == 'game.components') && (toState.name == 'joinGame')) {
 		    	event.preventDefault();
 		    	$state.go('home');
 		    } 
