@@ -1,14 +1,12 @@
 <!-- HomeController as home -->
 <section class="homeView">
-	<h2>
-		Home View
-	</h2>
+
+	<h2>Home View</h2>
 
 	<fieldset>
 
-		<button class="rainbow" ng-click="home.createNewGame()">CREATE NEW GAME</button>
+		<button ng-click="home.createNewGame()">CREATE NEW GAME</button>
 		<hr>
-
 		<form ng-submit="home.joinGame()">
 			<input class='join-input' ng-model="home.gameToJoin" type="text" autocomplete="off"/>
 			<input type="submit" name="join" value="JOIN GAME" autocomplete="off">
