@@ -23,16 +23,15 @@
 		$state.go('game.components');
 
 		$scope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){ 
-			console.log('FROM: ' + fromState.name);
-			console.log('TO: ' + toState.name);
-			if(fromState.name == 'game.components') {
+			if(fromState.name == 'game.components'){
+				// if user navigates away from game view, leave the game.
 				$scope.mySocket.emit('client:leaveGame');
-				console.log('leaving game');
+				if(toState.name == 'joinGame'){
+					// if user navigates 'back', go to home.
+					event.preventDefault();
+		    		$state.go('home');
+				}
 			}
-		    if((fromState.name == 'game.components') && (toState.name == 'joinGame')) {
-		    	event.preventDefault();
-		    	$state.go('home');
-		    } 
 		});
 	}
 })();

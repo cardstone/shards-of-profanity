@@ -31,6 +31,15 @@ function socketInfo (room) {
   this.avatar = null;
 }
 
+// helper function for leaving games
+function emitLeave(socketId) {
+  var gameNum = socketsObj[socketId].room;
+  var name = socketsObj[socketId].name;
+  var leftMessage = name + ' has left the game. What a quitter.';
+  io.sockets.in(gameNum).emit('server:playerDisconnected');
+  io.sockets.in(gameNum).emit('server:message', {msg: leftMessage});
+}
+
 function createNewGame () {
   // console.log('creating new game...');
   // make gameId a random number in certain range hue hue hue
@@ -70,17 +79,11 @@ function joinGame (data) {
   }
 }
 
-// TODO: leaveGame() and disconnect() have similar code,
-// put common code in helper function
 function leaveGame (data) {
-  var gameNum = socketsObj[this.id].room;
-  var name = socketsObj[this.id].name;
-  this.leave(gameNum);
+  this.leave(socketsObj[this.id].room);
+  emitLeave(this.id);
   socketsObj[this.id].room = null;
-  var leftMessage = name + ' has left the game. What a quitter.';
-  io.sockets.in(gameNum).emit('server:playerDisconnected');
-  io.sockets.in(gameNum).emit('server:message', {msg: leftMessage});
-}
+;}
 
 // add to default name to corresponding socketsObj
 function addDefaultName (data) {
@@ -110,16 +113,11 @@ function getGames () {
   io.sockets.emit('server:games', {games: gameRooms});
 }
 
-// TO DO: maybe clean this up and restructure
 function disconnect () {
   //console.log('client ' + this.id + ' disconnected');
   if(socketsObj[this.id] !== undefined)
   {
-    var gameNum = socketsObj[this.id].room;
-    var name = socketsObj[this.id].name;
-    var leftMessage = name + ' has left the game. What a quitter.';
-    io.sockets.in(gameNum).emit('server:playerDisconnected');
-    io.sockets.in(gameNum).emit('server:message', {msg: leftMessage});
+    emitLeave(this.id);
     delete socketsObj[this.id];
   }
   getGames();
