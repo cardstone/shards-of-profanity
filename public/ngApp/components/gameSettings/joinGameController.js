@@ -8,9 +8,10 @@
 			'$stateParams',
 			'SocketService',
 			'AvatarService',
+			'NameService',
 			JoinGameController]);
 
-	function JoinGameController ($state, $stateParams, SocketService, AvatarService) {
+	function JoinGameController ($state, $stateParams, SocketService, AvatarService, NameService) {
 		var gameId = $stateParams.gameId;
 		SocketService.emit('client:joinGame', {gameId: gameId});
 
@@ -19,7 +20,7 @@
 		        myParam: {
 							mySocket: SocketService,
 							myGameId: gameId,
-							myName: 'noob-default-name',
+							myName: NameService.get(),
 							myAvatar: AvatarService.get()
 		        }
 			});
