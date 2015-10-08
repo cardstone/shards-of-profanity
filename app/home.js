@@ -67,9 +67,7 @@ function joinGame (data) {
     // join the room
     sock.join(gameNum);
     // tell the client we were successful
-    sock.emit('server:joinSuccess', {
-      gameId: data.gameId
-    });
+    sock.emit('server:joinSuccess');
     socketsObj[this.id] = new socketInfo(gameNum);
     gamesObj[gameNum].players.push(this.id);
     // console.log('  the client joined game ' + data.gameId + ' successfully.');

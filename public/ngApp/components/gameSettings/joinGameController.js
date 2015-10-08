@@ -13,9 +13,8 @@
 
 	function JoinGameController ($state, $stateParams, SocketService, AvatarService, NameService) {
 		var gameId = $stateParams.gameId;
-		SocketService.emit('client:joinGame', {gameId: gameId});
 
-		SocketService.on('server:joinSuccess', function (data) {
+		SocketService.on('server:joinSuccess', function() {
 	      	$state.go('game', {
 		        myParam: {
 							mySocket: SocketService,
@@ -29,5 +28,7 @@
 		SocketService.on('server:joinFailure', function () {
 			$state.go('gameNotFound');
 		});
+
+		SocketService.emit('client:joinGame', {gameId: gameId});
 	}
 })();

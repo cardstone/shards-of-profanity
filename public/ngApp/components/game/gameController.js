@@ -26,8 +26,10 @@
 			if(fromState.name == 'game.components'){
 				// if user navigates away from game view, leave the game.
 				$scope.mySocket.emit('client:leaveGame');
+				// and delete all events this socket is listening to
+				$scope.mySocket.removeAllListeners();
 				if(toState.name == 'joinGame'){
-					// if user navigates 'back', go to home.
+					// if user navigates using 'back', go to home.
 					event.preventDefault();
 		    		$state.go('home');
 				}
