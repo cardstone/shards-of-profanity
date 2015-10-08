@@ -6,18 +6,6 @@ Card = require('../app/models/Card'); //get Card model
 var connect = mongoose.connect(require('../config/db'));
 var db = mongoose.connection;
 
-var stream = Card.find({"color": "black"}).stream();
-
-stream.on('data', function (doc) {
-  // do something with the mongoose document
-  console.log(doc['text']);
-}).on('error', function (err) {
-  // handle the error
-}).on('close', function () {
-  // the stream is closed
-  //db.disconnect();
-});
-
 function getWhiteCards(){
 
 	white = [];
