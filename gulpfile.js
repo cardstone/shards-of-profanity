@@ -41,6 +41,7 @@ gulp.task('javascript', function () {
       'node_modules/angular/angular.js',
       'node_modules/angular-ui-router/release/angular-ui-router.js',
       'node_modules/angularjs-scroll-glue/src/scrollglue.js',
+      'node_modules/angular-socket-io/socket.js',
       'public/ngApp/app.module.js',
       'public/ngApp/**/*.js'
     ])
