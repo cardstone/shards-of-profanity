@@ -1,22 +1,32 @@
 <!-- HomeController as home -->
-<section class="homeView">
+<section class="home-view">
 
-	<h2>Home View</h2>
+	<section class="logo">
+		<h1>Shards of Profanity</h1>
+		<i ng-include="'icons/poo.svg'"></i>
+	</section>
 
-	<fieldset>
+	<section class="button-wrap">
+		<div  class="card-button" id="join-game">
+			Join Game
+		</div>
+		<div ng-click="home.createNewGame()" class="card-button" id="create-game">
+			Create Game
+		</div>
+	</section>
 
-		<button ng-click="home.createNewGame()">CREATE NEW GAME</button>
-		<hr>
-		<form ng-submit="home.joinGame()">
-			<input class='join-input' ng-model="home.gameToJoin" type="text" autocomplete="off"/>
-			<input type="submit" name="join" value="JOIN GAME" autocomplete="off">
-		</form>
 
-	</fieldset>
-
+<!--
+	<button ng-click="home.createNewGame()">CREATE NEW GAME</button>
+	<hr>
+	<form ng-submit="home.joinGame()">
+		<input class='join-input' ng-model="home.gameToJoin" type="text" autocomplete="off"/>
+		<input type="submit" name="join" value="JOIN GAME" autocomplete="off">
+	</form>
 	<h3>Active Game List</h3>
 	<select ng-model="home.gameToJoin">
 		<option ng-repeat="game in home.games">{{ game }}</option>
 	</select>
+-->
 
 </section>

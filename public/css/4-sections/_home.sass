@@ -1,12 +1,48 @@
-.homeView
+.home-view
+  height: 100%
+  background: fade-out($light-black, .03)
+  color: white
 
-  fieldset
-    +span-columns(6)
-    +shift(1)
+  .logo
+    padding: .8rem 1.8rem
+    display: flex
 
-  button
-    margin-bottom: 10px
+  .button-wrap
+    display: flex
+    justify-content: center
 
-  .join-input
-    width: 200px
-    display: inline
+.card-button
+  height: 160px
+  width: 115px
+  display: inline-block
+  position: relative
+  border: 2px solid black
+  border-radius: $base-border-radius
+  padding: 1rem
+  font-weight: bold
+  font-size: 1.5rem
+  line-height: 1.3em
+  transition: $base-duration $base-timing
+  cursor: pointer
+
+
+
+
+#join-game
+  background-color: white
+  color: black
+  transform: translateX(10px) rotateZ(-15deg)
+  z-index: 1
+  cursor: not-allowed
+
+#create-game
+  background-color: black
+  color: white
+  transform: translateX(-10px) rotate(15deg)
+  z-index: 0
+
+#join-game,
+#create-game
+  &:hover
+    z-index: 10
+    transform: scale(1.5)
