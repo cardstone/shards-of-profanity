@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/cardstone/shards-of-profanity#readme",
   "dependencies": {
+    "angoose": "^0.3.21",
     "angular": "^1.4.5",
     "angular-socket-io": "^0.7.0",
     "angular-ui-router": "^0.2.15",
