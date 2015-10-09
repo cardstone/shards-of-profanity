@@ -19,7 +19,7 @@
     return directive;
     // this is where you put dom manipulation ??
     function linkFunc(scope, el, attr, ctrl) {
-
+      
     }
   }
   // this is where you inject dependencies for controller

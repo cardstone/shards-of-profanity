@@ -2,25 +2,38 @@
   height: 160px
   width: 115px
   display: inline-block
+  transition: $base-duration $base-timing
+  position: relative
+
+  &:hover
+    z-index: 10
+    transform: scale(1.5)
+
 
 .front,
 .back
   height: inherit
   width: inherit
-  border: $base-border
+  border: 2px solid black
   border-radius: $base-border-radius
+  padding: 1rem
   font-weight: bold
-  padding: 5px
+  font-size: 1.5rem
+  line-height: 1.3em
   position: absolute
-  background-color: inherit
+  cursor: pointer
 
 .white > .front,
-.white > .back
+.white > .back,
+.join-game > .front,
+.join-game > .back
   background-color: white
   color: black
 
 .black > .front,
-.black > .back
+.black > .back,
+.create-game > .front,
+.create-game > .back
   background-color: black
   color: white
 

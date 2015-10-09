@@ -1,0 +1,18 @@
+<div class="card join-game" ng-click="vm.expand()" ng-class="{'expanded': faceUp}">
+
+  <div class="front" ng-show="vm.faceUp">
+    <form ng-submit="home.joinGame()">
+  		<input class='join-input' ng-model="home.gameToJoin" type="text" autocomplete="off"/>
+  		<input type="submit" name="join" value="JOIN GAME" autocomplete="off">
+  	</form>
+  	<h3>Active Game List</h3>
+  	<select ng-model="home.gameToJoin">
+  		<option ng-repeat="game in home.games">{{ game }}</option>
+  	</select>
+  </div>
+
+  <div class="back" ng-hide="vm.faceUp">
+    Join Game
+  </div>
+
+</div>
