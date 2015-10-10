@@ -24,20 +24,47 @@
         }
     }
 
-    JoinGameController.$inject = [];
+    JoinGameController.$inject = ['$state', '$stateParams', 'SocketService'];
 
-    function JoinGameController() {
-        var vm = this;
-        vm.faceUp = false;
+    function JoinGameController($state, $stateParams, SocketService) {
+      var vm = this;
+      vm.gameToJoin = '';
+      vm.games = [];
+      vm.faceUp = false;
 
-        vm.expand = function() {
-          vm.faceUp = true;
-        };
+      // ask the server for the list of games
+      SocketService.emit('client:getGames');
 
-        activate();
+      // listen for events from server
+      SocketService.on('server:games', function (data) {
+        vm.games = data.games;
+      });
 
-        function activate() {
 
-        }
+      vm.refreshGames = function () {
+        SocketService.emit('client:getGames');
+      };
+
+      vm.selectGame = function () {
+        // to do?
+      };
+
+      vm.joinGame = function () {
+        $state.go('joinGame', {gameId: vm.gameToJoin});
+        vm.gameToJoin = '';
+      };
+
+
+
+      vm.expand = function() {
+        vm.faceUp = true;
+      };
+
+
+      activate();
+
+      function activate() {
+
+      }
     }
 })();

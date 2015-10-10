@@ -24,14 +24,22 @@
         }
     }
 
-    CreateGameController.$inject = [];
+    CreateGameController.$inject = ['$state', '$stateParams', 'SocketService', ];
 
-    function CreateGameController() {
+    function CreateGameController($state, $stateParams, SocketService) {
         var vm = this;
         vm.faceUp = false;
 
+        SocketService.on('server:createSuccess', function (data) {
+          $state.go('joinGame', {gameId: data.gameId});
+        });
+        
         vm.expand = function() {
           vm.faceUp = true;
+        };
+
+        vm.createNewGame = function () {
+          SocketService.emit('client:createNewGame');
         };
 
         activate();
