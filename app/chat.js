@@ -30,3 +30,4 @@ function messagePlayerJoined(data) {
 		msg: joinedMessage
 	});
 }
+

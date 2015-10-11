@@ -3,17 +3,16 @@
 
 	angular
 		.module('app')
-		.factory('CardService', [CardService]);
+		.factory('CardService', ['angoose.client', CardService]);
 
 	function CardService(){
-		var white = []
-		var black = [] 
-
+		var white = [];
+		var black = [];
+		var poop = new ass;
 		return {
 			getWhite: function() {
 				return white;
-			}
-			,
+			},
 			getBlack: function() {
 				return black;
 			}

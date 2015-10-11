@@ -7,7 +7,7 @@ var mongoose = require('mongoose'),
   Schema = mongoose.Schema; 
 
 // Schema for cards
-var cardSchema = new Schema({
+var cardSchema = Schema({
   color: String,
   text: String,
   pack: String,

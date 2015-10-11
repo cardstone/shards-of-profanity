@@ -2,9 +2,9 @@
  * command line tool
  * parses text files and stores each line as a card in the database
  *
- * USE: node db_loader.js [file] [color] [pack]
+ * USE: node load_cards.js [file] [color] [pack]
  *
- * EXAMPLE: node db_loader.js output.txt white vanilla
+ * EXAMPLE: node load_cards.js output.txt white vanilla
  *
  **/
 

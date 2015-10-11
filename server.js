@@ -9,7 +9,13 @@ var methodOverride = require('method-override');
 var game = require('./app/game');
 
 // load db
-// var db = mongoose.connect(require('./config/db'));
+mongoose.connect(require('./config/db'));
+
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function (callback){
+  console.log("Connected to database");
+});
 
 // Set port
 var port = process.env.PORT || 8080; // set our port
@@ -41,6 +47,7 @@ var path = require('path');
 app.get('*', function (req, res) {
 	res.sendFile(path.join(__dirname, './dist', 'index.html'));
 });
+
 
 // socket.io ===============================================
 var games = {}; // not being used, yet.

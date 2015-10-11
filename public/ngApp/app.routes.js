@@ -36,6 +36,11 @@
 							templateUrl: 'components/scoreboard/scoreboardView.html',
 							controller: 'ScoreboardController',
 							controllerAs: 'scoreboard'
+						},
+						'play': {
+							templateUrl: 'components/play/playView.html',
+							controller: 'PlayController',
+							controllerAs: 'play'
 						}
 					}
 				})
