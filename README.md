@@ -79,7 +79,7 @@ $ npm install
 
 # Load cards into DB using script
 $ cd scripts
-$ node load_cards.js ../data/black/output.txt white vanilla
+$ node load_cards.js ../data/black/output.txt black vanilla
 $ node load_cards.js ../data/white/output.txt white vanilla
 
 # Run Gulp to build files and start up a quick server
