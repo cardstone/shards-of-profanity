@@ -77,7 +77,11 @@ $ cd shards-of-profanity
 # Install npm modules
 $ npm install
 
-# Load cards into DB using script
+# Setup mongo directory and run mongo process
+$ mkdir -p /data/db
+$ mongod
+
+# Load cards into mongoDB using script
 $ cd scripts
 $ node load_cards.js ../data/black/output.txt black vanilla
 $ node load_cards.js ../data/white/output.txt white vanilla
