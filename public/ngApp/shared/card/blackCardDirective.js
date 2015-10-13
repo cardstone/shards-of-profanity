@@ -9,7 +9,7 @@
     var directive = {
       restrict: 'EA',
       templateUrl: 'shared/card/blackCardTemplate.html',
-      scope: {},
+      scope: true,
       link: linkFunc,
       controller: BlackCardController,
       controllerAs: 'vm',

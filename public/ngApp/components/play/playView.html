@@ -2,6 +2,8 @@
 <aside class="play">
 	<h2>Play View</h2>
 	<p>{{ play.tagline }}</p>
-	<white-card></white-card>
-	<button ng-click="play.getRandomCard()">Draw a random card</button>
+	<white-card ng-show="play.color == 'white'"></white-card>
+	<black-card ng-show="play.color == 'black'"></black-card>
+	<button ng-click="play.getRandWhite()">Draw random white card</button>
+	<button ng-click="play.getRandBlack()">Draw random black card</button>
 </aside>

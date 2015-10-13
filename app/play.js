@@ -14,10 +14,10 @@ exports.initPlay = function (sio, socket, socketsInfo) {
 };
 
 function sendRandomCard(data) {
-	model.count().exec(function (err, count) {
-	  	var random = Math.floor(Math.random() * count);
-	  	model.findOne({}).skip(random).exec( function (err, card) {
-	  		gameSocket.emit('server:card', {card: card});
-	  	});
+	var queryColor = data.color;
+	model.find({color: queryColor}).exec(function (err, cards) {
+		var random = Math.floor(Math.random() * cards.length);
+		gameSocket.emit('server:card', {card: cards[random]});
 	});
+
 }
