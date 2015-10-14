@@ -16,7 +16,7 @@
 	<div ng-controller= "EnterNameController as enterName" ng-show="enterName.show">
 		<h4>Enter name or use default name</h4>
 		<form ng-submit="enterName.enter()">
-			<input ng-model="enterName.myName" type="text"/>
+			<input ng-model="enterName.myName" type="text" required/>
 		</form>
 		<button ng-click="enterName.turnOffThisView()">Use default name.</button>
 	</div>
