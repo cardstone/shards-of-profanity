@@ -24,8 +24,11 @@ exports.initHome = function (sio, socket, games, socketsInfo) {
 // game object constructor
 function game () {
   this.players = [];
+  this.czar = 0;
   this.blackCards = null;
   this.whiteCards = null;
+  this.blackCardsOrig = null;
+  this.whiteCardsOrig = null;
 }
 
 // socketInfo object constructor
@@ -59,9 +62,11 @@ function createNewGame () {
   // TODO: put these queries in a function
   model.find({color: 'black'}, 'text', function (err, cards) {
     gamesObj['#' + thisGameId].blackCards = cards;
+    gamesObj['#' + thisGameId].blackCardsOrig = cards; 
   });
   model.find({color: 'white'}, 'text', function (err, cards) {
     gamesObj['#' + thisGameId].whiteCards = cards;
+    gamesObj['#' + thisGameId].whiteCardsOrig = cards; 
   });
   this.emit('server:createSuccess', {gameId: thisGameId});
   //console.log(gamesObj);

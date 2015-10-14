@@ -9,6 +9,12 @@
 		var play = this;
 		var socket = $scope.mySocket;
 		$scope.hand = [];
+		$scope.czar = false;
+
+		socket.on('server:czar', function () {
+			console.log('I AM THE CHOSEN ONE');
+			$scope.czar = true;
+		});
 
 		socket.on('server:whiteCard', function (data) {
 			$scope.hand.push.apply($scope.hand, data.cards);

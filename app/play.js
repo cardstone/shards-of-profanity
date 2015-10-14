@@ -22,3 +22,7 @@ function sendRandWhite(data) {
 	}
 	this.emit('server:whiteCard', {cards: cards});
 }
+
+function czar(socketId) {
+	io.to(socketId).emit('server:czar');
+}
