@@ -3,6 +3,8 @@ var gameSocket;
 var gamesObj;
 var socketsObj;
 
+var model = require('./models/Card');
+
 exports.initHome = function (sio, socket, games, socketsInfo) {
 	io = sio;
 	gameSocket = socket;
@@ -22,6 +24,8 @@ exports.initHome = function (sio, socket, games, socketsInfo) {
 // game object constructor
 function game () {
   this.players = [];
+  this.blackCards = null;
+  this.whiteCards = null;
 }
 
 // socketInfo object constructor
@@ -52,7 +56,15 @@ function createNewGame () {
   getGames();
   // add this game to our 'global' games object
   gamesObj['#' + thisGameId] = new game();
+  // TODO: put these queries in a function
+  model.find({color: 'black'}, function (err, cards) {
+    gamesObj['#' + thisGameId].blackCards = cards;
+  });
+  model.find({color: 'white'}, function (err, cards) {
+    gamesObj['#' + thisGameId].whiteCards = cards;
+  });
   this.emit('server:createSuccess', {gameId: thisGameId});
+  //console.log(gamesObj);
 }
 
 function joinGame (data) {
