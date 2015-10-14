@@ -57,10 +57,10 @@ function createNewGame () {
   // add this game to our 'global' games object
   gamesObj['#' + thisGameId] = new game();
   // TODO: put these queries in a function
-  model.find({color: 'black'}, function (err, cards) {
+  model.find({color: 'black'}, 'text', function (err, cards) {
     gamesObj['#' + thisGameId].blackCards = cards;
   });
-  model.find({color: 'white'}, function (err, cards) {
+  model.find({color: 'white'}, 'text', function (err, cards) {
     gamesObj['#' + thisGameId].whiteCards = cards;
   });
   this.emit('server:createSuccess', {gameId: thisGameId});

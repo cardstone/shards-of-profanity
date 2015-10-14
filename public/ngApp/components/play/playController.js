@@ -11,13 +11,11 @@
 		$scope.hand = [];
 
 		socket.on('server:whiteCard', function (data) {
-			//console.log('got card');
-			$scope.card = data.card.text;
-			$scope.hand.push(data.card);
+			$scope.hand.push.apply($scope.hand, data.cards);
 		});
 
-		play.getRandWhite = function() {
-			socket.emit('client:getRandWhite');
+		play.getRandWhite = function(numCards) {
+			socket.emit('client:getRandWhite', {numCards: numCards});
 		}
 
 		play.getRandBlack = function() {

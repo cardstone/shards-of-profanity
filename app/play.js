@@ -15,6 +15,10 @@ exports.initPlay = function (sio, socket, games, socketsInfo) {
 function sendRandWhite(data) {
 	var gameNum = socketsObj[this.id].room;
 	var whiteCards = gamesObj[gameNum].whiteCards;
-	var random = Math.floor(Math.random() * whiteCards.length);
-	this.emit('server:whiteCard', {card: whiteCards[random]});	
+	var cards = [];
+	for(var i = 0; i < data.numCards; i++) {
+		var random = Math.floor(Math.random() * whiteCards.length);
+		cards.push(whiteCards[random]);
+	}
+	this.emit('server:whiteCard', {cards: cards});
 }
