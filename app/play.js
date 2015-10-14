@@ -19,6 +19,7 @@ function sendRandWhite(data) {
 	for(var i = 0; i < data.numCards; i++) {
 		var random = Math.floor(Math.random() * whiteCards.length);
 		cards.push(whiteCards[random]);
+		whiteCards.splice(random, 1);
 	}
 	this.emit('server:whiteCard', {cards: cards});
 }
