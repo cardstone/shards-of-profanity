@@ -1,8 +1,10 @@
 <!-- PlayController as play -->
 <span class="play">
 	<h2>Play View</h2>
+	<li>
 	<span ng-repeat="card in hand track by $index">
 		<white-card></white-card>
 	</span>
+	</li>
 	<button ng-click="play.getRandWhite()">Draw random white card</button>
 </span>
