@@ -7,11 +7,13 @@
 			<white-card></white-card>
 		</span>
 	</li>
-	<h4>Hand</h4>
-	<li>
-		<span ng-repeat="card in hand track by $index">
-			<white-card ng-click="play.selectCard($index)"></white-card>
-		</span>
-	</li>
-	<button ng-click="play.drawWhite()">Draw to 10 cards</button>
+	<div class="hand">
+		<h4>Hand</h4>
+		<li>
+			<span ng-repeat="card in hand track by $index">
+				<white-card ng-click="play.selectCard($index)"></white-card>
+			</span>
+		</li>
+		<button ng-click="play.drawWhite()">Draw to 10 cards</button>
+	</div>
 </span>
