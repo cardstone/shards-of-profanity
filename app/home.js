@@ -98,7 +98,7 @@ function leaveGame (data) {
   this.leave(socketsObj[this.id].room);
   emitLeave(this.id);
   socketsObj[this.id].room = null;
-;}
+}
 
 // add to default name to corresponding socketsObj
 function addDefaultName (data) {

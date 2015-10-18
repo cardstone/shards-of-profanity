@@ -10,9 +10,10 @@ exports.initPlay = function (sio, socket, games, socketsInfo) {
 	socketsObj = socketsInfo;
 
 	gameSocket.on('client:getRandWhite', sendRandWhite);
+	gameSocket.on('client:whiteSelected', displayWhiteAll);
 };
 
-function sendRandWhite(data) {
+function sendRandWhite (data) {
 	var gameNum = socketsObj[this.id].room;
 	var whiteCards = gamesObj[gameNum].whiteCards;
 	var cards = [];
@@ -24,6 +25,11 @@ function sendRandWhite(data) {
 	this.emit('server:whiteCard', {cards: cards});
 }
 
-function czar(socketId) {
+function displayWhiteAll (data) {
+	var gameNum = socketsObj[this.id].room; 
+	io.sockets.in(gameNum).emit('server:displayWhite', {card: data.card});
+}
+
+function czar (socketId) {
 	io.to(socketId).emit('server:czar');
 }
