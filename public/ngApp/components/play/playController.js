@@ -23,13 +23,19 @@
 				$scope.hand.splice(0, numNewCards);	
 			}
 			$scope.hand.push.apply($scope.hand, data.cards);
-			//$scope.chosen.push.apply($scope.chosen, data.cards);
 		});
 
 		socket.on('server:displayWhite', function (data) {
 			console.log(data);
 			$scope.chosen.push(data.card);
 		});
+
+		play.drawWhite = function() {
+			var numNeeded = 10 - $scope.hand.length;
+			if(numNeeded > 0) {
+				play.getRandWhite(numNeeded);	
+			}
+		};
 
 		play.getRandWhite = function (numCards) {
 			socket.emit('client:getRandWhite', {numCards: numCards});
@@ -39,8 +45,9 @@
 			socket.emit('client:getRandBlack');
 		};
 
-		play.selectCard = function (card) {
-			socket.emit('client:whiteSelected', {card: card});
+		play.selectCard = function (index) {
+			var card = $scope.hand.splice(index, 1);
+			socket.emit('client:whiteSelected', {card: card[0]});
 		};
 	}
 
