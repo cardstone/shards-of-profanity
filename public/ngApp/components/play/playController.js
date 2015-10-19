@@ -6,7 +6,7 @@
 		.controller('PlayController', ['$scope', PlayController]);
 
 	function PlayController($scope) {
-		var play = this;
+		var vm = this;
 		var socket = $scope.mySocket;
 		$scope.hand = [];
 
@@ -14,13 +14,13 @@
 			$scope.hand.push.apply($scope.hand, data.cards);
 		});
 
-		play.getRandWhite = function(numCards) {
+		vm.getRandWhite = function(numCards) {
 			socket.emit('client:getRandWhite', {numCards: numCards});
-		}
+		};
 
-		play.getRandBlack = function() {
+		vm.getRandBlack = function() {
 			socket.emit('client:getRandBlack');
-		}
+		};
 	}
 
 })();

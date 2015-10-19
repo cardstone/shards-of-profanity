@@ -8,7 +8,7 @@ exports.initScoreboard = function (sio, socket, games, socketsInfo) {
 	gameSocket = socket;
 	gamesObj = games;
 	socketsObj = socketsInfo;
-	
+
 	gameSocket.on('client:joinSuccess', updatePlayerLists);
 	gameSocket.on('client:updateName', updatePlayerLists);
 	gameSocket.on('client:getUpdatedPlayerList', sendPlayerList);
@@ -31,12 +31,12 @@ function updatePlayerLists () {
 	var gameNum = socketsObj[this.id].room;
 	var players = getPlayerList(gameNum);
 	// send new player list to all clients in room gameNum
-	io.sockets.in(gameNum).emit('server:players', {players: players});	
+	io.sockets.in(gameNum).emit('server:players', {players: players});
 }
 
 function sendPlayerList () {
 	var gameNum = socketsObj[this.id].room;
 	var players = getPlayerList(gameNum);
 	// send new player list to 'this' client
-	this.emit('server:players', {players: players});	
+	this.emit('server:players', {players: players});
 }

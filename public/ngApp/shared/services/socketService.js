@@ -1,9 +1,11 @@
 (function () {
-  'use strict';
+	'use strict';
 
-  angular
+	angular
     .module('app')
-      .factory('SocketService', function (socketFactory) {
-        return socketFactory();
-      });
+      .factory('SocketService', [SocketService]);
+
+	function SocketService (socketFactory) {
+		return socketFactory();
+	}
 })();

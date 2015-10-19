@@ -6,21 +6,21 @@
 		.controller('EnterNameController', ['$scope', EnterNameController]);
 
 	function EnterNameController ($scope) {
-		var enterName = this;
+		var vm = this;
 		var socket = $scope.mySocket;
 
-		enterName.myName = '';
-		enterName.show = true;
+		vm.myName = '';
+		vm.show = true;
 
-		enterName.turnOffThisView = function () {
-			enterName.show = false;
+		vm.turnOffThisView = function () {
+			vm.show = false;
 		};
 
-		enterName.enter = function () {
-			socket.emit('client:enterName', {playerName: enterName.myName});
+		vm.enter = function () {
+			socket.emit('client:enterName', {playerName: vm.myName});
 			socket.emit('client:getPlayerList');
 			socket.emit('client:updateName');
-			enterName.turnOffThisView();
+			vm.turnOffThisView();
 		};
 	}
 })();

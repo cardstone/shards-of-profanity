@@ -1,0 +1,12 @@
+{
+	"plugins": [
+    "angular"
+  ],
+	"globals": {
+		"angular": true
+	},
+	"rules": {
+		"angular/di": [2, "array"],
+		"angular/controller-as": 0
+	}
+}

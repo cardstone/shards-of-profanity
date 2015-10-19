@@ -1,0 +1,11 @@
+<div class="card join-game" ng-class="{'expanded':expanded}">
+
+  <div ng-transclude="front" class="front" ng-show="expanded">
+
+  </div>
+
+  <div ng-transclude="back" class="back" ng-hide="expanded" ng-click="toggle()">
+    Join Game
+  </div>
+
+</div>

@@ -14,7 +14,7 @@ exports.initChat = function (sio, socket, socketsInfo) {
 function sendMessage(data) {
 	var gameNum = socketsObj[this.id].room;
 	var name = socketsObj[this.id].name;
-	var msg = data.msg;
+	// var msg = data.msg;
 	io.sockets.in(gameNum).emit('client:message', {
 		name: name,
 		msg: data.msg,
@@ -30,4 +30,3 @@ function messagePlayerJoined(data) {
 		msg: joinedMessage
 	});
 }
-
