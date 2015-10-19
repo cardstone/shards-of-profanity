@@ -8,6 +8,7 @@
 	function PlayController ($scope) {
 		var play = this;
 		var socket = $scope.mySocket;
+		$scope.black = [];
 		$scope.hand = [];
 		$scope.chosen = []; 
 		$scope.czar = false;
@@ -26,11 +27,19 @@
 		});
 
 		socket.on('server:displayWhite', function (data) {
-			console.log(data);
+			//console.log(data);
 			$scope.chosen.push(data.card);
 		});
 
-		play.drawWhite = function() {
+		socket.on('server:displayBlack', function (data) {
+			$scope.black.push(data.card)
+		});
+
+		play.drawBlack = function () {
+			socket.emit('client:blackCard');
+		};
+
+		play.drawWhite = function () {
 			var numNeeded = 10 - $scope.hand.length;
 			if(numNeeded > 0) {
 				play.getRandWhite(numNeeded);	
@@ -41,9 +50,6 @@
 			socket.emit('client:getRandWhite', {numCards: numCards});
 		};
 
-		play.getRandBlack = function () {
-			socket.emit('client:getRandBlack');
-		};
 
 		play.selectCard = function (index) {
 			var card = $scope.hand.splice(index, 1);

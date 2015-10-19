@@ -10,8 +10,18 @@ exports.initPlay = function (sio, socket, games, socketsInfo) {
 	socketsObj = socketsInfo;
 
 	gameSocket.on('client:getRandWhite', sendRandWhite);
+	gameSocket.on('client:blackCard', sendBlackAll);
 	gameSocket.on('client:whiteSelected', displayWhiteAll);
 };
+
+function sendBlackAll (data) {
+	var gameNum = socketsObj[this.id].room; 
+	var blackCards = gamesObj[gameNum].blackCards;
+	var random = Math.floor(Math.random() * blackCards.length);
+	io.sockets.in(gameNum).emit('server:displayBlack', {card: blackCards[random]});
+	blackCards.splice(random, 1);
+}
+
 
 function sendRandWhite (data) {
 	var gameNum = socketsObj[this.id].room;
