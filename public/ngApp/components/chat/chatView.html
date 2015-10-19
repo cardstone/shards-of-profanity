@@ -1,5 +1,5 @@
 <!-- ChatController as chat -->
-<aside class="chat">
+<aside class="chat" ng-show="chat.show"> 
 
 	<div class="messages-wrap" scroll-glue>
 		<ul id="messages">
@@ -27,3 +27,6 @@
 	</form>
 
 </aside>
+<div class="toggleButton">
+	<button ng-click="chat.show = !chat.show">></button>
+</div>

@@ -1,11 +1,19 @@
 <!-- PlayController as play -->
 <span class="play">
 	<h2>Play View</h2>
+	<h4>Card in play</h4>
 	<li>
-	<span ng-repeat="card in hand track by $index">
-		<white-card></white-card>
-	</span>
+		<span ng-repeat="card in chosen track by $index">
+			<white-card></white-card>
+		</span>
 	</li>
-	<button ng-click="play.getRandWhite(10)">Draw 10 random white cards</button>
-	<button ng-click="play.getRandWhite(1)">Draw a random white card</button>
+	<div class="hand">
+		<h4>Hand</h4>
+		<li>
+			<span ng-repeat="card in hand track by $index">
+				<white-card ng-click="play.selectCard($index)"></white-card>
+			</span>
+		</li>
+		<button ng-click="play.drawWhite()">Draw to 10 cards</button>
+	</div>
 </span>

@@ -24,8 +24,11 @@ exports.initHome = function (sio, socket, games, socketsInfo) {
 // game object constructor
 function game () {
 	this.players = [];
+	this.czar = 0;
 	this.blackCards = null;
 	this.whiteCards = null;
+	this.blackCardsOrig = null;
+	this.whiteCardsOrig = null;
 }
 
 // socketInfo object constructor
@@ -45,26 +48,28 @@ function emitLeave(socketId) {
 }
 
 function createNewGame () {
-	// console.log('creating new game...');
-	// make gameId a random number in certain range hue hue hue
+  // console.log('creating new game...');
+  // make gameId a random number in certain range hue hue hue
 	var thisGameId = Math.floor((Math.random() * 3141592) + 1);
 	thisGameId = thisGameId.toString();
-	// 'this' is a reference to the calling client's socket.io object
-	// game rooms are identified with a leading '#'
+  // 'this' is a reference to the calling client's socket.io object
+  // game rooms are identified with a leading '#'
 	this.join('#' + thisGameId);
-	// send new list of games to clients in home state
+  // send new list of games to clients in home state
 	getGames();
-	// add this game to our 'global' games object
+  // add this game to our 'global' games object
 	gamesObj['#' + thisGameId] = new game();
-	// TODO: put these queries in a function
+  // TODO: put these queries in a function
 	model.find({color: 'black'}, 'text', function (err, cards) {
 		gamesObj['#' + thisGameId].blackCards = cards;
+		gamesObj['#' + thisGameId].blackCardsOrig = cards;
 	});
 	model.find({color: 'white'}, 'text', function (err, cards) {
 		gamesObj['#' + thisGameId].whiteCards = cards;
+		gamesObj['#' + thisGameId].whiteCardsOrig = cards;
 	});
 	this.emit('server:createSuccess', {gameId: thisGameId});
-	//console.log(gamesObj);
+  //console.log(gamesObj);
 }
 
 function joinGame (data) {
