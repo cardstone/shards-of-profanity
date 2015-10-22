@@ -9,6 +9,7 @@
 		var vm = this;
 
 		var socket = $scope.mySocket;
+		$scope.black = [];
 		$scope.hand = [];
 		$scope.chosen = [];
 		$scope.czar = false;
@@ -16,6 +17,11 @@
 		socket.on('server:czar', function () {
 			console.log('I AM THE CHOSEN ONE');
 			$scope.czar = true;
+		});
+
+		socket.on('server:unCzar', function () {
+			console.log('I AM NO LONGER THE CHOSEN ONE');
+			$scope.czar = false;
 		});
 
 		socket.on('server:whiteCard', function (data) {
@@ -28,11 +34,18 @@
 
 
 		socket.on('server:displayWhite', function (data) {
-			console.log(data);
 			$scope.chosen.push(data.card);
 		});
 
-		vm.drawWhite = function() {
+		socket.on('server:displayBlack', function (data) {
+			$scope.black.push(data.card);
+		});
+
+		vm.drawBlack = function () {
+			socket.emit('client:blackCard');
+		};
+
+		vm.drawWhite = function () {
 			var numNeeded = 10 - $scope.hand.length;
 			if(numNeeded > 0) {
 				vm.getRandWhite(numNeeded);
@@ -43,13 +56,13 @@
 			socket.emit('client:getRandWhite', {numCards: numCards});
 		};
 
-		vm.getRandBlack = function () {
-			socket.emit('client:getRandBlack');
-		};
-
 		vm.selectCard = function (index) {
 			var card = $scope.hand.splice(index, 1);
 			socket.emit('client:whiteSelected', {card: card[0]});
+		};
+
+		vm.startRound = function () {
+			socket.emit('client:startRound');
 		};
 	}
 

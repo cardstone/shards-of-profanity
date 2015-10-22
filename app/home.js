@@ -24,7 +24,7 @@ exports.initHome = function (sio, socket, games, socketsInfo) {
 // game object constructor
 function game () {
 	this.players = [];
-	this.czar = 0;
+	this.czar = -1;
 	this.blackCards = null;
 	this.whiteCards = null;
 	this.blackCardsOrig = null;

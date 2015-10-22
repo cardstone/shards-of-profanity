@@ -14,6 +14,7 @@
 		var myGameId = $scope.myGameId;
 		// var myName = $scope.myName;
 
+		vm.show = true;
 		vm.msg = ``;
 		vm.messages = [];
 

@@ -15,15 +15,19 @@
 	<!-- enter optional name -->
 	<div ng-controller= "EnterNameController as enterName" ng-show="enterName.show">
 		<h4>Enter name or use default name</h4>
-		<form ng-submit="enterName.enter()">
-			<input ng-model="enterName.myName" type="text" required/>
+		<div ng-show="nameForm.name.$error.maxlength || nameForm.name.$error.minlength ">
+			Name must be 2 to 20 characters long, asshole.
+		</div>
+		<form name="nameForm" ng-submit="nameForm.$valid && enterName.enter()">
+			<input name="name" ng-model="enterName.myName" type="text" ng-maxlength="20" ng-minlength="2" required/>
 		</form>
 		<button ng-click="enterName.turnOffThisView()">Use default name.</button>
 	</div>
 	<!-- end enter optional name -->
 
-	<form ng-submit="chat.sendMessage()">
-		<input ng-model="chat.msg" type="text" autocomplete="off" autofocus/>
+	<form name="chatForm" ng-submit="chatForm.$valid && chat.sendMessage()">
+		<div ng-show="chatForm.message.$error.maxlength">Message too long yo, keep it to 100 characters.</div>
+		<input name="message" ng-model="chat.msg" type="text" autocomplete="off" ng-maxlength="200" required autofocus/>
 	</form>
 
 </aside>

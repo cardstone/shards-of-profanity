@@ -1,12 +1,19 @@
 <!-- PlayController as play -->
 <span class="play">
-	<h2>Play View</h2>
-	<h4>Card in play</h4>
-	<li>
-		<span ng-repeat="card in chosen track by $index">
-			<white-card></white-card>
-		</span>
-	</li>
+	<div ng-show="czar">I am the czar.</div>
+	<div>
+		<li>
+			<span ng-repeat="card in black track by $index">
+				<black-card></black-card>
+			</span>
+		</li>
+		<button ng-click="play.drawBlack()">get black card</button>
+		<li>
+			<span ng-repeat="card in chosen track by $index">
+				<white-card></white-card>
+			</span>
+		</li>
+	<div>
 	<div class="hand">
 		<h4>Hand</h4>
 		<li>
@@ -16,4 +23,5 @@
 		</li>
 		<button ng-click="play.drawWhite()">Draw to 10 cards</button>
 	</div>
+	<button ng-click="play.startRound()">Start Round</button>
 </span>
