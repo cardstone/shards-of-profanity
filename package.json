@@ -37,8 +37,11 @@
     "through2": "*"
   },
   "devDependencies": {
+    "babel-eslint": "^4.1.3",
     "browser-sync": "^2.9.1",
     "del": "^2.0.2",
+    "eslint": "^1.7.1",
+    "eslint-plugin-angular": "^0.12.0",
     "forever": "*",
     "gulp": "^3.9.0",
     "gulp-angular-templatecache": "^1.7.0",

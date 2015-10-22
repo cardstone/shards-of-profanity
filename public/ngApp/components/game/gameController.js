@@ -6,7 +6,6 @@
 		.controller('GameController', ['$scope', '$state',  '$stateParams', GameController]);
 
 	function GameController ($scope, $state, $stateParams) {
-		var game = this;
 
 		var gameData = $stateParams.myParam;
 		$scope.mySocket = gameData.mySocket;
@@ -22,7 +21,7 @@
 
 		$state.go('game.components');
 
-		$scope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){ 
+		$scope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
 			if(fromState.name == 'game.components'){
 				// if user navigates away from game view, leave the game.
 				$scope.mySocket.emit('client:leaveGame');
@@ -31,7 +30,7 @@
 				if(toState.name == 'joinGame'){
 					// if user navigates using 'back', go to home.
 					event.preventDefault();
-		    		$state.go('home');
+					$state.go('home');
 				}
 			}
 		});

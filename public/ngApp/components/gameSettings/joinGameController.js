@@ -15,13 +15,13 @@
 		var gameId = $stateParams.gameId;
 
 		SocketService.on('server:joinSuccess', function() {
-	      	$state.go('game', {
-		        myParam: {
-							mySocket: SocketService,
-							myGameId: gameId,
-							myName: NameService.get(),
-							myAvatar: AvatarService.get()
-		        }
+			$state.go('game', {
+				myParam: {
+					mySocket: SocketService,
+					myGameId: gameId,
+					myName: NameService.get(),
+					myAvatar: AvatarService.get()
+				}
 			});
 		});
 

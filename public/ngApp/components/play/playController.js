@@ -5,8 +5,8 @@
 		.module('app')
 		.controller('PlayController', ['$scope', PlayController]);
 
-	function PlayController ($scope) {
-		var play = this;
+	function PlayController($scope) {
+		var vm = this;
 		var socket = $scope.mySocket;
 		$scope.black = [];
 		$scope.hand = [];
@@ -27,10 +27,11 @@
 		socket.on('server:whiteCard', function (data) {
 			if($scope.hand.length == 10) {
 				var numNewCards = data.cards.length;
-				$scope.hand.splice(0, numNewCards);	
+				$scope.hand.splice(0, numNewCards);
 			}
 			$scope.hand.push.apply($scope.hand, data.cards);
 		});
+
 
 		socket.on('server:displayWhite', function (data) {
 			$scope.selectedCards.push(data.card);
@@ -45,7 +46,7 @@
 		});
 
 		socket.on('server:draw', function () {
-			play.drawWhite();
+			vm.drawWhite();
 		});
 
 		socket.on('server:newRound', function () {
@@ -53,28 +54,28 @@
 			$scope.selectedCards = [];
 		});
 
-		play.drawBlack = function () {
+		vm.drawBlack = function () {
 			socket.emit('client:blackCard');
 		};
 
-		play.drawWhite = function () {
+		vm.drawWhite = function () {
 			var numNeeded = 10 - $scope.hand.length;
 			if(numNeeded > 0) {
-				play.getRandWhite(numNeeded);	
+				vm.getRandWhite(numNeeded);
 			}
 		};
 
-		play.getRandWhite = function (numCards) {
+		vm.getRandWhite = function (numCards) {
 			socket.emit('client:getRandWhite', {numCards: numCards});
 		};
 
-		play.selectCard = function (index) {
+		vm.selectCard = function (index) {
 			$scope.enabled = false;
 			var card = $scope.hand.splice(index, 1);
 			socket.emit('client:whiteSelected', {card: card[0]});
 		};
 
-		play.startRound = function () {
+		vm.startRound = function () {
 			socket.emit('client:startRound');
 		};
 	}

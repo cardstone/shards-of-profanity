@@ -8,7 +8,7 @@
 	function CardService(){
 		var white = [];
 		var black = [];
-		var poop = new ass;
+		// var poop = new ass;
 		return {
 			getWhite: function() {
 				return white;

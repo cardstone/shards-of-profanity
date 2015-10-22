@@ -1,12 +1,12 @@
 (function () {
-  'use strict';
+	'use strict';
 
-  angular
-    .module('app', [
-      'ui.router',
-      'btford.socket-io',
-      'templates',
-      'luegg.directives'
-    ]);
+	angular
+		.module('app', [
+			'ui.router',
+			'btford.socket-io',
+			'templates',
+			'luegg.directives'
+		]);
 
 })();

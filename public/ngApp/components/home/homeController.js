@@ -1,43 +1,46 @@
 (function () {
-  'use strict';
+	'use strict';
 
-  angular
-    .module('app')
-    .controller('HomeController', ['$state', '$stateParams', 'SocketService', HomeController]);
+	angular
+		.module('app')
+		.controller('HomeController', ['$state', '$stateParams', 'SocketService', HomeController]);
 
-  function HomeController ($state, $stateParams , SocketService) {
-    var home = this;
-    home.gameToJoin = '';
-    home.games = [];
+	function HomeController ($state, $stateParams , SocketService) {
+		var vm = this;
+		vm.gameToJoin = '';
+		vm.games = [];
+		console.log('im the eyehole , man!');
+
 
     // ask the server for the list of games
-    SocketService.emit('client:getGames');
+		SocketService.emit('client:getGames');
 
     // listen for events from server
-    SocketService.on('server:games', function (data) {
-      home.games = data.games;
-    });
+		SocketService.on('server:games', function (data) {
+			vm.games = data.games;
+		});
 
-    SocketService.on('server:createSuccess', function (data) {
-      $state.go('joinGame', {gameId: data.gameId});
-    });
+		SocketService.on('server:createSuccess', function (data) {
+			$state.go('joinGame', {gameId: data.gameId});
+		});
 
     // controller functions
-    home.createNewGame = function () {
-      SocketService.emit('client:createNewGame');
-    };
+		vm.createNewGame = function () {
+			console.log('creating game');
+			SocketService.emit('client:createNewGame');
+		};
 
-    home.refreshGames = function () {
-      SocketService.emit('client:getGames');
-    };
+		vm.refreshGames = function () {
+			SocketService.emit('client:getGames');
+		};
 
-    home.selectGame = function () {
+		vm.selectGame = function () {
       // to do?
-    };
+		};
 
-    home.joinGame = function () {
-      $state.go('joinGame', {gameId: home.gameToJoin});
-      home.gameToJoin = '';
-    };
-  }
+		vm.joinGame = function () {
+			$state.go('joinGame', {gameId: vm.gameToJoin});
+			vm.gameToJoin = '';
+		};
+	}
 })();

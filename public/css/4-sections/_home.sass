@@ -7,14 +7,23 @@
     padding: 4rem 1.8rem
     display: flex
 
-  .button-wrap
-    display: flex
-    justify-content: center
+.button-wrap
+	display: flex
+	justify-content: center
 
-.join-game
-  transform: translateX(10px) rotate(-15deg)
-  z-index: 1
+.modalButton
+	&:nth-child(1)
+		transform: translateX(10px) rotate(-15deg)
+		z-index: 1
 
-.create-game
-  transform: translateX(-10px) rotate(15deg)
-  z-index: 0
+	&:nth-child(2)
+		transform: translateX(-10px) rotate(15deg)
+		z-index: 0
+
+	&:hover
+		z-index: 1
+		transform: scale(1.5)
+
+
+
+  //

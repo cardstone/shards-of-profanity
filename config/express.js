@@ -2,16 +2,16 @@
  * Module dependencies.
  */
 var mean = require('meanio'),
-  compression = require('compression'),
-  morgan = require('morgan'),
-  consolidate = require('consolidate'),
-  express = require('express'),
-  helpers = require('view-helpers'),
-  flash = require('connect-flash'),
-  modRewrite = require('connect-modrewrite'),
+	compression = require('compression'),
+	morgan = require('morgan'),
+	consolidate = require('consolidate'),
+	express = require('express'),
+	helpers = require('view-helpers'),
+	flash = require('connect-flash'),
+	modRewrite = require('connect-modrewrite'),
   // seo = require('mean-seo'),
-  config = mean.loadConfig(),
-  favicon = require('serve-favicon');
+	config = mean.loadConfig(),
+	favicon = require('serve-favicon');
 
 var app = express();
 app.use(favicon(__dirname + '/public/shard.png'));
@@ -34,7 +34,7 @@ module.exports = function (app, db) {
     level: 9
   }));
 
- 
+
   // Enable compression on bower_components
   app.use('/bower_components', express.static(config.root + '/bower_components'));
 
