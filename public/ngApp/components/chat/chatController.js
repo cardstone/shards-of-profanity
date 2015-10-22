@@ -21,12 +21,12 @@
 		chat.messages.push({
 			name: 'SERVER',
 			avatar: 'icons/robot.svg',
-			msg: 'Welcome to game ${myGameId} ya filthy animal.'
+			msg: `Welcome to game ${myGameId} ya filthy animal.`
 		});
 		chat.messages.push({
 			name: 'SERVER',
 			avatar: 'icons/robot.svg',
-			msg: 'Misery loves company so give this url to a friend: localhost:4000/join/${myGameId}'
+			msg: `Misery loves company so give this url to a friend: localhost:4000/join/${myGameId}`
 		});
 
 		// listen for socket events
