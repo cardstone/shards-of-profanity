@@ -10,8 +10,9 @@
 		var socket = $scope.mySocket;
 		$scope.black = [];
 		$scope.hand = [];
-		$scope.chosen = []; 
+		$scope.selectedCards = []; 
 		$scope.czar = false;
+		$scope.enabled = false;
 
 		socket.on('server:czar', function () {
 			console.log('I AM THE CHOSEN ONE');
@@ -32,11 +33,24 @@
 		});
 
 		socket.on('server:displayWhite', function (data) {
-			$scope.chosen.push(data.card);
+			$scope.selectedCards.push(data.card);
 		});
 
 		socket.on('server:displayBlack', function (data) {
 			$scope.black.push(data.card);
+		});
+
+		socket.on('server:enableSelect', function () {
+			$scope.enabled = true;
+		});
+
+		socket.on('server:draw', function () {
+			play.drawWhite();
+		});
+
+		socket.on('server:newRound', function () {
+			$scope.black = [];
+			$scope.selectedCards = [];
 		});
 
 		play.drawBlack = function () {
@@ -55,6 +69,7 @@
 		};
 
 		play.selectCard = function (index) {
+			$scope.enabled = false;
 			var card = $scope.hand.splice(index, 1);
 			socket.emit('client:whiteSelected', {card: card[0]});
 		};
