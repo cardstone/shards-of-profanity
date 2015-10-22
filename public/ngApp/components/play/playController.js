@@ -18,6 +18,11 @@
 			$scope.czar = true;
 		});
 
+		socket.on('server:unCzar', function () {
+			console.log('I AM NO LONGER THE CHOSEN ONE');
+			$scope.czar = false;
+		});
+
 		socket.on('server:whiteCard', function (data) {
 			if($scope.hand.length == 10) {
 				var numNewCards = data.cards.length;
@@ -27,12 +32,11 @@
 		});
 
 		socket.on('server:displayWhite', function (data) {
-			//console.log(data);
 			$scope.chosen.push(data.card);
 		});
 
 		socket.on('server:displayBlack', function (data) {
-			$scope.black.push(data.card)
+			$scope.black.push(data.card);
 		});
 
 		play.drawBlack = function () {
@@ -50,10 +54,13 @@
 			socket.emit('client:getRandWhite', {numCards: numCards});
 		};
 
-
 		play.selectCard = function (index) {
 			var card = $scope.hand.splice(index, 1);
 			socket.emit('client:whiteSelected', {card: card[0]});
+		};
+
+		play.startRound = function () {
+			socket.emit('client:startRound');
 		};
 	}
 

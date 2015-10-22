@@ -12,6 +12,7 @@ exports.initPlay = function (sio, socket, games, socketsInfo) {
 	gameSocket.on('client:getRandWhite', sendRandWhite);
 	gameSocket.on('client:blackCard', sendBlackAll);
 	gameSocket.on('client:whiteSelected', displayWhiteAll);
+	gameSocket.on('client:startRound', startRound);
 };
 
 function sendBlackAll (data) {
@@ -21,7 +22,6 @@ function sendBlackAll (data) {
 	io.sockets.in(gameNum).emit('server:displayBlack', {card: blackCards[random]});
 	blackCards.splice(random, 1);
 }
-
 
 function sendRandWhite (data) {
 	var gameNum = socketsObj[this.id].room;
@@ -40,6 +40,28 @@ function displayWhiteAll (data) {
 	io.sockets.in(gameNum).emit('server:displayWhite', {card: data.card});
 }
 
-function czar (socketId) {
+function startRound () {
+	console.log('starting round');
+	var gameNum = socketsObj[this.id].room; 
+	var game = gamesObj[gameNum];
+	var players = gamesObj[gameNum].players;
+	if(game.czar != -1) {
+		console.log('unzar');
+		undeclareCzar(players[game.czar]);
+	}
+	game.czar++;
+	if(game.czar == players.length) {
+		game.czar = 0;
+	}
+	console.log(gamesObj[gameNum].czar);
+	declareCzar(players[game.czar]);
+}
+
+function declareCzar (socketId) {
 	io.to(socketId).emit('server:czar');
 }
+
+function undeclareCzar (socketId) {
+	io.to(socketId).emit('server:unCzar');
+}
+

@@ -1,5 +1,6 @@
 <!-- PlayController as play -->
 <span class="play">
+	<div ng-show="czar">I am the czar.</div>
 	<div>
 		<li>
 			<span ng-repeat="card in black track by $index">
@@ -22,4 +23,5 @@
 		</li>
 		<button ng-click="play.drawWhite()">Draw to 10 cards</button>
 	</div>
+	<button ng-click="play.startRound()">Start Round</button>
 </span>

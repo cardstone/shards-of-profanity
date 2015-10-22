@@ -14,6 +14,7 @@
 		var myGameId = $scope.myGameId;
 		var myName = $scope.myName;
 
+		chat.show = true;
 		chat.msg = ``;
 		chat.messages = [];
 
