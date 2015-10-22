@@ -3,23 +3,19 @@
 
 	angular
 		.module('app')
-		.directive('cardButton', [cardButton]);
+		.directive('modalButton', [modalButton]);
 
-	function cardButton() {
+	function modalButton() {
 		var directive = {
 			restrict: 'EA',
-			templateUrl: 'components/home/cardButtonTemplate.html',
+			templateUrl: 'components/home/modalButtonTemplate.html',
 			replace: true,
 			scope: {},
-			link: linkFunc,
-			controller: CardButtonController
+			controller: CardButtonController,
+			transclude: true
 		};
 
 		return directive;
-
-		function linkFunc(scope, el, attr, ctrl) {
-
-		}
 	}
 
 	CardButtonController.$inject = ['$scope', '$state', '$stateParams', 'SocketService'];

@@ -9,6 +9,7 @@
 		var vm = this;
 		vm.gameToJoin = '';
 		vm.games = [];
+		console.log('im the eyehole , man!');
 
 
     // ask the server for the list of games
@@ -25,6 +26,7 @@
 
     // controller functions
 		vm.createNewGame = function () {
+			console.log('creating game');
 			SocketService.emit('client:createNewGame');
 		};
 

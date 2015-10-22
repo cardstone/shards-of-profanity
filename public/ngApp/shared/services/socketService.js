@@ -3,7 +3,7 @@
 
 	angular
     .module('app')
-      .factory('SocketService', [SocketService]);
+      .factory('SocketService', ['socketFactory', SocketService]);
 
 	function SocketService (socketFactory) {
 		return socketFactory();

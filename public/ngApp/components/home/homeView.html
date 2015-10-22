@@ -1,39 +1,36 @@
 <!-- HomeController as home -->
 <section class="home-view">
 
-	<section class="logo">
+	<!-- <section class="logo">
 		<h1>Shards of Profanity</h1>
 		<i ng-include="'icons/poo.svg'"></i>
-	</section>
+	</section> -->
+	<div class="menu" style="{display:flex}">
+
+		<button ng-click="home.createNewGame()">CREATE NEW GAME</button>
+
+		<form ng-submit="home.joinGame()">
+			<input class='join-input' ng-model="home.gameToJoin" type="text" autocomplete="off"/>
+			<input type="submit" name="join" value="JOIN GAME" autocomplete="off">
+		</form>
+		<select ng-model="home.gameToJoin">
+			<option ng-repeat="game in home.games">{{ game }}</option>
+		</select>
+	</div>
 
 	<section class="button-wrap">
 
-		<card-button>
-			<card-button-front>
-				<div class="close" ng-click="toggle()">
-		      X
-		    </div>
-		    <form ng-submit="vm.joinGame()">
-		  		<input class='join-input' ng-model="vm.gameToJoin" type="text" autocomplete="off"/>
-		  		<input type="submit" name="join" value="JOIN GAME" autocomplete="off">
-		  	</form>
-		  	<select ng-model="vm.gameToJoin">
-		  		<option ng-repeat="game in vm.games">{{ game }}</option>
-		  	</select>
-			</card-button-front>
-			<card-button-back>
-				Join Game
-			</card-button-back>
-		</card-button>
-		<card-button>
-			<card-button-front>
+		<modal-button class="left"></modal-button>
+		<modal-button class="right"></modal-button>
 
-			</card-button-front>
-			<card-button-back>
-				Create Game
-			</card-button-back>
-		</card-button>
+
+
 
 	</section>
+
+
+
+
+
 
 </section>
