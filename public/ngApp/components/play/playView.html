@@ -7,9 +7,8 @@
 				<black-card></black-card>
 			</span>
 		</li>
-		<button ng-click="play.drawBlack()">get black card</button>
 		<li>
-			<span ng-repeat="card in chosen track by $index">
+			<span ng-repeat="card in selectedCards track by $index">
 				<white-card></white-card>
 			</span>
 		</li>
@@ -18,10 +17,9 @@
 		<h4>Hand</h4>
 		<li>
 			<span ng-repeat="card in hand track by $index">
-				<white-card ng-click="play.selectCard($index)"></white-card>
+				<white-card ng-click="enabled && play.selectCard($index)"></white-card>
 			</span>
 		</li>
-		<button ng-click="play.drawWhite()">Draw to 10 cards</button>
 	</div>
 	<button ng-click="play.startRound()">Start Round</button>
 </span>

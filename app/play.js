@@ -10,13 +10,13 @@ exports.initPlay = function (sio, socket, games, socketsInfo) {
 	socketsObj = socketsInfo;
 
 	gameSocket.on('client:getRandWhite', sendRandWhite);
-	gameSocket.on('client:blackCard', sendBlackAll);
 	gameSocket.on('client:whiteSelected', displayWhiteAll);
 	gameSocket.on('client:startRound', startRound);
 };
 
-function sendBlackAll (data) {
-	var gameNum = socketsObj[this.id].room; 
+
+// TODO: separating 'card getting' functionality into different file? (for modularity and shit) 
+function sendBlackAll (gameNum) {
 	var blackCards = gamesObj[gameNum].blackCards;
 	var random = Math.floor(Math.random() * blackCards.length);
 	io.sockets.in(gameNum).emit('server:displayBlack', {card: blackCards[random]});
@@ -41,20 +41,37 @@ function displayWhiteAll (data) {
 }
 
 function startRound () {
-	console.log('starting round');
 	var gameNum = socketsObj[this.id].room; 
+	newRound(gameNum);
+	incrementCzar(gameNum);
+	sendBlackAll(gameNum);
+	draw(gameNum);
+	enableSelect(gameNum);
+}
+
+function incrementCzar (gameNum) {
 	var game = gamesObj[gameNum];
 	var players = gamesObj[gameNum].players;
 	if(game.czar != -1) {
-		console.log('unzar');
 		undeclareCzar(players[game.czar]);
 	}
 	game.czar++;
 	if(game.czar == players.length) {
 		game.czar = 0;
 	}
-	console.log(gamesObj[gameNum].czar);
-	declareCzar(players[game.czar]);
+	io.to(players[game.czar]).emit('server:czar');
+}
+
+function newRound (gameNum) {
+	io.sockets.in(gameNum).emit('server:newRound');
+}
+
+function draw (gameNum) {
+	io.sockets.in(gameNum).emit('server:draw');
+}
+
+function enableSelect (gameNum) {
+	io.sockets.in(gameNum).emit('server:enableSelect');
 }
 
 function declareCzar (socketId) {

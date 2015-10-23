@@ -26,8 +26,8 @@
 	<!-- end enter optional name -->
 
 	<form name="chatForm" ng-submit="chatForm.$valid && chat.sendMessage()">
-		<div ng-show="chatForm.message.$error.maxlength">Message too long yo, keep it to 100 characters.</div>
-		<input name="message" ng-model="chat.msg" type="text" autocomplete="off" ng-maxlength="200" required autofocus/>
+		<div ng-show="chatForm.message.$error.maxlength">Message too long yo, keep it to 256 characters.</div>
+		<input name="message" ng-model="chat.msg" type="text" autocomplete="off" ng-maxlength="256" required autofocus/>
 	</form>
 
 </aside>
