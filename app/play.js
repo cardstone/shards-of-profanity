@@ -35,8 +35,9 @@ function sendRandWhite (data) {
 }
 
 function displayWhiteAll (data) {
+	var socketId = this.id;
 	var gameNum = socketsObj[this.id].room; 
-	io.sockets.in(gameNum).emit('server:displayWhite', {card: data.card});
+	io.sockets.in(gameNum).emit('server:displayWhite', {id: socketId, card: data.card});
 }
 
 function startRound () {
@@ -45,7 +46,7 @@ function startRound () {
 	incrementCzar(gameNum);
 	sendBlackAll(gameNum);
 	draw(gameNum);
-	enableSelect(gameNum);
+	enableSubmit(gameNum);
 }
 
 function incrementCzar (gameNum) {
@@ -69,8 +70,8 @@ function draw (gameNum) {
 	io.sockets.in(gameNum).emit('server:draw');
 }
 
-function enableSelect (gameNum) {
-	io.sockets.in(gameNum).emit('server:enableSelect');
+function enableSubmit (gameNum) {
+	io.sockets.in(gameNum).emit('server:enableSubmit');
 }
 
 function declareCzar (socketId) {

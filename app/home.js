@@ -36,6 +36,7 @@ function socketInfo (room) {
 	this.room = room;
 	this.name = null;
 	this.avatar = null;
+	this.points = 0;
 }
 
 // helper function for leaving games
