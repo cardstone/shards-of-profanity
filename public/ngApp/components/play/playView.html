@@ -1,24 +1,27 @@
 <!-- PlayController as play -->
 <span class="play">
 	<p ng-show="czar">I am the czar.</p>
-	<p ng-show="selectEnabled">Choose a card in {{ selectCountdown }} seconds!<p>
+	<p>Round over in {{ selectCountdown }} seconds!<p>
 	<div>
 		<li>
 			<span ng-repeat="card in black track by $index">
-				<black-card></black-card>
+				<black-card>
+				</black-card>
 			</span>
 		</li>
 		<li>
 			<span ng-repeat="card in selectedCards track by $index">
-				<white-card></white-card>
+				<white-card ng-click="czar && play.selectWinner($index)">
+				</white-card>
 			</span>
 		</li>
 	<div>
 	<div class="hand">
 		<h4>Hand</h4>
 		<li>
-			<span ng-repeat="card in hand track by $index">
-				<white-card ng-click="selectEnabled && play.selectCard($index)"></white-card>
+			<span ng-repeat="card in hand track by $index" ng-init="faceUp=true">
+				<white-card ng-click="selectEnabled && play.selectCard($index)">
+				</white-card>
 			</span>
 		</li>
 	</div>

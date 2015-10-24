@@ -14,8 +14,7 @@ exports.initPlay = function (sio, socket, games, socketsInfo) {
 	gameSocket.on('client:startRound', startRound);
 };
 
-
-// TODO: separating 'card getting' functionality into different file? (for modularity and shit) 
+ 
 function sendBlackAll (gameNum) {
 	var blackCards = gamesObj[gameNum].blackCards;
 	var random = Math.floor(Math.random() * blackCards.length);

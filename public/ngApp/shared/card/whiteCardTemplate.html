@@ -1,10 +1,10 @@
 <div class="white card">
-  <div class="front" ng-show="vm.faceUp">
+  <div class="front" ng-show="faceUp">
     <p>{{card.text}}</p>
     <i class="pack" ng-include="'./icons/cards-against-humanity.svg'"></i>
   </div>
 
-  <div class="back" ng-hide="vm.faceUp">
+  <div class="back" ng-hide="faceUp">
     <p>Shards of Profanity</p>
   </div>
 </div>

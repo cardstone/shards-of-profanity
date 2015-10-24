@@ -17,6 +17,7 @@
 		$scope.czar = false;
 		$scope.selectEnabled = false;
 		$scope.selectCountdown = 0;
+		$scope.faceUp = false;
 
 		socket.on('server:czar', function () {
 			console.log('I AM THE CHOSEN ONE');
@@ -67,6 +68,7 @@
 				var random = Math.floor(Math.random() * $scope.hand.length);
 				vm.selectCard(random);
 			}
+			$scope.faceUp = true;
 		}
 
 		vm.drawBlack = function () {
@@ -90,8 +92,18 @@
 			socket.emit('client:whiteSelected', {card: card[0]});
 		};
 
+		vm.selectWinner = function (index) {
+			$scope.czar = false;
+			var card = $scope.selectedCards.splice(index, 1);
+			console.log(card[0]);
+		};
+
 		vm.startRound = function () {
 			socket.emit('client:startRound');
+		};
+
+		vm.faceUp = function () {
+			$scope.faceUp = !$scope.faceUp;
 		};
 	}
 
