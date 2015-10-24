@@ -12,6 +12,7 @@
 		$scope.myGameId = gameData.myGameId;
 		$scope.myName = gameData.myName;
 		$scope.myAvatar = gameData.myAvatar;
+		$scope.host = gameData.host;
 
 		$scope.mySocket.emit('client:joinSuccess', {
 			gameId: $scope.myGameId,

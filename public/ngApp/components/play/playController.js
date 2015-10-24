@@ -97,9 +97,11 @@
 			$scope.czar = false;
 			var submission = $scope.submissions[index];
 			socket.emit('client:roundWinner', {id: submission.id});
+			socket.emit('client:startRound');
 		};
 
 		vm.startRound = function () {
+			$scope.host = false;
 			socket.emit('client:startRound');
 		};
 

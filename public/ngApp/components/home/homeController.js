@@ -21,7 +21,7 @@
 		});
 
 		SocketService.on('server:createSuccess', function (data) {
-			$state.go('joinGame', {gameId: data.gameId});
+			$state.go('joinGame', {gameId: data.gameId, host: true});
 		});
 
     // controller functions
@@ -39,7 +39,7 @@
 		};
 
 		vm.joinGame = function () {
-			$state.go('joinGame', {gameId: vm.gameToJoin});
+			$state.go('joinGame', {gameId: vm.gameToJoin, host: false});
 			vm.gameToJoin = '';
 		};
 	}

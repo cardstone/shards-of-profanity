@@ -20,7 +20,8 @@
 					mySocket: SocketService,
 					myGameId: gameId,
 					myName: NameService.get(),
-					myAvatar: AvatarService.get()
+					myAvatar: AvatarService.get(),
+					host: $stateParams.host
 				}
 			});
 		});
