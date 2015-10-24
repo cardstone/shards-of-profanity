@@ -3,16 +3,20 @@
 
 	angular
 		.module('app')
-		.controller('PlayController', ['$scope', PlayController]);
+		.controller('PlayController', ['$scope',
+										'$timeout',
+										'$interval',
+										PlayController]);
 
-	function PlayController($scope) {
+	function PlayController($scope, $timeout, $interval) {
 		var vm = this;
 		var socket = $scope.mySocket;
 		$scope.black = [];
 		$scope.hand = [];
 		$scope.selectedCards = []; 
 		$scope.czar = false;
-		$scope.enabled = false;
+		$scope.selectEnabled = false;
+		$scope.selectCountdown = 0;
 
 		socket.on('server:czar', function () {
 			console.log('I AM THE CHOSEN ONE');
@@ -42,7 +46,10 @@
 		});
 
 		socket.on('server:enableSelect', function () {
-			$scope.enabled = true;
+			$scope.selectCountdown = 10;
+			$scope.selectEnabled = true;
+			$interval(function(){$scope.selectCountdown--;}, 1000, 10);
+			$timeout(roundTimeUp, 11 * 1000);
 		});
 
 		socket.on('server:draw', function () {
@@ -53,6 +60,14 @@
 			$scope.black = [];
 			$scope.selectedCards = [];
 		});
+
+		function roundTimeUp () {
+			console.log('TIME IS UP!');
+			if($scope.selectEnabled === true) {
+				var random = Math.floor(Math.random() * $scope.hand.length);
+				vm.selectCard(random);
+			}
+		}
 
 		vm.drawBlack = function () {
 			socket.emit('client:blackCard');
@@ -70,7 +85,7 @@
 		};
 
 		vm.selectCard = function (index) {
-			$scope.enabled = false;
+			$scope.selectEnabled = false;
 			var card = $scope.hand.splice(index, 1);
 			socket.emit('client:whiteSelected', {card: card[0]});
 		};

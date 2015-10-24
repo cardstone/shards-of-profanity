@@ -1,6 +1,7 @@
 <!-- PlayController as play -->
 <span class="play">
-	<div ng-show="czar">I am the czar.</div>
+	<p ng-show="czar">I am the czar.</p>
+	<p ng-show="selectEnabled">Choose a card in {{ selectCountdown }} seconds!<p>
 	<div>
 		<li>
 			<span ng-repeat="card in black track by $index">
@@ -17,7 +18,7 @@
 		<h4>Hand</h4>
 		<li>
 			<span ng-repeat="card in hand track by $index">
-				<white-card ng-click="enabled && play.selectCard($index)"></white-card>
+				<white-card ng-click="selectEnabled && play.selectCard($index)"></white-card>
 			</span>
 		</li>
 	</div>
