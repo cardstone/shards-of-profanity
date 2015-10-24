@@ -27,7 +27,7 @@
   // this is the controller
 	function WhiteCardController() {
 		var vm = this;
-		vm.faceUp = true;
+		//vm.faceUp = false;
 		activate();
 		// this is the activate function
 		function activate() {
