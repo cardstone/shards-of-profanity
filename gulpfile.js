@@ -139,7 +139,6 @@ gulp.task('nodemon', function (cb) {
 });
 
 // browserSync task
-// TODO: Fix style injection so that page doesnt reload after sass files update
 gulp.task('browser-sync', ['nodemon'], function () {
   var port = process.env.PORT || 8080;
 
@@ -156,7 +155,9 @@ gulp.task('browser-sync', ['nodemon'], function () {
     port: 4000,
 
     // Do not mirror any actions across browsers
-    ghostMode: false
+    ghostMode: false,
+
+		notify: false
 
   });
 });

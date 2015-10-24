@@ -8,18 +8,78 @@
 	font-weight: bold
 	font-size: 1.5rem
 	line-height: 1.3em
-	transition: $base-duration $base-timing
+	transition: 150ms ease-in-out
+
 	position: relative
 
-	color: black
-	background-color: white
+	.toggle
+		cursor: pointer
+		height: 100%
+		width: 100%
+		position: fixed
+		top: 0
+		right: 0
 
-	.expanded
-	  height: 90vh
-	  width: 90vw
-	  max-width: 200px
-	  position: absolute
-	  top: 5vh
-	  left: 5vw
-	  // transform: rotate(0deg) scale(1) !important
-	  z-index: 11
+
+	&:nth-child(1)
+		transform: translateX(10px) rotate(-15deg)
+		z-index: 1
+
+	&:nth-child(2)
+		transform: translateX(-10px) rotate(15deg)
+		z-index: 0
+
+	&:hover
+		z-index: 1
+		transform: scale(1.5)
+
+
+	&.expanded
+		height: 80vh
+		width: 90vw
+		position: fixed
+		top: 15vh
+		left: calc((100vw - 600px)/2)
+		max-width: 600px
+		transform: rotate(0deg) !important
+		z-index: 1
+		cursor: default
+
+		.toggle
+			position: absolute
+			top: 1rem
+			right: 1rem
+			height: 25px
+			width: 25px
+			&:before,
+			&:after
+				content: ''
+				position: absolute
+				height: 25px
+				width: 4px
+				background-color: currentColor
+				right: 10px
+
+			&:before
+				transform: rotate(45deg)
+			&:after
+				transform: rotate(-45deg)
+
+		h4
+			text-decoration: underline
+
+
+		// &:before
+		// 	content: ''
+		// 	position: fixed
+		// 	// display: block
+		// 	background-color: rgba(0,0,0,.8)
+		// 	top: 0
+		// 	left: 0
+		// 	right: 0
+		// 	bottom: 0
+		// 	z-index: 12
+
+
+		@media screen and (max-width: 660px)
+			left: 5vw

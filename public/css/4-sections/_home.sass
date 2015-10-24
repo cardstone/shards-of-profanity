@@ -1,29 +1,17 @@
 .home-view
-  height: 100%
-  background: fade-out($light-black, .03)
-  color: white
+	height: 100%
+	background: fade-out($light-black, .03)
+	color: white
+	display: flex
+	flex-direction: column
+	align-items: center
+	// justify-content: center
 
-  .logo
-    padding: 4rem 1.8rem
-    display: flex
+
+.home-logo
+	padding: 1rem 1.8rem 5rem
+
 
 .button-wrap
 	display: flex
 	justify-content: center
-
-.modalButton
-	&:nth-child(1)
-		transform: translateX(10px) rotate(-15deg)
-		z-index: 1
-
-	&:nth-child(2)
-		transform: translateX(-10px) rotate(15deg)
-		z-index: 0
-
-	&:hover
-		z-index: 1
-		transform: scale(1.5)
-
-
-
-  //

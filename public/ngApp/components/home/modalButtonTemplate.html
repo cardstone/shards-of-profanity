@@ -1,7 +1,11 @@
-<div class="modalButton">
+<div class="modalButton" ng-class="{ expanded: expanded }">
 
-	<p>
-		button text
-	</p>
+	<div class="toggle" ng-click="expanded = !expanded"></div>
+
+	<ng-transclude></ng-transclude>
+
+	<main ng-show="expanded">
+		content
+	</main>
 
 </div>

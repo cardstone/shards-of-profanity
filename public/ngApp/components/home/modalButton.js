@@ -12,7 +12,10 @@
 			replace: true,
 			scope: {},
 			controller: CardButtonController,
-			transclude: true
+			transclude: {
+				modalButtonTitle: '?title',
+				modalButtonContent: 'content'
+			}
 		};
 
 		return directive;
@@ -22,9 +25,8 @@
 
 	function CardButtonController($scope, $state, $stateParams, SocketService) {
 		$scope.expanded = false;
-		$scope.toggle = function () {
-			$scope.expanded = !$scope.expanded;
-		};
+
+
 
 	}
 })();
