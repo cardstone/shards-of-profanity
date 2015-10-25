@@ -9,13 +9,21 @@
 				</black-card>
 			</span>
 		</li>
-		<li>
+		<li ng-hide="showWinner">
 			<span ng-repeat="submission in submissions track by $index">
-				<white-card ng-init="card=submission.card" ng-click="czar && play.selectWinner($index)">
+				<white-card ng-init="card=submission.card" ng-click="czar && submitCountdown == 0 && play.selectWinner($index)">
 				</white-card>
 			</span>
 		</li>
-	<div>
+	</div>
+	<div ng-show="showWinner">
+		<li>
+			<span ng-repeat="card in winningCards track by $index">
+				<white-card>
+				</white-card>
+			</span>
+		</li>
+	</div>
 	<div class="hand">
 		<h4>Hand</h4>
 		<li>

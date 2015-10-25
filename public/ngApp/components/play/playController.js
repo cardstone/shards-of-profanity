@@ -13,19 +13,19 @@
 		var socket = $scope.mySocket;
 		$scope.black = [];
 		$scope.hand = [];
-		$scope.submissions = []; 
+		$scope.submissions = [];
+		$scope.winningCards = [];
 		$scope.czar = false;
 		$scope.submitEnabled = false;
 		$scope.submitCountdown = 0;
 		$scope.faceUp = false;
+		$scope.showWinner = false;
 
 		socket.on('server:czar', function () {
-			console.log('I AM THE CHOSEN ONE');
 			$scope.czar = true;
 		});
 
 		socket.on('server:unCzar', function () {
-			console.log('I AM NO LONGER THE CHOSEN ONE');
 			$scope.czar = false;
 		});
 
@@ -37,6 +37,12 @@
 			$scope.hand.push.apply($scope.hand, data.cards);
 		});
 
+		socket.on('server:displayWinner', function (data) {
+			//$scope.submissions = [$scope.submissions[data.index]];
+			$scope.showWinner = true;
+			var card = $scope.submissions[data.index].card;
+			$scope.winningCards.push(card);
+		});
 
 		socket.on('server:displayWhite', function (data) {
 			$scope.submissions.push(data);
@@ -60,11 +66,12 @@
 		socket.on('server:newRound', function () {
 			$scope.black = [];
 			$scope.submissions = [];
+			$scope.winningCards = [];
 			$scope.faceUp = false;
+			$scope.showWinner = false;
 		});
 
 		function roundTimeUp () {
-			console.log('TIME IS UP!');
 			if($scope.submitEnabled === true) {
 				var random = Math.floor(Math.random() * $scope.hand.length);
 				vm.selectCard(random);
@@ -97,11 +104,12 @@
 			$scope.czar = false;
 			var submission = $scope.submissions[index];
 			socket.emit('client:roundWinner', {id: submission.id});
-			socket.emit('client:startRound');
+			socket.emit('client:displayWinner', {index: index});
+			$timeout(vm.startRound, 5 * 1000);
 		};
 
 		vm.startRound = function () {
-			$scope.host = false;
+			$scope.host = false; // TODO: this is hacky, fix
 			socket.emit('client:startRound');
 		};
 
