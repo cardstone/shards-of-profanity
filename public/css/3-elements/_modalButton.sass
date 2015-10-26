@@ -1,27 +1,31 @@
+// base styles for .modalButton
 .modalButton
 	height: 160px
 	width: 115px
-	display: inline-block
-	border: 2px solid black
-	border-radius: $base-border-radius
 	padding: 1rem
-	font-weight: bold
-	font-size: 1.5rem
-	line-height: 1.3em
-	transition: 150ms ease-in-out
-
+	display: inline-block
 	position: relative
 
+	border: 2px solid black
+	border-radius: $base-border-radius
+
+	font-size: 1.5rem
+	line-height: 1.3em
+	font-weight: bold
+
+	transition: 150ms ease-in-out
+
+	// overlay target to click and expanded
 	.toggle
-		cursor: pointer
 		height: 100%
 		width: 100%
 		position: fixed
 		top: 0
 		right: 0
-	.modalButton-content
-		display: none
 
+		cursor: pointer
+
+	// positioning left and right buttons
 	&:nth-child(1)
 		transform: translateX(10px) rotate(-15deg)
 		z-index: 1
@@ -35,54 +39,49 @@
 		transform: scale(1.5)
 
 
+	// // // // // // // // // // // // // //
+	// styles for when button is expanded
+	// // // // // // // // // // // // // //
 	&.expanded
 		height: 80vh
 		width: 90vw
+		max-width: 600px
 		position: fixed
 		top: 15vh
 		left: calc((100vw - 600px)/2)
-		max-width: 600px
-		transform: rotate(0deg) !important
+
 		z-index: 1
 		cursor: default
-
-		.modalButton-content
-			display: block
-		.toggle
-			position: absolute
-			top: 1rem
-			right: 1rem
-			height: 25px
-			width: 25px
-			&:before,
-			&:after
-				content: ''
-				position: absolute
-				height: 25px
-				width: 4px
-				background-color: currentColor
-				right: 10px
-
-			&:before
-				transform: rotate(45deg)
-			&:after
-				transform: rotate(-45deg)
+		transform: rotate(0deg)
 
 		h4
 			text-decoration: underline
 
+		// close button
+		.toggle
+			height: 25px
+			width: 25px
+			position: absolute
+			top: 1rem
+			right: 1rem
 
-		// &:before
-		// 	content: ''
-		// 	position: fixed
-		// 	// display: block
-		// 	background-color: rgba(0,0,0,.8)
-		// 	top: 0
-		// 	left: 0
-		// 	right: 0
-		// 	bottom: 0
-		// 	z-index: 12
+			// makes the 'X'
+			&:before,
+			&:after
+				content: ''
+				height: 25px
+				width: 4px
+				position: absolute
+				right: 10px
 
+				background-color: currentColor
 
+			&:before
+				transform: rotate(45deg)
+
+			&:after
+				transform: rotate(-45deg)
+
+		// media query for expanded modal position
 		@media screen and (max-width: 660px)
 			left: 5vw
