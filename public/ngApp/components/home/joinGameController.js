@@ -28,7 +28,7 @@
 		};
 
 		$scope.joinGame = function () {
-			$state.go('joinGame', {gameId: $scope.gameToJoin});
+			$state.go('joinGame', {gameId: $scope.gameToJoin, host: false});
 			$scope.gameToJoin = '';
 		};
 	}

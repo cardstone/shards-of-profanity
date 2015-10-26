@@ -13,19 +13,19 @@
 		var socket = $scope.mySocket;
 		$scope.black = [];
 		$scope.hand = [];
-		$scope.selectedCards = []; 
+		$scope.submissions = [];
+		$scope.winningCards = [];
 		$scope.czar = false;
-		$scope.selectEnabled = false;
-		$scope.selectCountdown = 0;
+		$scope.submitEnabled = false;
+		$scope.submitCountdown = 0;
 		$scope.faceUp = false;
+		$scope.showWinner = false;
 
 		socket.on('server:czar', function () {
-			console.log('I AM THE CHOSEN ONE');
 			$scope.czar = true;
 		});
 
 		socket.on('server:unCzar', function () {
-			console.log('I AM NO LONGER THE CHOSEN ONE');
 			$scope.czar = false;
 		});
 
@@ -37,19 +37,25 @@
 			$scope.hand.push.apply($scope.hand, data.cards);
 		});
 
+		socket.on('server:displayWinner', function (data) {
+			//$scope.submissions = [$scope.submissions[data.index]];
+			$scope.showWinner = true;
+			var card = $scope.submissions[data.index].card;
+			$scope.winningCards.push(card);
+		});
 
 		socket.on('server:displayWhite', function (data) {
-			$scope.selectedCards.push(data.card);
+			$scope.submissions.push(data);
 		});
 
 		socket.on('server:displayBlack', function (data) {
 			$scope.black.push(data.card);
 		});
 
-		socket.on('server:enableSelect', function () {
-			$scope.selectCountdown = 10;
-			$scope.selectEnabled = true;
-			$interval(function(){$scope.selectCountdown--;}, 1000, 10);
+		socket.on('server:enableSubmit', function () {
+			$scope.submitCountdown = 10;
+			$scope.submitEnabled = true;
+			$interval(function(){$scope.submitCountdown--;}, 1000, 10);
 			$timeout(roundTimeUp, 11 * 1000);
 		});
 
@@ -59,12 +65,14 @@
 
 		socket.on('server:newRound', function () {
 			$scope.black = [];
-			$scope.selectedCards = [];
+			$scope.submissions = [];
+			$scope.winningCards = [];
+			$scope.faceUp = false;
+			$scope.showWinner = false;
 		});
 
 		function roundTimeUp () {
-			console.log('TIME IS UP!');
-			if($scope.selectEnabled === true) {
+			if($scope.submitEnabled === true) {
 				var random = Math.floor(Math.random() * $scope.hand.length);
 				vm.selectCard(random);
 			}
@@ -87,18 +95,21 @@
 		};
 
 		vm.selectCard = function (index) {
-			$scope.selectEnabled = false;
+			$scope.submitEnabled = false;
 			var card = $scope.hand.splice(index, 1);
 			socket.emit('client:whiteSelected', {card: card[0]});
 		};
 
 		vm.selectWinner = function (index) {
 			$scope.czar = false;
-			var card = $scope.selectedCards.splice(index, 1);
-			console.log(card[0]);
+			var submission = $scope.submissions[index];
+			socket.emit('client:roundWinner', {id: submission.id});
+			socket.emit('client:displayWinner', {index: index});
+			$timeout(vm.startRound, 5 * 1000);
 		};
 
 		vm.startRound = function () {
+			$scope.host = false; // TODO: this is hacky, fix
 			socket.emit('client:startRound');
 		};
 
