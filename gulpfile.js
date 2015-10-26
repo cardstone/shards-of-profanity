@@ -12,7 +12,6 @@ var sourcemaps = require('gulp-sourcemaps');
 var concat = require('gulp-concat');
 // for css task
 var sass = require('gulp-sass');
-var neat = require('node-neat');
 var prefix = require('gulp-autoprefixer');
 // for templates task
 var templateCache = require('gulp-angular-templatecache');
@@ -65,7 +64,7 @@ gulp.task('css', function () {
 	return gulp.src('./public/css/main.sass')
 		.pipe(plumber(onError))
 		.pipe(sass({
-			includePaths: neat.includePaths
+			includePaths: require('node-bourbon').includePaths
 		}))
 		.pipe(prefix(['last 2 versions', 'ie 9'], {
 			cascade: true
