@@ -10,12 +10,11 @@
 			restrict: 'EA',
 			templateUrl: 'components/home/modalButtonTemplate.html',
 			replace: true,
-			scope: {},
+			scope: {
+				ctrl: '@ctrl'
+			},
 			controller: modalButtonController,
-			transclude: {
-				modalButtonTitle: '?title',
-				modalButtonContent: 'content'
-			}
+			transclude: true
 		};
 
 		return directive;
@@ -25,7 +24,6 @@
 
 	function modalButtonController($scope) {
 		$scope.expanded = false;
-		$scope.class = 'createGame';
-		$scope.template = `components/home/${$scope.class}View.html`;
+		$scope.template = `components/home/${$scope.ctrl}View.html`;
 	}
 })();
