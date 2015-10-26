@@ -44,7 +44,7 @@ function sendPlayerList () {
 }
 
 function addPoints (data) {
-	socketsObj[data.id].points += 1000000; 
+	socketsObj[data.id].points += 1; 
 	var gameNum = socketsObj[this.id].room;
 	var players = getPlayerList(gameNum);
 	io.sockets.in(gameNum).emit('server:players', {players: players});
