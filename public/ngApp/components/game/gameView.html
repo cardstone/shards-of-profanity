@@ -2,7 +2,9 @@
 <!-- contain all the game UI components-->
 <header ng-include="'components/home/headerView.html'"></header>
 <div class="game">
-	<div ui-view="chat"></div>
 	<div ui-view="play"></div>
-	<div ui-view="scoreboard"></div>
+	<div class="sidebar">
+		<div ui-view="scoreboard"></div>
+		<div ui-view="chat"></div>
+	</div>
 </div>
