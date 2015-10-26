@@ -11,7 +11,7 @@
 			templateUrl: 'components/home/modalButtonTemplate.html',
 			replace: true,
 			scope: {},
-			controller: CardButtonController,
+			controller: modalButtonController,
 			transclude: {
 				modalButtonTitle: '?title',
 				modalButtonContent: 'content'
@@ -21,12 +21,11 @@
 		return directive;
 	}
 
-	CardButtonController.$inject = ['$scope', '$state', '$stateParams', 'SocketService'];
+	modalButtonController.$inject = ['$scope'];
 
-	function CardButtonController($scope, $state, $stateParams, SocketService) {
+	function modalButtonController($scope) {
 		$scope.expanded = false;
-
-
-
+		$scope.class = 'createGame';
+		$scope.template = `components/home/${$scope.class}View.html`;
 	}
 })();

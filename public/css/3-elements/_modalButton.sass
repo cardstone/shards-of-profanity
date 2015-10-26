@@ -19,7 +19,8 @@
 		position: fixed
 		top: 0
 		right: 0
-
+	.modalButton-content
+		display: none
 
 	&:nth-child(1)
 		transform: translateX(10px) rotate(-15deg)
@@ -45,6 +46,8 @@
 		z-index: 1
 		cursor: default
 
+		.modalButton-content
+			display: block
 		.toggle
 			position: absolute
 			top: 1rem

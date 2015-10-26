@@ -2,10 +2,10 @@
 
 	<div class="toggle" ng-click="expanded = !expanded"></div>
 
-	<ng-transclude></ng-transclude>
+	<ng-transclude ng-transclude-slot="title"></ng-transclude>
 
 	<main ng-show="expanded">
-		content
+		<div ng-include="template"></div>
 	</main>
 
 </div>
