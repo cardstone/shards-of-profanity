@@ -9,6 +9,7 @@ exports.initChat = function (sio, socket, socketsInfo) {
 
 	gameSocket.on('client:message', sendMessage);
 	gameSocket.on('client:joinSuccess', messagePlayerJoined);
+	gameSocket.on('client:displayWinner', messagePlayerWon);
 };
 
 function sendMessage(data) {
@@ -28,5 +29,14 @@ function messagePlayerJoined(data) {
 	var joinedMessage = name + ' joined the game.';
 	io.sockets.in(gameNum).emit('server:message', {
 		msg: joinedMessage
+	});
+}
+
+function messagePlayerWon(data){
+	var gameNum = socketsObj[this.id].room;
+	var name = socketsObj[this.id].name;
+	var winningMessage = name + ' won the round!';
+	io.sockets.in(gameNum).emit('server:message', {
+		msg: winningMessage
 	});
 }
