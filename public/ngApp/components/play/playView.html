@@ -28,7 +28,7 @@
 		<h4>Hand</h4>
 		<li>
 			<span ng-repeat="card in hand track by $index" ng-init="faceUp=true">
-				<white-card ng-click="submitEnabled && play.selectCard($index)">
+				<white-card ng-click="numToSubmit > 0 && play.submitCard($index)">
 				</white-card>
 			</span>
 		</li>

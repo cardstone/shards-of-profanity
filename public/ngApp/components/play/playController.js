@@ -11,12 +11,12 @@
 	function PlayController($scope, $timeout, $interval) {
 		var vm = this;
 		var socket = $scope.mySocket;
-		$scope.black = [];
+		$scope.black = []; // TODO: make this not an array?
 		$scope.hand = [];
 		$scope.submissions = [];
 		$scope.winningCards = [];
 		$scope.czar = false;
-		$scope.submitEnabled = false;
+		$scope.numToSubmit = 0;
 		$scope.submitCountdown = 0;
 		$scope.faceUp = false;
 		$scope.showWinner = false;
@@ -38,7 +38,6 @@
 		});
 
 		socket.on('server:displayWinner', function (data) {
-			//$scope.submissions = [$scope.submissions[data.index]];
 			$scope.showWinner = true;
 			var card = $scope.submissions[data.index].card;
 			$scope.winningCards.push(card);
@@ -50,11 +49,11 @@
 
 		socket.on('server:displayBlack', function (data) {
 			$scope.black.push(data.card);
+			$scope.numToSubmit = Number($scope.black[0].numWhites);
 		});
 
 		socket.on('server:enableSubmit', function () {
 			$scope.submitCountdown = 10;
-			$scope.submitEnabled = true;
 			$interval(function(){$scope.submitCountdown--;}, 1000, 10);
 			$timeout(roundTimeUp, 11 * 1000);
 		});
@@ -72,9 +71,9 @@
 		});
 
 		function roundTimeUp () {
-			if($scope.submitEnabled === true) {
+			if($scope.numToSubmit > 0) {
 				var random = Math.floor(Math.random() * $scope.hand.length);
-				vm.selectCard(random);
+				vm.submitCard(random);
 			}
 			$scope.faceUp = true;
 		}
@@ -94,10 +93,10 @@
 			socket.emit('client:getRandWhite', {numCards: numCards});
 		};
 
-		vm.selectCard = function (index) {
-			$scope.submitEnabled = false;
+		vm.submitCard = function (index) {
 			var card = $scope.hand.splice(index, 1);
 			socket.emit('client:whiteSelected', {card: card[0]});
+			$scope.numToSubmit--;
 		};
 
 		vm.selectWinner = function (index) {
