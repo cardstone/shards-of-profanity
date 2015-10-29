@@ -10,6 +10,7 @@ var Schema = mongoose.Schema;
 var cardSchema = Schema({
 	color: String,
 	text: String,
+	numWhites: String,
 	pack: String
 });
 

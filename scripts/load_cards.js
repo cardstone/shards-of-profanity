@@ -17,9 +17,7 @@ var mongoose = require('mongoose'),
   pack = process.argv[4],
   Lazy = require('lazy');
 
-if( readFile == undefined 
-	|| color == undefined
-	|| pack == undefined )
+if( readFile === undefined || color === undefined || pack === undefined )
 	throw new Error( "Incorrect arguments!" );
 
 //Connect to db
@@ -48,10 +46,21 @@ function load_cards( file, col, pck ) {
     .forEach( function ( line ) {
 	
 		if( line ) {
+			if(color === 'black') {
+				numWhites = line.slice(-1);
+				text = line.slice(0, -1);
+			}
+			else {
+				numWhites =  '0';
+				text = line;
+				// TODO: this is ugly, fix?
+			}
 			var newCard = new Card({
 				color: col,
-				text: line,
+				text: text,
+				numWhites: numWhites,
 				pack: pck
+
 			});
 
 			var q = {
