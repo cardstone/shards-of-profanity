@@ -11,8 +11,9 @@
 		</li>
 		<li ng-hide="showWinner">
 			<span ng-repeat="submission in submissions track by $index">
-				<white-card ng-init="card=submission.card" ng-click="czar && submitCountdown == 0 && play.selectWinner($index)">
-				</white-card>
+				<div ng-init="cards=submission.cards">
+					<card-group ng-click="play.selectWinner($index)"></card-group>
+				</div>
 			</span>
 		</li>
 	</div>

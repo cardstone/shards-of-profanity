@@ -14,6 +14,7 @@
 		$scope.black = []; // TODO: make this not an array?
 		$scope.hand = [];
 		$scope.submissions = [];
+		$scope.mySubmissions = [];
 		$scope.winningCards = [];
 		$scope.czar = false;
 		$scope.numToSubmit = 0;
@@ -39,11 +40,12 @@
 
 		socket.on('server:displayWinner', function (data) {
 			$scope.showWinner = true;
-			var card = $scope.submissions[data.index].card;
-			$scope.winningCards.push(card);
+			var cards = $scope.submissions[data.index].cards;
+			$scope.winningCards = cards;
 		});
 
 		socket.on('server:displayWhite', function (data) {
+			console.log(data.cards);
 			$scope.submissions.push(data);
 		});
 
@@ -95,8 +97,17 @@
 
 		vm.submitCard = function (index) {
 			var card = $scope.hand.splice(index, 1);
-			socket.emit('client:whiteSelected', {card: card[0]});
+			card = card[0];
+			$scope.mySubmissions.push(card);
 			$scope.numToSubmit--;
+			if($scope.numToSubmit === 0) {
+				vm.submitFinal();
+			}
+		};
+
+		vm.submitFinal = function () {
+			socket.emit('client:whiteSelected', {cards: $scope.mySubmissions});
+			$scope.mySubmissions = [];
 		};
 
 		vm.selectWinner = function (index) {
@@ -115,6 +126,7 @@
 		vm.faceUp = function () {
 			$scope.faceUp = !$scope.faceUp;
 		};
+
 	}
 
 })();

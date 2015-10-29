@@ -38,7 +38,7 @@ function sendRandWhite (data) {
 function displayWhiteAll (data) {
 	var socketId = this.id;
 	var gameNum = socketsObj[this.id].room; 
-	io.sockets.in(gameNum).emit('server:displayWhite', {id: socketId, card: data.card});
+	io.sockets.in(gameNum).emit('server:displayWhite', {id: socketId, cards: data.cards});
 }
 
 function displayWinner (data) {
