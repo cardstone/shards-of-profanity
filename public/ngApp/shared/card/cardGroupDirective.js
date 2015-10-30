@@ -10,8 +10,7 @@
 		var directive = {
 			restrict: 'EA',
 			templateUrl: 'shared/card/cardGroupTemplate.html',
-			scope: true,
-			bindToController: true
+			scope: {cards: '=cards'}
 		};
 
 		return directive;
