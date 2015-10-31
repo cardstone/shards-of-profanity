@@ -36,11 +36,8 @@ db.once('open', function () {
   console.log('                     ');
 });
 
-// Call load
-load_cards( readFile, color, pack );
-
 //Loads db
-function load_cards( file, col, pck ) {
+(function ( file, col, pck ) {
   new Lazy(fs.createReadStream( file ))
     .lines
     .forEach( function ( line ) {
@@ -87,4 +84,4 @@ function load_cards( file, col, pck ) {
 			});
 		}
 	});
-}
+})();
