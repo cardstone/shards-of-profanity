@@ -15,6 +15,7 @@ exports.initHome = function (sio, socket, games, socketsInfo) {
 	gameSocket.on('client:createNewGame', createNewGame);
 	gameSocket.on('client:joinGame', joinGame);
 	gameSocket.on('client:joinSuccess', addDefaultName);
+	gameSocket.on('client:joinSuccess', getGames);
 	gameSocket.on('client:enterName', enterName);
 	gameSocket.on('client:getGames', getGames);
 	gameSocket.on('client:leaveGame', leaveGame);
@@ -122,7 +123,12 @@ function getGames () {
 	var gameRooms = [];
 	for(var room in rooms) {
 		if(room[0] == '#') {
-			gameRooms.push(room.slice(1));
+			if(gamesObj[room] !== undefined) {
+				var numPlayers = gamesObj[room].players.length;
+				var gameNum = room.slice(1);
+				var game = {gameNum: gameNum, numPlayers: numPlayers};
+				gameRooms.push(game);
+			}
 		}
 	}
 	// send array of gameIDs to all clients in home state
