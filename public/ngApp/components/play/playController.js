@@ -15,7 +15,7 @@
 		$scope.hand = [];
 		$scope.mySubmissions = [];
 		$scope.submissions = [];
-		$scope.winningCards = [];
+		$scope.winningCards = null;
 		$scope.numToSubmit = 0;
 		$scope.submitCountdown = 0;
 		$scope.czar = false;
@@ -40,8 +40,9 @@
 
 		socket.on('server:displayWinner', function (data) {
 			$scope.showWinner = true;
-			var cards = $scope.submissions[data.index].cards;
-			$scope.winningCards = cards;
+			var winner = $scope.submissions[data.index];
+			$scope.submissions = [];
+			$scope.submissions.push(winner);
 		});
 
 		socket.on('server:displayWhite', function (data) {

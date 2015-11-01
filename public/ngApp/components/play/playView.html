@@ -2,23 +2,16 @@
 <span class="play">
 	<p ng-show="czar">I am the czar.</p>
 	<p ng-show="submitCountdown > 0">Round over in {{submitCountdown}} seconds!<p>
-	<p ng-show="numToSubmit > 0">Choose {{numToSubmit}} more white cards.</p>
+	<p ng-show="numToSubmit > 0">Choose {{numToSubmit}} white cards.</p>
 	<div>
 		<black-card card="black" ng-show="black"></black-card>
 		<div class="submissions">
-			<li ng-hide="showWinner">
+			<li>
 				<span ng-repeat="submission in submissions track by $index">
 					<card-group cards="submission.cards" ng-click="play.selectWinner($index)"></card-group>
 				</span>
 			</li>
 		</div>
-	</div>
-	<div ng-show="showWinner">
-		<li>
-			<span ng-repeat="card in winningCards track by $index">
-				<white-card card="card"></white-card>
-			</span>
-		</li>
 	</div>
 	<div class="hand">
 		<li>
