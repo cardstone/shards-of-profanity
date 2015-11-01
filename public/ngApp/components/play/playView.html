@@ -16,7 +16,7 @@
 	<div class="hand">
 		<li>
 			<span ng-repeat="card in hand track by $index">
-				<white-card card="card" ></white-card>
+				<white-card card="card" ng-click="play.submitCard($index)"></white-card>
 			</span>
 		</li>
 	</div>
