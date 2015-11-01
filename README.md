@@ -88,4 +88,18 @@ $ node load_cards.js ../data/white/output.txt white vanilla
 
 # Run Gulp to build files and start up a quick server
 $ gulp
+
+
+# TO REINITIALIZE THE DB
+# Start the mongodb CLI
+$ mongo shell
+# Switch to the db 
+> use shard
+# Delete the db
+> db.dropDatabase()
+# Run card script again
+$ cd shards-of-profanity
+$ cd scripts
+$ node load_cards.js ../data/black/output.txt black vanilla
+$ node load_cards.js ../data/white/output.txt white vanilla
 ```
