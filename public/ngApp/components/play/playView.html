@@ -4,15 +4,11 @@
 	<p ng-show="submitCountdown > 0">Round over in {{submitCountdown}} seconds!<p>
 	<p ng-show="numToSubmit > 0">Choose {{numToSubmit}} more white cards.</p>
 	<div>
-		<li>
-			<span ng-repeat="card in black track by $index">
-				<black-card></black-card>
-			</span>
-		</li>
+		<black-card card="black" ng-show="black"></black-card>
 		<div class="submissions">
 			<li ng-hide="showWinner">
 				<span ng-repeat="submission in submissions track by $index">
-					<card-group cards="submission.cards" ng-click="faceUp && czar && play.selectWinner($index)"></card-group>
+					<card-group cards="submission.cards" ng-click="play.selectWinner($index)"></card-group>
 				</span>
 			</li>
 		</div>
@@ -27,7 +23,7 @@
 	<div class="hand">
 		<li>
 			<span ng-repeat="card in hand track by $index">
-				<white-card card="card" ng-click="numToSubmit > 0 && play.submitCard($index)"></white-card>
+				<white-card card="card" ng-click="play.submitCard($index)"></white-card>
 			</span>
 		</li>
 	</div>

@@ -11,14 +11,14 @@
 	function PlayController($scope, $timeout, $interval) {
 		var vm = this;
 		var socket = $scope.mySocket;
-		$scope.black = []; // TODO: make this not an array?
+		$scope.black = null;
 		$scope.hand = [];
-		$scope.submissions = [];
 		$scope.mySubmissions = [];
+		$scope.submissions = [];
 		$scope.winningCards = [];
-		$scope.czar = false;
 		$scope.numToSubmit = 0;
 		$scope.submitCountdown = 0;
+		$scope.czar = false;
 		$scope.faceUp = false;
 		$scope.showWinner = false;
 
@@ -45,13 +45,12 @@
 		});
 
 		socket.on('server:displayWhite', function (data) {
-			console.log(data.cards);
 			$scope.submissions.push(data);
 		});
 
 		socket.on('server:displayBlack', function (data) {
-			$scope.black.push(data.card);
-			$scope.numToSubmit = Number($scope.black[0].numWhites);
+			$scope.black = data.card;
+			$scope.numToSubmit = Number($scope.black.numWhites);
 		});
 
 		socket.on('server:enableSubmit', function () {
@@ -65,7 +64,7 @@
 		});
 
 		socket.on('server:newRound', function () {
-			$scope.black = [];
+			$scope.black = null;
 			$scope.submissions = [];
 			$scope.winningCards = [];
 			$scope.faceUp = false;
@@ -73,7 +72,7 @@
 		});
 
 		function roundTimeUp () {
-			if($scope.numToSubmit > 0) {
+			while($scope.numToSubmit > 0) {
 				var random = Math.floor(Math.random() * $scope.hand.length);
 				vm.submitCard(random);
 			}
@@ -96,12 +95,17 @@
 		};
 
 		vm.submitCard = function (index) {
-			var card = $scope.hand.splice(index, 1);
-			card = card[0];
-			$scope.mySubmissions.push(card);
-			$scope.numToSubmit--;
-			if($scope.numToSubmit === 0) {
-				vm.submitFinal();
+			if($scope.numToSubmit > 0) {
+				var card = $scope.hand.splice(index, 1);
+				card = card[0];
+				$scope.mySubmissions.push(card);
+				$scope.numToSubmit--;
+				if($scope.numToSubmit === 0) {
+					vm.submitFinal();
+				}
+			}
+			else {
+				return;
 			}
 		};
 
@@ -111,11 +115,16 @@
 		};
 
 		vm.selectWinner = function (index) {
-			$scope.czar = false;
-			var submission = $scope.submissions[index];
-			socket.emit('client:roundWinner', {id: submission.id});
-			socket.emit('client:displayWinner', {index: index});
-			$timeout(vm.startRound, 5 * 1000);
+			if($scope.czar && $scope.faceUp) {
+				$scope.czar = false;
+				var submission = $scope.submissions[index];
+				socket.emit('client:roundWinner', {id: submission.id});
+				socket.emit('client:displayWinner', {index: index});
+				$timeout(vm.startRound, 5 * 1000);
+			}
+			else {
+				return;
+			}
 		};
 
 		vm.startRound = function () {
