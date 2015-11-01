@@ -9,11 +9,13 @@
 				<black-card></black-card>
 			</span>
 		</li>
-		<li ng-hide="showWinner">
-			<span ng-repeat="submission in submissions track by $index">
-				<card-group cards="submission.cards" ng-click="faceUp && czar && play.selectWinner($index)"></card-group>
-			</span>
-		</li>
+		<div class="submissions">
+			<li ng-hide="showWinner">
+				<span ng-repeat="submission in submissions track by $index">
+					<card-group cards="submission.cards" ng-click="faceUp && czar && play.selectWinner($index)"></card-group>
+				</span>
+			</li>
+		</div>
 	</div>
 	<div ng-show="showWinner">
 		<li>
