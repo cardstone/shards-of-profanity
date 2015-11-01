@@ -1,35 +1,22 @@
 <!-- PlayController as play -->
 <span class="play">
 	<p ng-show="czar">I am the czar.</p>
-	<p>Round over in {{ submitCountdown }} seconds!<p>
+	<p ng-show="submitCountdown > 0">Round over in {{submitCountdown}} seconds!<p>
+	<p ng-show="numToSubmit > 0">Choose {{numToSubmit}} white cards.</p>
 	<div>
-		<li>
-			<span ng-repeat="card in black track by $index">
-				<black-card>
-				</black-card>
-			</span>
-		</li>
-		<li ng-hide="showWinner">
-			<span ng-repeat="submission in submissions track by $index">
-				<white-card ng-init="card=submission.card" ng-click="czar && submitCountdown == 0 && play.selectWinner($index)">
-				</white-card>
-			</span>
-		</li>
-	</div>
-	<div ng-show="showWinner">
-		<li>
-			<span ng-repeat="card in winningCards track by $index">
-				<white-card>
-				</white-card>
-			</span>
-		</li>
+		<black-card card="black" ng-show="black"></black-card>
+		<div class="submissions">
+			<li>
+				<span ng-repeat="submission in submissions track by $index">
+					<card-group cards="submission.cards" ng-click="play.selectWinner($index)"></card-group>
+				</span>
+			</li>
+		</div>
 	</div>
 	<div class="hand">
-		<h4>Hand</h4>
 		<li>
-			<span ng-repeat="card in hand track by $index" ng-init="faceUp=true">
-				<white-card ng-click="submitEnabled && play.selectCard($index)">
-				</white-card>
+			<span ng-repeat="card in hand track by $index">
+				<white-card card="card" ng-click="play.submitCard($index)"></white-card>
 			</span>
 		</li>
 	</div>
