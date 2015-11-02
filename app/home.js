@@ -136,18 +136,21 @@ function getGames () {
 }
 
 function disconnect () {
-  //console.log('client ' + this.id + ' disconnected');
-	if(socketsObj[this.id] !== undefined){
-		emitLeave(this.id);
-		leaveGame(this.id);
-	}
+	//console.log('client ' + this.id + ' disconnected');
+	leaveGame(this.id);
 	getGames();
 }
 
 // TODO: delete gamesObj if last player leaves
 function leaveGame (socketId) {
-	var gameNum = socketsObj[socketId].room;
-	var index = gamesObj[gameNum].players.indexOf(socketId);
-	gamesObj[gameNum].players.splice(index, 1);
-	delete socketsObj[this.id];
+	if(socketsObj[socketId] === undefined){
+		return;
+	}
+	else {
+		emitLeave(socketId);
+		var gameNum = socketsObj[socketId].room;
+		var index = gamesObj[gameNum].players.indexOf(socketId);
+		gamesObj[gameNum].players.splice(index, 1);
+		delete socketsObj[this.id];
+	}
 }
