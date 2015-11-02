@@ -17,7 +17,6 @@
 		// listen for events from server
 		SocketService.on('server:games', function (data) {
 			$scope.games = data.games;
-			console.log($scope.games);
 		});
 
 		// controller functions
@@ -25,8 +24,9 @@
 			SocketService.emit('client:getGames');
 		};
 
-		$scope.selectGame = function () {
-			// to do?
+		$scope.selectGame = function (index) {
+			var gameNum = $scope.games[index].gameNum;
+			$state.go('joinGame', {gameId: gameNum, host: false});
 		};
 
 		$scope.joinGame = function () {
