@@ -10,6 +10,8 @@ var del = require('del');
 var babel = require('gulp-babel');
 var sourcemaps = require('gulp-sourcemaps');
 var concat = require('gulp-concat');
+var ngAnnotate = require('gulp-ng-annotate');
+var uglify = require('gulp-uglify');
 // for css task
 var sass = require('gulp-sass');
 var prefix = require('gulp-autoprefixer');
@@ -49,9 +51,9 @@ gulp.task('javascript', function () {
 	.pipe(babel({
 		only: 'public/ngApp/**/*.js'
 	}))
-  .pipe(concat('app.js'))
   // .pipe(ngAnnotate())
   // .pipe(uglify())
+  .pipe(concat('app.js'))
   .pipe(sourcemaps.write())
   .pipe(gulp.dest('./dist/js'))
 	.pipe(browserSync.reload({
