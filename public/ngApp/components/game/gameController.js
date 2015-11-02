@@ -25,7 +25,7 @@
 		$scope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
 			if(fromState.name == 'game.components'){
 				// if user navigates away from game view, leave the game.
-				$scope.mySocket.emit('client:leaveGame');
+				$scope.mySocket.emit('client:exitGame');
 				// and delete all events this socket is listening to
 				$scope.mySocket.removeAllListeners();
 				if(toState.name == 'joinGame'){
