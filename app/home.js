@@ -135,6 +135,7 @@ function sendGames () {
 	io.sockets.emit('server:games', {games: gameRooms});
 }
 
+// function automatically leaves a socket room
 function disconnect () {
 	//console.log('client ' + this.id + ' disconnected');
 	leaveGame(this.id);
@@ -160,6 +161,7 @@ function leaveGame (socketId) {
 	}
 }
 
+// function manually leaves a socket room
 function exitGame () {
 	this.leave(socketsObj[this.id].room);
 	leaveGame(this.id);
