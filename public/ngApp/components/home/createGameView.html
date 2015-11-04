@@ -1,3 +1,5 @@
 <div ng-controller="createGameController">
-  <button ng-click="createNewGame()">CREATE NEW GAME</button>
+	<button ng-click="createNewGame()">CREATE NEW GAME</button>
+	<p>Game Name: {{gameName}}</p>
+	<input ng-model="gameName" type="text" autocomplete="off"/>
 </div>
