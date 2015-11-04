@@ -4,8 +4,6 @@
 var gulp = require('gulp');
 var plumber = require('gulp-plumber');
 var gutil = require('gulp-util');
-// for clean task
-var del = require('del');
 // for javascript task
 var babel = require('gulp-babel');
 var sourcemaps = require('gulp-sourcemaps');
@@ -30,12 +28,6 @@ function onError(error) {
 	this.emit('end');
 }
 
-// Clean old /dist directory task,
-// to make room for new /dist build
-gulp.task('clean', function () {
-	return del(['./dist/**/*']);
-});
-
 // Javascript Task
 gulp.task('javascript', function () {
 	return gulp.src([
@@ -51,14 +43,34 @@ gulp.task('javascript', function () {
 	.pipe(babel({
 		only: 'public/ngApp/**/*.js'
 	}))
-  // .pipe(ngAnnotate())
-  // .pipe(uglify())
   .pipe(concat('app.js'))
   .pipe(sourcemaps.write())
   .pipe(gulp.dest('./dist/js'))
 	.pipe(browserSync.reload({
 		stream: true
 	}));
+});
+
+// Javascript (minified) Task
+gulp.task('javascript-min', function () {
+	return gulp.src([
+		'node_modules/angular/angular.js',
+		'node_modules/angular-ui-router/release/angular-ui-router.js',
+		'node_modules/angularjs-scroll-glue/src/scrollglue.js',
+		'node_modules/angular-socket-io/socket.js',
+		'public/ngApp/app.module.js',
+		'public/ngApp/**/*.js'
+	])
+  .pipe(plumber(onError))
+  .pipe(sourcemaps.init())
+	.pipe(babel({
+		only: 'public/ngApp/**/*.js'
+	}))
+  .pipe(ngAnnotate())
+  .pipe(uglify())
+  .pipe(concat('app.js'))
+  .pipe(sourcemaps.write())
+  .pipe(gulp.dest('./dist/js'));
 });
 
 // CSS Task
@@ -181,4 +193,13 @@ gulp.task('default', [
 	'icons',
 	'browser-sync',
 	'watch'
+]);
+
+// build Task (for production)
+gulp.task('build', [
+	'templates',
+	'javascript-min',
+	'css',
+	'html',
+	'icons'
 ]);
