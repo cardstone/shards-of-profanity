@@ -1,11 +1,12 @@
 <div class="joinGame-wrap" ng-controller="joinGameController">
-	<ul class="joinGame-list" ng-model="gameToJoin">
-		<li class="joinGame-game" ng-repeat="game in games" ng-click="selectGame($index)">
-			<p>Game Number: {{game.gameNum}} | Players: {{game.numPlayers}}</p>
-		</li>
-	</ul>
-  <form ng-submit="joinGame()">
+	<div class="games">
+		<div class="game" ng-repeat="game in games" ng-click="selectGame($index)">
+			<div class="gameNum">Game Number: {{game.gameNum}}</div>
+			<div class="numPlayers">Players: {{game.numPlayers}}</div>
+		</div>
+	</div>
+<!--   	<form ng-submit="joinGame()">
 		<input class='join-input' ng-model="gameToJoin" type="text" autocomplete="off" required/>
 		<input type="submit" name="join" value="JOIN GAME" autocomplete="off">
-	</form>
+	</form> -->
 </div>

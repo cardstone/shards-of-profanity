@@ -15,10 +15,10 @@ exports.initHome = function (sio, socket, games, socketsInfo) {
 	gameSocket.on('client:createNewGame', createNewGame);
 	gameSocket.on('client:joinGame', joinGame);
 	gameSocket.on('client:joinSuccess', addDefaultName);
-	gameSocket.on('client:joinSuccess', getGames);
+	gameSocket.on('client:joinSuccess', sendGames);
 	gameSocket.on('client:enterName', enterName);
-	gameSocket.on('client:getGames', getGames);
-	gameSocket.on('client:leaveGame', leaveGame);
+	gameSocket.on('client:getGames', sendGames);
+	gameSocket.on('client:exitGame', exitGame);
 	gameSocket.on('disconnect', disconnect);
 };
 
@@ -58,7 +58,7 @@ function createNewGame () {
   // game rooms are identified with a leading '#'
 	this.join('#' + thisGameId);
   // send new list of games to clients in home state
-	getGames();
+	sendGames();
   // add this game to our 'global' games object
 	gamesObj['#' + thisGameId] = new game();
   // TODO: put these queries in a function
@@ -117,7 +117,7 @@ function enterName (data) {
 	io.sockets.in(gameNum).emit('server:message', {msg: msg});
 }
 
-function getGames () {
+function sendGames () {
   // console.log('forwarding games list to a client...');
 	var rooms = gameSocket.adapter.rooms;
 	var gameRooms = [];
@@ -135,22 +135,35 @@ function getGames () {
 	io.sockets.emit('server:games', {games: gameRooms});
 }
 
+// function automatically leaves a socket room
 function disconnect () {
 	//console.log('client ' + this.id + ' disconnected');
 	leaveGame(this.id);
-	getGames();
+	sendGames();
 }
 
 // TODO: delete gamesObj if last player leaves
 function leaveGame (socketId) {
-	if(socketsObj[socketId] === undefined){
+	if(socketsObj[socketId] === undefined) {
 		return;
 	}
 	else {
 		emitLeave(socketId);
 		var gameNum = socketsObj[socketId].room;
 		var index = gamesObj[gameNum].players.indexOf(socketId);
-		gamesObj[gameNum].players.splice(index, 1);
-		delete socketsObj[this.id];
+		if(index === -1) { // this is hacky
+			return;
+		}
+		else {
+			gamesObj[gameNum].players.splice(index, 1);
+			delete socketsObj[this.id];
+		}
 	}
+}
+
+// function manually leaves a socket room
+function exitGame () {
+	this.leave(socketsObj[this.id].room);
+	leaveGame(this.id);
+	sendGames();
 }
