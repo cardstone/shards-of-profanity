@@ -23,7 +23,8 @@ exports.initHome = function (sio, socket, games, socketsInfo) {
 };
 
 // game object constructor
-function game () {
+function game (gameName) {
+	this.gameName = gameName;
 	this.players = [];
 	this.czar = -1;
 	this.blackCards = null;
@@ -41,7 +42,7 @@ function socketInfo (room) {
 }
 
 // helper function for leaving games
-function emitLeave(socketId) {
+function emitLeave (socketId) {
 	var gameNum = socketsObj[socketId].room;
 	var name = socketsObj[socketId].name;
 	var leftMessage = name + ' has left the game. What a quitter.';
@@ -49,7 +50,7 @@ function emitLeave(socketId) {
 	io.sockets.in(gameNum).emit('server:message', {msg: leftMessage});
 }
 
-function createNewGame () {
+function createNewGame (data) {
   // console.log('creating new game...');
   // make gameId a random number in certain range hue hue hue
 	var thisGameId = Math.floor((Math.random() * 3141592) + 1);
@@ -60,7 +61,7 @@ function createNewGame () {
   // send new list of games to clients in home state
 	sendGames();
   // add this game to our 'global' games object
-	gamesObj['#' + thisGameId] = new game();
+	gamesObj['#' + thisGameId] = new game(data.gameName);
   // TODO: put these queries in a function
 	model.find({color: 'black', numWhites: '2'}, 'text numWhites', function (err, cards) {
 		gamesObj['#' + thisGameId].blackCards = cards;
@@ -125,8 +126,9 @@ function sendGames () {
 		if(room[0] == '#') {
 			if(gamesObj[room] !== undefined) {
 				var numPlayers = gamesObj[room].players.length;
+				var gameName = gamesObj[room].gameName;
 				var gameNum = room.slice(1);
-				var game = {gameNum: gameNum, numPlayers: numPlayers};
+				var game = {gameNum: gameNum, gameName: gameName, numPlayers: numPlayers};
 				gameRooms.push(game);
 			}
 		}
