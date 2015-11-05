@@ -14,7 +14,7 @@
 		});
 
 		$scope.createNewGame = function () {
-			SocketService.emit('client:createNewGame', {gameName: $scope.gameName});
+			SocketService.emit('client:createNewGame', {gameName: $scope.gameName, maxPlayers: Number($scope.maxPlayers)});
 		};
 
 	}

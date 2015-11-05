@@ -2,7 +2,7 @@
 	<div class="games">
 		<div class="game" ng-repeat="game in games" ng-click="selectGame($index)">
 			<div>{{game.gameName}}</div>
-			<div>Players: {{game.numPlayers}}</div>
+			<div>Players: {{game.numPlayers}}/{{game.maxPlayers}}</div>
 		</div>
 	</div>
 <!--   	<form ng-submit="joinGame()">
