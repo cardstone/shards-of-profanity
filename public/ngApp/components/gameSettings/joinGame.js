@@ -3,15 +3,15 @@
 
 	angular
 		.module('app')
-		.controller('JoinGameController', [
+		.controller('JoinGame', [
 			'$state',
 			'$stateParams',
 			'SocketService',
 			'AvatarService',
 			'NameService',
-			JoinGameController]);
+			JoinGame]);
 
-	function JoinGameController ($state, $stateParams, SocketService, AvatarService, NameService) {
+	function JoinGame ($state, $stateParams, SocketService, AvatarService, NameService) {
 		var gameId = $stateParams.gameId;
 
 		SocketService.on('server:joinSuccess', function() {

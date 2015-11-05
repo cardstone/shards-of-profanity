@@ -3,9 +3,9 @@
 
 	angular
 		.module('app')
-		.controller('joinGameController', ['$scope', '$state', '$stateParams', 'SocketService', joinGameController]);
+		.controller('JoinGameController', ['$scope', '$state', '$stateParams', 'SocketService', JoinGameController]);
 
-	function joinGameController($scope, $state, $stateParams, SocketService) {
+	function JoinGameController($scope, $state, $stateParams, SocketService) {
 
 		$scope.gameToJoin = '';
 		$scope.games = [];
