@@ -25,8 +25,13 @@
 		};
 
 		$scope.selectGame = function (index) {
-			var gameNum = $scope.games[index].gameNum;
-			$state.go('joinGame', {gameId: gameNum, host: false});
+			if($scope.games[index].numPlayers === $scope.games[index].maxPlayers) {
+				return;
+			}
+			else {
+				var gameNum = $scope.games[index].gameNum;
+				$state.go('joinGame', {gameId: gameNum, host: false});
+			}
 		};
 
 		$scope.joinGame = function () {
