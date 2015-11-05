@@ -7,6 +7,7 @@
 
 	function createGameController($scope, $state, $stateParams, SocketService) {
 		$scope.gameName = null;
+		$scope.maxPlayers = 3;
 
 		SocketService.on('server:createSuccess', function (data) {
 			$state.go('joinGame', {gameId: data.gameId, host: true});
