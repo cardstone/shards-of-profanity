@@ -16,7 +16,7 @@
 			.state('joinGame', {
 				url: '/join/:gameId',
 				params: {host: null},
-				controller: 'JoinGameController',
+				controller: 'JoinGame',
 				controllerAs: 'join'
 			})
 			.state('game', {
@@ -38,11 +38,21 @@
 						controller: 'ScoreboardController',
 						controllerAs: 'scoreboard'
 					},
+					'hand': {
+						templateUrl: 'components/hand/handView.html',
+						controller: 'handController',
+						controllerAs: 'hand'
+					},
 					'play': {
 						templateUrl: 'components/play/playView.html',
 						controller: 'PlayController',
 						controllerAs: 'play'
 					}
+					// 'timer': {
+					// 	templateUrl: 'components/timer/timerView.html',
+					// 	controller: 'timerController',
+					// 	controllerAs: 'timer'
+					// }
 				}
 			})
 			.state('gameNotFound', {

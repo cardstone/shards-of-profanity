@@ -3,9 +3,9 @@
 
 	angular
 		.module('app')
-		.controller('joinGameController', ['$scope', '$state', '$stateParams', 'SocketService', joinGameController]);
+		.controller('JoinGameController', ['$scope', '$state', '$stateParams', 'SocketService', JoinGameController]);
 
-	function joinGameController($scope, $state, $stateParams, SocketService) {
+	function JoinGameController($scope, $state, $stateParams, SocketService) {
 
 		$scope.gameToJoin = '';
 		$scope.games = [];
@@ -25,8 +25,13 @@
 		};
 
 		$scope.selectGame = function (index) {
-			var gameNum = $scope.games[index].gameNum;
-			$state.go('joinGame', {gameId: gameNum, host: false});
+			if($scope.games[index].numPlayers === $scope.games[index].maxPlayers) {
+				return;
+			}
+			else {
+				var gameNum = $scope.games[index].gameNum;
+				$state.go('joinGame', {gameId: gameNum, host: false});
+			}
 		};
 
 		$scope.joinGame = function () {

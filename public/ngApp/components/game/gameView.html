@@ -4,12 +4,28 @@
 <div class="game">
 
 	<div ui-view="play"></div>
-	
+
 	<button class ="butt" ng-click="sidebar.show = !sidebar.show"></button>
-	
+
 	<div class="sidebar" ng-show="sidebar.show">
 		<div ui-view="scoreboard"></div>
 		<div ui-view="chat"></div>
 	</div>
-	
+
 </div>
+<!-- <div class="gameView">
+
+	<header ui-view="header"></header>
+
+	<section class="info">
+		<div ui-view="scoreboard"></div>
+		<div ui-view="timer"></div>
+	</section>
+
+	<div ui-view="play"></div>
+
+	<div ui-view="hand"></div>
+
+	<div ui-view="chat"></div>
+
+</div> -->
