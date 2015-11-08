@@ -127,22 +127,24 @@ function sendGames () {
 	for(var room in rooms) {
 		if(room[0] == '#') {
 			if(gamesObj[room] !== undefined) {
-				var numPlayers = gamesObj[room].players.length;
-				var gameName = gamesObj[room].gameName;
-				var maxPlayers = gamesObj[room].maxPlayers;
-				var privateMatch = gamesObj[room].privateMatch;
-				var gameNum = room.slice(1);
-				var game = {gameNum: gameNum, gameName: gameName, numPlayers: numPlayers, maxPlayers: maxPlayers, privateMatch: privateMatch};
-				if(privateMatch === 0){
+				if(Boolean(gamesObj[room].privateMatch) === false) {
+					var numPlayers = gamesObj[room].players.length;
+					var gameName = gamesObj[room].gameName;
+					var maxPlayers = gamesObj[room].maxPlayers;
+					var gameNum = room.slice(1);
+					var game = {
+						gameNum: gameNum,
+						gameName: gameName,
+						numPlayers: numPlayers,
+						maxPlayers: maxPlayers,
+					};
 					gameRooms.push(game);
 				}
 			}
 		}
 	}
 	// send array of gameIDs to all clients in home state
-	if(privateMatch === 0){
-		io.sockets.emit('server:games', {games: gameRooms});
-	}
+	io.sockets.emit('server:games', {games: gameRooms});
 }
 
 // function automatically leaves a socket room
