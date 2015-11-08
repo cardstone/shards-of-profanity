@@ -6,5 +6,11 @@
 	      ng-model="maxPlayers.selectedOption">
 	    </select>
 	</form>
+	<p>Private Match?</p>
+	<form>
+		<select name="privateMatch" id="privateMatch"
+			ng-options="option.name for option in privateMatch.options track by option.id"
+			ng-model="privateMatch.privateOption"></select>
+	</form>
 	<button ng-click="createNewGame()">Create</button>
 </div>

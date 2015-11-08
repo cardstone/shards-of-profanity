@@ -20,6 +20,13 @@
 		    ],
     		selectedOption: {num: 3, name: '3 players'}
     	};
+		$scope.privateMatch = {
+			options: [
+				{id: 0, name: 'No'},
+				{id: 1, name: 'Yes'},
+			],
+			privateOption: {id: 0, name: 'No'}
+		};
 
 		SocketService.on('server:createSuccess', function (data) {
 			$state.go('joinGame', {
@@ -31,7 +38,8 @@
 		$scope.createNewGame = function () {
 			SocketService.emit('client:createNewGame', {
 				gameName: $scope.gameName,
-				maxPlayers: $scope.maxPlayers.selectedOption.num
+				maxPlayers: $scope.maxPlayers.selectedOption.num,
+				privateMatch: $scope.privateMatch.privateOption.id
 			});
 		};
 

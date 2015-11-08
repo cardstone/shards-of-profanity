@@ -23,9 +23,10 @@ exports.initHome = function (sio, socket, games, socketsInfo) {
 };
 
 // game object constructor
-function game (gameName, maxPlayers) {
+function game (gameName, maxPlayers, privateMatch) {
 	this.gameName = gameName;
 	this.maxPlayers = maxPlayers;
+	this.privateMatch = privateMatch;
 	this.players = [];
 	this.czar = -1;
 	this.blackCards = null;
@@ -62,7 +63,7 @@ function createNewGame (data) {
   // send new list of games to clients in home state
 	sendGames();
   // add this game to our 'global' games object
-	gamesObj['#' + thisGameId] = new game(data.gameName, data.maxPlayers);
+	gamesObj['#' + thisGameId] = new game(data.gameName, data.maxPlayers, data.privateMatch);
   // TODO: put these queries in a function
 	model.find({color: 'black'}, 'text numWhites', function (err, cards) {
 		gamesObj['#' + thisGameId].blackCards = cards;
@@ -129,14 +130,19 @@ function sendGames () {
 				var numPlayers = gamesObj[room].players.length;
 				var gameName = gamesObj[room].gameName;
 				var maxPlayers = gamesObj[room].maxPlayers;
+				var privateMatch = gamesObj[room].privateMatch;
 				var gameNum = room.slice(1);
-				var game = {gameNum: gameNum, gameName: gameName, numPlayers: numPlayers, maxPlayers: maxPlayers};
-				gameRooms.push(game);
+				var game = {gameNum: gameNum, gameName: gameName, numPlayers: numPlayers, maxPlayers: maxPlayers, privateMatch: privateMatch};
+				if(privateMatch === 0){
+					gameRooms.push(game);
+				}
 			}
 		}
 	}
 	// send array of gameIDs to all clients in home state
-	io.sockets.emit('server:games', {games: gameRooms});
+	if(privateMatch === 0){
+		io.sockets.emit('server:games', {games: gameRooms});
+	}
 }
 
 // function automatically leaves a socket room
