@@ -1,16 +1,10 @@
 <div ng-controller="createGameController">
-	<button ng-click="createNewGame()">CREATE NEW GAME</button>
-	<p>Game Name: {{gameName}}</p>
 	<input ng-model="gameName" type="text" autocomplete="off"/>
-	<p>Max Players: {{maxPlayers}}</p>
 	<form>
-		<select ng-model="maxPlayers">
-		    <option> 3 </option>
-		    <option> 4 </option>
-		    <option> 5 </option>
-		    <option> 6 </option>
-		    <option> 7 </option>
-		    <option> 8 </option>
-		</select> 
+		<select name="mySelect" id="mySelect"
+	      ng-options="option.name for option in maxPlayers.options track by option.num"
+	      ng-model="maxPlayers.selectedOption">
+	    </select>
 	</form>
+	<button ng-click="createNewGame()">Create</button>
 </div>
