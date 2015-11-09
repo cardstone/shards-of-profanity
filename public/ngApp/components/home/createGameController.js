@@ -6,7 +6,7 @@
 		.controller('createGameController', ['$scope', '$state', '$stateParams', 'SocketService', createGameController]);
 
 	function createGameController($scope, $state, $stateParams, SocketService) {
-		$scope.gameName = "Poopy-default-game-name.";
+		$scope.gameName = "shitty-default-name";
 	   	$scope.maxPlayers = {
 		    options: [
 			    {num: 3, name: '3 players'},
@@ -22,10 +22,10 @@
     	};
 		$scope.privateMatch = {
 			options: [
-				{id: 0, name: 'No'},
-				{id: 1, name: 'Yes'},
+				{id: 0, name: 'public'},
+				{id: 1, name: 'private'},
 			],
-			privateOption: {id: 0, name: 'No'}
+			privateOption: {id: 0, name: 'public'}
 		};
 
 		SocketService.on('server:createSuccess', function (data) {
