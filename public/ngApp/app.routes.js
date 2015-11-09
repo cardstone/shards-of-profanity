@@ -16,7 +16,7 @@
 			.state('joinGame', {
 				url: '/join/:gameId',
 				params: {host: null},
-				controller: 'JoinGameController',
+				controller: 'JoinGame',
 				controllerAs: 'join'
 			})
 			.state('game', {

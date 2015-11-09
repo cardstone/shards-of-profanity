@@ -1,5 +1,17 @@
-<div ng-controller="createGameController">
-	<button ng-click="createNewGame()">CREATE NEW GAME</button>
-	<p>Game Name: {{gameName}}</p>
-	<input ng-model="gameName" type="text" autocomplete="off"/>
+<div class="createGame" ng-controller="createGameController">
+	<p>Create a new 
+		<select name="privateMatch" id="privateMatch"
+			ng-options="option.name for option in privateMatch.options track by option.id"
+			ng-model="privateMatch.privateOption">
+		</select>
+		game named
+		<input ng-model="gameName" type="text" autocomplete="off"/>,
+		for
+		<select name="mySelect" id="mySelect"
+	      ng-options="option.num for option in maxPlayers.options track by option.num"
+	      ng-model="maxPlayers.selectedOption">
+	    </select>
+	    players.
+	 </p>
+	<button ng-click="createNewGame()">Create</button>
 </div>

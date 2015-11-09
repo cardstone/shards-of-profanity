@@ -23,8 +23,10 @@ exports.initHome = function (sio, socket, games, socketsInfo) {
 };
 
 // game object constructor
-function game (gameName) {
+function game (gameName, maxPlayers, privateMatch) {
 	this.gameName = gameName;
+	this.maxPlayers = maxPlayers;
+	this.privateMatch = privateMatch;
 	this.players = [];
 	this.czar = -1;
 	this.blackCards = null;
@@ -61,9 +63,9 @@ function createNewGame (data) {
   // send new list of games to clients in home state
 	sendGames();
   // add this game to our 'global' games object
-	gamesObj['#' + thisGameId] = new game(data.gameName);
+	gamesObj['#' + thisGameId] = new game(data.gameName, data.maxPlayers, data.privateMatch);
   // TODO: put these queries in a function
-	model.find({color: 'black', numWhites: '2'}, 'text numWhites', function (err, cards) {
+	model.find({color: 'black'}, 'text numWhites', function (err, cards) {
 		gamesObj['#' + thisGameId].blackCards = cards;
 		gamesObj['#' + thisGameId].blackCardsOrig = cards;
 	});
@@ -83,7 +85,7 @@ function joinGame (data) {
 	var gameNum = '#' + data.gameId;
 	var room = gameSocket.adapter.rooms[gameNum];
 	// ff the room exists...
-	if (room !== undefined) {
+	if (room !== undefined && (gamesObj[gameNum].players.length < gamesObj[gameNum].maxPlayers)) {
 		// join the room
 		sock.join(gameNum);
 		// tell the client we were successful
@@ -125,11 +127,19 @@ function sendGames () {
 	for(var room in rooms) {
 		if(room[0] == '#') {
 			if(gamesObj[room] !== undefined) {
-				var numPlayers = gamesObj[room].players.length;
-				var gameName = gamesObj[room].gameName;
-				var gameNum = room.slice(1);
-				var game = {gameNum: gameNum, gameName: gameName, numPlayers: numPlayers};
-				gameRooms.push(game);
+				if(Boolean(gamesObj[room].privateMatch) === false) {
+					var numPlayers = gamesObj[room].players.length;
+					var gameName = gamesObj[room].gameName;
+					var maxPlayers = gamesObj[room].maxPlayers;
+					var gameNum = room.slice(1);
+					var game = {
+						gameNum: gameNum,
+						gameName: gameName,
+						numPlayers: numPlayers,
+						maxPlayers: maxPlayers,
+					};
+					gameRooms.push(game);
+				}
 			}
 		}
 	}

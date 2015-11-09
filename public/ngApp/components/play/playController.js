@@ -57,9 +57,9 @@
 		});
 
 		socket.on('server:enableSubmit', function () {
-			$scope.submitCountdown = 10;
-			$interval(function(){$scope.submitCountdown--;}, 1000, 10);
-			$timeout(roundTimeUp, 11 * 1000);
+			$scope.submitCountdown = 20;
+			$interval(function(){$scope.submitCountdown--;}, 1000, 20);
+			$timeout(roundTimeUp, 21 * 1000);
 		});
 
 		socket.on('server:draw', function () {
