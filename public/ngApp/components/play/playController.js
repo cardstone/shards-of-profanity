@@ -3,10 +3,12 @@
 
 	angular
 		.module('app')
-		.controller('PlayController', ['$scope',
-										'$timeout',
-										'$interval',
-										PlayController]);
+		.controller('PlayController', [
+			'$scope',
+			'$timeout',
+			'$interval',
+			PlayController
+		]);
 
 	function PlayController($scope, $timeout, $interval) {
 		var vm = this;

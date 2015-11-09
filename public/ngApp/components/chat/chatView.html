@@ -1,5 +1,5 @@
 <!-- ChatController as chat -->
-<aside class="chat"> 
+<aside class="chat">
 
 	<div class="messages-wrap" scroll-glue>
 		<ul id="messages">
@@ -13,17 +13,17 @@
 
 
 	<!-- enter optional name -->
-	<div ng-controller= "EnterNameController as enterName" ng-show="enterName.show">
-		<!--<h4>Enter name or use default name</h4>-->
+	<!-- <div ng-controller= "EnterNameController as enterName" ng-show="enterName.show">
+		<h4>Enter name or use default name</h4>
 		<div ng-show="nameForm.name.$error.maxlength || nameForm.name.$error.minlength ">
 			Name must be 2 to 20 characters long, asshole.
 		</div>
-		<!--
+
 		<form name="nameForm" ng-submit="nameForm.$valid && enterName.enter()">
 			<input name="name" ng-model="enterName.myName" type="text" ng-maxlength="20" ng-minlength="2" required/>
 		</form>
-		<button class="defaultName" ng-click="enterName.turnOffThisView()">Use default name.</button>-->
-	</div>
+		<button class="defaultName" ng-click="enterName.turnOffThisView()">Use default name.</button>
+	</div> -->
 	<!-- end enter optional name -->
 
 	<form name="chatForm" ng-submit="chatForm.$valid && chat.sendMessage()">

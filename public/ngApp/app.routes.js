@@ -28,31 +28,33 @@
 			})
 			.state('game.components', {
 				views: {
+					'nav': {
+						templateUrl: 'components/nav/navView.html'
+					},
 					'chat': {
-						templateUrl: 'components/chat/chatView.html',
-						controller: 'ChatController',
-						controllerAs: 'chat'
+						template: '<div class="chat">chat</div>'
+						// templateUrl: 'components/chat/chatView.html',
+						// controller: 'ChatController',
+						// controllerAs: 'chat'
+					},
+					'play': {
+						template: '<div class="play">play</div>'
+						// templateUrl: 'components/play/playView.html',
+						// controller: 'PlayController',
+						// controllerAs: 'play'
 					},
 					'scoreboard': {
+						// template: '<div class="scoreboard">scoreboard</div>'
 						templateUrl: 'components/scoreboard/scoreboardView.html',
 						controller: 'ScoreboardController',
 						controllerAs: 'scoreboard'
 					},
-					'hand': {
-						templateUrl: 'components/hand/handView.html',
-						controller: 'handController',
-						controllerAs: 'hand'
-					},
-					'play': {
-						templateUrl: 'components/play/playView.html',
-						controller: 'PlayController',
-						controllerAs: 'play'
+					'timer': {
+						template: '<div class="timer">timer</div>'
+						// templateUrl: 'components/timer/timerView.html',
+						// controller: 'timerController',
+						// controllerAs: 'timer'
 					}
-					// 'timer': {
-					// 	templateUrl: 'components/timer/timerView.html',
-					// 	controller: 'timerController',
-					// 	controllerAs: 'timer'
-					// }
 				}
 			})
 			.state('gameNotFound', {

@@ -1,6 +1,6 @@
 <!-- GameController as game -->
 <!-- contain all the game UI components-->
-<header ng-include="'components/home/headerView.html'"></header>
+<!-- <header ng-include="'components/home/headerView.html'"></header>
 <div class="game">
 
 	<div ui-view="play"></div>
@@ -12,20 +12,15 @@
 		<div ui-view="chat"></div>
 	</div>
 
-</div>
-<!-- <div class="gameView">
-
-	<header ui-view="header"></header>
+</div> -->
+<header ui-view="nav"></header>
+<div class="gameView">
 
 	<section class="info">
-		<div ui-view="scoreboard"></div>
-		<div ui-view="timer"></div>
+		<div class="scoreboard" ui-view="scoreboard"></div>
+		<div class="timer" ui-view="timer"></div>
 	</section>
-
-	<div ui-view="play"></div>
-
-	<div ui-view="hand"></div>
-
+	<section class="play" ui-view="play"></section>
 	<div ui-view="chat"></div>
 
-</div> -->
+</div>

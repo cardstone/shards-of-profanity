@@ -1,9 +1,24 @@
-.game
-	position: fixed
+.gameView
+	display: flex
+	flex-direction: column
 	height: 92vh
-	width: 100%
-	bottom: 0
 
-.butt
-	float: right
-	z-index: 2
+	@media (min-width: 660px)
+		flex-direction: row
+
+	& > *
+		border: 2px solid yellow
+
+	.info
+		display: flex
+		justify-content: space-between
+
+		@media (min-width: 660px)
+			flex-direction: column
+
+	.play
+		display: flex
+		flex-grow: 1
+
+		@media (min-width: 660px)
+			flex-direction: column
