@@ -1,8 +1,12 @@
 <div class="joinGame-wrap" ng-controller="JoinGameController">
 	<div class="games">
-		<div class="game" ng-repeat="game in games" ng-click="selectGame($index)">
+		<div class="game"
+			ng-repeat="game in games" 
+			ng-click="selectGame($index)">
+
 			<div>{{game.gameName}}</div>
 			<div>Players: {{game.numPlayers}}/{{game.maxPlayers}}</div>
+
 		</div>
 	</div>
 </div>

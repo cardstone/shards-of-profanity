@@ -1,25 +1,40 @@
-.joinGame
-	display: flex
-
 .joinGame-wrap
 	position: relative
 	height: 490px
 	width: auto
+	text-align: center
+	overflow: auto
+	
 	.games
 		position: relative
-		height: 400px
+		//height: 470px
 		width: auto
 		border-style: solid
     	border-width: 3px
     	border-color: black
     	padding: 20px
+		height: 60vh
+		max-width: 60vw
+		
 		.game
 			position: relative
 			height: 80px
 			width: auto
-			&:hover
-				background-color: black
-				color: white
+		
+		.game:nth-child(odd)
+			color: white
+			background-color: black
+			&:hover	
+				color: black
+				background-color: white
+				
+		.game:nth-child(even)
+			color: white
+			background-color: black
+			&:hover	
+				color: black
+				background-color: white
+
 
 
 
