@@ -44,8 +44,11 @@ function sendPlayerList () {
 }
 
 function addPoints (data) {
-	socketsObj[data.id].points += 1; 
+	socketsObj[data.id].points += 1;
 	var gameNum = socketsObj[this.id].room;
+	if(socketsObj[data.id].points===gamesObj[gameNum].maxPoints) {
+		console.log("Max Points Reached!");
+	} 
 	var players = getPlayerList(gameNum);
 	io.sockets.in(gameNum).emit('server:players', {players: players});
 }
