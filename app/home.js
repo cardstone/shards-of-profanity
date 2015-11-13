@@ -23,10 +23,11 @@ exports.initHome = function (sio, socket, games, socketsInfo) {
 };
 
 // game object constructor
-function game (gameName, maxPlayers, privateMatch) {
+function game (gameName, maxPlayers, privateMatch, maxPoints) {
 	this.gameName = gameName;
 	this.maxPlayers = maxPlayers;
 	this.privateMatch = privateMatch;
+	this.maxPoints = maxPoints;
 	this.players = [];
 	this.czar = -1;
 	this.blackCards = null;
@@ -63,7 +64,12 @@ function createNewGame (data) {
   // send new list of games to clients in home state
 	sendGames();
   // add this game to our 'global' games object
-	gamesObj['#' + thisGameId] = new game(data.gameName, data.maxPlayers, data.privateMatch);
+	gamesObj['#' + thisGameId] = new game(
+		data.gameName,
+		data.maxPlayers,
+		data.privateMatch,
+		data.maxPoints
+	);
   // TODO: put these queries in a function
 	model.find({color: 'black'}, 'text numWhites', function (err, cards) {
 		gamesObj['#' + thisGameId].blackCards = cards;
