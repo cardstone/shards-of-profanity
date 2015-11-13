@@ -32,16 +32,16 @@
 						templateUrl: 'components/nav/navView.html'
 					},
 					'chat': {
-						template: '<div class="chat">chat</div>'
-						// templateUrl: 'components/chat/chatView.html',
-						// controller: 'ChatController',
-						// controllerAs: 'chat'
+						// template: '<div class="chat">chat</div>'
+						templateUrl: 'components/chat/chatView.html',
+						controller: 'ChatController',
+						controllerAs: 'chat'
 					},
 					'play': {
-						template: '<div class="play">play</div>'
-						// templateUrl: 'components/play/playView.html',
-						// controller: 'PlayController',
-						// controllerAs: 'play'
+						// template: '<div class="play">play</div>'
+						templateUrl: 'components/play/playView.html',
+						controller: 'PlayController',
+						controllerAs: 'play'
 					},
 					'scoreboard': {
 						// template: '<div class="scoreboard">scoreboard</div>'

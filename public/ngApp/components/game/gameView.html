@@ -1,18 +1,4 @@
 <!-- GameController as game -->
-<!-- contain all the game UI components-->
-<!-- <header ng-include="'components/home/headerView.html'"></header>
-<div class="game">
-
-	<div ui-view="play"></div>
-
-	<button class ="butt" ng-click="sidebar.show = !sidebar.show"></button>
-
-	<div class="sidebar" ng-show="sidebar.show">
-		<div ui-view="scoreboard"></div>
-		<div ui-view="chat"></div>
-	</div>
-
-</div> -->
 <header ui-view="nav"></header>
 <div class="gameView">
 
@@ -21,6 +7,6 @@
 		<div class="timer" ui-view="timer"></div>
 	</section>
 	<section class="play" ui-view="play"></section>
-	<div ui-view="chat"></div>
+	<aside class="chat" ui-view="chat"></aside>
 
 </div>
