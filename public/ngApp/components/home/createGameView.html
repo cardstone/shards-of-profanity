@@ -12,11 +12,11 @@
 			<label>Max Players:</label>
 			<input ng-model="maxPlayers" type="number" min="3" max="8" autocomplete="off"/>
 		</p>
-		<label>Privacy:</label>
-		<div>
-			<input type="radio" ng-model="privateMatch" value="false" checked>public
-			<br>
-			<input type="radio" ng-model="privateMatch" value="true">private
+		<div class="privacy">
+			<input type="radio" ng-model="privateMatch" value="false" checked>
+			<label>Public</label>
+			<input type="radio" ng-model="privateMatch" value="true">
+			<label>Private</label>
 		</div>
 	</form>
 	<button ng-click="createNewGame()">Create</button>
