@@ -6,7 +6,7 @@
 		.controller('createGameController', ['$scope', '$state', '$stateParams', 'SocketService', createGameController]);
 
 	function createGameController($scope, $state, $stateParams, SocketService) {
-		$scope.gameName = "shitty-default-name";
+		$scope.gameName = "boring-default-name";
 		$scope.maxPlayers = 5;
 		$scope.maxPoints = 10;
 		$scope.poop = 3;
