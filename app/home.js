@@ -19,6 +19,7 @@ exports.initHome = function (sio, socket, games, socketsInfo) {
 	gameSocket.on('client:enterName', enterName);
 	gameSocket.on('client:getGames', sendGames);
 	gameSocket.on('client:exitGame', exitGame);
+	gameSocket.on('client:startGame', startGame);
 	gameSocket.on('disconnect', disconnect);
 };
 
@@ -30,6 +31,7 @@ function game (gameName, maxPlayers, privateMatch, maxPoints) {
 	this.maxPoints = maxPoints;
 	this.players = [];
 	this.czar = -1;
+	this.inProgress = false;
 	this.blackCards = null;
 	this.whiteCards = null;
 	this.blackCardsOrig = null;
@@ -138,11 +140,13 @@ function sendGames () {
 					var gameName = gamesObj[room].gameName;
 					var maxPlayers = gamesObj[room].maxPlayers;
 					var gameNum = room.slice(1);
+					var inProgress = gamesObj[room].inProgress;
 					var game = {
 						gameNum: gameNum,
 						gameName: gameName,
 						numPlayers: numPlayers,
 						maxPlayers: maxPlayers,
+						inProgress: inProgress
 					};
 					gameRooms.push(game);
 				}
@@ -152,6 +156,15 @@ function sendGames () {
 	// send array of gameIDs to all clients in home state
 	io.sockets.emit('server:games', {games: gameRooms});
 }
+
+function startGame () {
+	var gameNum = socketsObj[this.id].room;
+	gamesObj[gameNum].inProgress = true;
+	sendGames();
+}
+
+
+
 
 // function automatically leaves a socket room
 function disconnect () {
