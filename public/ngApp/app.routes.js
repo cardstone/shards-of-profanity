@@ -64,7 +64,7 @@
 				url: '/notFound',
 				templateUrl: 'components/misc/notFoundView.html'
 			});
-		$urlRouterProvider.otherwise('/notFound');
+		$urlRouterProvider.otherwise('/');
 		$locationProvider.html5Mode(true);
 	}
 })();
