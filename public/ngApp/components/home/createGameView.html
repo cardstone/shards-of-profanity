@@ -1,24 +1,22 @@
 <div class="createGame" ng-controller="createGameController">
-	<form>
-		<p>
-			<label>Game Name:</label>
-			<input ng-model="gameName" type="text" autocomplete="off"/>
-		</p>
-		<p>
-			<label>Score Limit:</label>
-			<input ng-model="maxPoints" type="number" min="5" max="100" autocomplete="off"/>
-		</p>
-		<p>
-			<label>Max Players:</label>
-			<input ng-model="maxPlayers" type="number" min="3" max="8" autocomplete="off"/>
-		</p>
-		<label>Privacy:</label>
+	<label>Game Name:</label>
+	<input class="gameName" ng-model="gameName" type="text" autocomplete="off"/>
+	<label>Player Limit: {{maxPlayers}}</label>
+	<br>
+	<input ng-model="maxPlayers" type="range" min="3" max="15" step="1"/>
+	<br>
+	<label>Score Limit: {{maxPoints}}</label>
+	<br>
+	<input ng-model="maxPoints" type="range" min="10" max="100" step="10"/>
+	<div class="privacy">
 		<div>
-			<input type="radio" ng-model="privateMatch" value="false" checked>public
-			<br>
-			<input type="radio" ng-model="privateMatch" value="true">private
+			<input type="radio" ng-model="privateMatch" value="0">
+			<label>Public</label>
 		</div>
-	</form>
+		<div>
+			<input type="radio" ng-model="privateMatch" value="1">
+			<label>Private</label>
+		</div>
+	</div>
 	<button ng-click="createNewGame()">Create</button>
-
 </div>

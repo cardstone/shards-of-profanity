@@ -3,10 +3,12 @@
 		<div class="game"
 			ng-repeat="game in games" 
 			ng-click="selectGame($index)">
-
-			<div>{{game.gameName}}</div>
-			<div>Players: {{game.numPlayers}}/{{game.maxPlayers}}</div>
-
+			<div class="gameName">{{game.gameName}}</div>
+			<div>
+				<div class="players">{{game.numPlayers}}/{{game.maxPlayers}} players</div>
+				<div class="progress" ng-show="game.inProgress">in progress</div>
+				<div class="progress" ng-hide="game.inProgress">waiting</div>
+			</div>
 		</div>
 	</div>
 </div>

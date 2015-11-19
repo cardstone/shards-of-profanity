@@ -135,6 +135,11 @@
 			socket.emit('client:startRound');
 		};
 
+		vm.startGame = function () {
+			socket.emit('client:startGame');
+			vm.startRound();
+		}
+
 		vm.faceUp = function () {
 			$scope.faceUp = !$scope.faceUp;
 		};

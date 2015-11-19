@@ -1,24 +1,35 @@
 .createGame
-
+	padding-left: 20px
+	padding-right: 20px
 	label
 		display: inline
 	input
 		display: inline
-		width: 300px
 		padding: 0
-		border: none
-		border-radius: 0
-		border-bottom: thick solid white
 		text-align: center
-		color: white
-		background-color: transparent
-	select
-		display: inline
-		border: none
-		border-radius: 0
-		border-bottom: thick solid white
-		color: white
-		background-color: transparent
+		color: black
+		cursor: pointer
+		background-color: black
 	button
 		position: absolute
 		bottom: 30px
+		align: center
+		text-decoration: underline
+		width: 30%
+		color: black
+		background-color: white
+		&:hover
+			color: white
+			background-color: black
+			border-color: white
+	.gameName
+		background-color: white
+	.privacy
+		width: auto
+		display: flex
+		justify-content: center
+		input
+			display: inline
+			width: 50px
+
+
