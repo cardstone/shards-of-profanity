@@ -1,3 +1,10 @@
+// Media Queries
+$breakpoint-desktop: 660px
+
+@mixin desktop
+	@media (min-width: #{$breakpoint-desktop})
+		@content
+
 // Typography
 $base-font-family: $helvetica
 $heading-font-family: $base-font-family
