@@ -1,3 +1,38 @@
+.play
+	display: flex
+	flex-grow: 1
+	flex-direction: column
+	justify-content: space-around
+
+.play-board
+	display: flex
+	// background-color: pink
+
+.play-hand
+	display: flex
+	// background-color: cyan
+	overflow-x: scroll
+	overflow-y: visible
+
+	&-card
+		margin-left: -2.25rem
+		transition: $base-duration $base-timing
+
+
+		&:hover
+	    z-index: 10
+	    transform: translateY(-1rem)
+
+	:nth-child(1)
+		margin-left: 0
+
+.card-group
+	li
+		margin-top: -95%
+
+	:nth-child(1)
+		margin-top: auto
+
 // .play
 // 	display: flex
 // 	flex-direction: column
