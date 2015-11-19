@@ -1,6 +1,8 @@
 .home-view
-	min-height: 100%
-	min-width: 100%
+	display: relative
+	height: 100%
+	width: 100%
+	top: 0
 	background: fade-out($light-black, .03)
 	color: white
 	display: flex
@@ -8,72 +10,43 @@
 	align-items: center
 	// justify-content: center
 
-.home-logo
-	padding: 1rem 1.8rem 5rem
-	color: white
+	.header
+		position: absolute
+		left: 0
+		top: 0
+		display: flex
+		flex-direction: column
+		align-items: center
+		background-color: black
+		width: 100%
+		height: 15%
+
+
+		.home-logo
+			color: white
+
+	.main
+		position: absolute
+		top: 15%
+		left: 0
+		width: 100%
+		height: 75%
+		background-color: transparent
+
+	.footer
+		position: absolute
+		left: 0
+		bottom: 0
+		background-color: black
+		width: 100%
+		height: 10%
 
 .button-wrap
 	display: flex
 	justify-content: center
 	margin-top: 80px
 
-.adhere
-	z-index: 0
-	position: absolute
-	left: 350px
-	opacity: .2
-	margin-top: 100px
-	
-.fuck-xyzzy
-	z-index: 0
-	position: absolute
-	left: 150px
-	top: 200px
-	margin-right: 200px
-	opacity: .2
-	
-.footer
-	width: 900px
-	text-align: center
-	
-	li
-		display: inline
-		padding-top: 5px
 
-	margin-bottom: 20px
-	padding-bottom: 50px
-	
-.footer2
-	position: relative
-	background-color: fade-out($light-black, .03)
-	color: white
-	clear:both
-	margin-top: -65px
-	text-align: center
-	font-size: 75%
-	
-.butts
-	width: 100%
-	text-align: center
-	margin-top: -65px
-	background-color: fade-out($light-black, .03)		
-	ul
-		li
-			display: inline
-		
-.b1
-	width: 400px
-	height: 65px
-	color: #B8B8B8 
-	background-color: fade-out($light-black, .03)		
-		
-.fb-like
-	
-.links
-	text-align: center
-	
-	li
-		display: inline
 	
 
 
