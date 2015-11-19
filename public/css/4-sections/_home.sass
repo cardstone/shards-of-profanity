@@ -17,29 +17,46 @@
 		display: flex
 		flex-direction: column
 		align-items: center
-		background-color: black
+		background-color: transparent
 		width: 100%
-		height: 15%
 
-
-		.home-logo
-			color: white
 
 	.main
+		display: flex
+		flex-direction: column
+		align-items: center
+		justify-content: center
 		position: absolute
-		top: 15%
+		top: 0
 		left: 0
 		width: 100%
-		height: 75%
+		height: 100%
 		background-color: transparent
+		.home-logo
+			height: auto
+			color: white
+		.button-wrap
+			display: flex
+			justify-content: center
+			margin-top: 80px
 
 	.footer
+		display: flex
+		flex-direction: column
+		align-items: center
 		position: absolute
 		left: 0
 		bottom: 0
 		background-color: black
 		width: 100%
-		height: 10%
+		.footer-buttons
+			display: flex
+			div
+				color: grey
+				padding-top: 10px
+				padding-left: 20px
+				paddint-right: 20px
+
 
 .button-wrap
 	display: flex
