@@ -1,54 +1,29 @@
 .card
-  height: 10rem
-  width: 7.1875rem
-  display: inline-block
-  transition: $base-duration $base-timing
-  position: relative
-  cursor: pointer
+	display: inline-block
+	height: 10rem
+	width: 7.1875rem
+	border: 2px solid black
+	border-radius: $base-border-radius
+	padding: 0.5rem
+	font-weight: bold
+	font-size: 1.5rem
+	line-height: 1.3em
+	font-size: 0.82rem
+	word-wrap: break-word
+	cursor: pointer
+	transition: $base-duration $base-timing
+	user-select: none
 
+	.pack,
+	.pick
+		position: absolute
+		bottom: 0px
+	.pick
+		right: 5px
 
-.front,
-.back
-  height: inherit
-  width: inherit
-  border: 2px solid black
-  border-radius: $base-border-radius
-  padding: 0.5rem
-  font-weight: bold
-  font-size: 1.5rem
-  line-height: 1.3em
-  position: absolute
-  cursor: pointer
-  -webkit-touch-callout: none
-  -webkit-user-select: none
-  -khtml-user-select: none
-  -moz-user-select: none
-  -ms-user-select: none
-  user-select: none
-
-.white > .front,
-.white > .back,
-.join-game > .front,
-.join-game > .back
-  background-color: white
-  color: black
-
-.black > .front,
-.black > .back,
-.create-game > .front,
-.create-game > .back
+.white
+	background-color: white
+	color: black
+.black
   background-color: black
   color: white
-
-.front
-  font-size: 0.82rem
-  word-wrap: break-word
-  .pack,
-  .pick
-    position: absolute
-    bottom: 0px
-  .pick
-    right: 5px
-
-.back
-  font-size: 22px

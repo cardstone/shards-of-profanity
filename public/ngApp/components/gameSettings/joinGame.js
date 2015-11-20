@@ -9,13 +9,14 @@
 			'SocketService',
 			'AvatarService',
 			'NameService',
-			JoinGame]);
+			JoinGame
+		]);
 
 	function JoinGame ($state, $stateParams, SocketService, AvatarService, NameService) {
 		var gameId = $stateParams.gameId;
 
 		SocketService.on('server:joinSuccess', function() {
-			var userName = prompt("Please enter a username");
+			var userName = prompt('Please enter a username');
 			if(userName == null){
 				userName = NameService.get();
 			}
