@@ -1,56 +1,50 @@
 <!-- HomeController as home -->
-<section class="home-view">
+<section class="home">
 	<div class="home-logo">
 		<h1>Shards of Profanity</h1>
 	</div>
-	<div class="main">
-		<div class="center">
-			<div class="button-wrap">
-				<modal-button class="white" data-ctrl="joinGame">
-					<h3>Join Game.</h3>
-				</modal-button>
-				<modal-button class="black" data-ctrl="createGame">
-					<h3>Create Game.</h3>
-				</modal-button>
-			</div>
-		</div>
+	<div class="home-button-wrap">
+		<modal-button class="white" data-ctrl="joinGame">
+			Join Game.
+		</modal-button>
+		<modal-button class="black" data-ctrl="createGame">
+			Create Game.
+		</modal-button>
 	</div>
-	<div id="about" class="modal">
-		<div>
-			<a href="#close" title="Close" class="close">X</a>
-			<h4>The site.</h4>
-			<p>Shards of Profanity is a browser-based Cards Against Humanity clone by a team of noob developers.</p>
-			<hr>
-			<h4>The tech.</h4>
-			<p>The webapp is built upon the M.E.A.N. stack (MongoDB, Express, Angular.js, Node.js) and utilizes Socket.IO for the realtime client-server communication.</p>
-			<p>https://github.com/cardstone/shards-of-profanity</p>
-			<hr>
-			<h4>The nerds.</h4>
-			<ul>
-				<li>amaldarelli93 - Anthony Maldalrelli</li>
-				<li>andrewmilo - Andrew Miloslavsky</li>
-				<li>jessemcready - Jesse McReady</li>
-				<li>azablan - Alvin Zablan</li>
-			</ul>
-		</div>
-	</div>
-	<div id="contact" class="modal">
-		<div>
-			<h4>Contact us.</h4>
-			<a href="#close" title="Close" class="close">X</a>
-			<p>Send us all of your hate mail:</p>
-			<p>poopiebutthole@shardsofprofanity.com</p>
-		</div>
-	</div>
-	<div class="footer">
-		<div class="footer-buttons">
-			<div>
-				<a href="#about">about</a>
-			</div>
-			<div>
-				<a href="#contact">contact</a>
-			</div>
-		</div>
-	</div>
+	<footer class="home-footer">
+		<ul class="home-footer-list">
+			<li><a href="#about">about</a></li>
+			<li><a href="#contact">contact</a></li>
+		</ul>
+	</footer>
 </section>
 
+
+<div id="about" class="modal">
+	<div class="modal-content">
+		<a href="#close" title="Close" class="close">x</a>
+		<h4>The site.</h4>
+		<p>Shards of Profanity is a browser-based Cards Against Humanity clone by a team of noob developers.</p>
+		<hr>
+		<h4>The tech.</h4>
+		<p>The webapp is built upon the M.E.A.N. stack (MongoDB, Express, Angular.js, Node.js) and utilizes Socket.IO for the realtime client-server communication.</p>
+		<p>https://github.com/cardstone/shards-of-profanity</p>
+		<hr>
+		<h4>The nerds.</h4>
+		<ul>
+			<li>amaldarelli93 - Anthony Maldalrelli</li>
+			<li>andrewmilo - Andrew Miloslavsky</li>
+			<li>jessemcready - Jesse McReady</li>
+			<li>azablan - Alvin Zablan</li>
+		</ul>
+	</div>
+</div>
+
+<div id="contact" class="modal">
+	<div class="modal-content">
+		<h4>Contact us.</h4>
+		<a href="#close" title="Close" class="close">x</a>
+		<p>Send us all of your hate mail:</p>
+		<p>poopiebutthole@shardsofprofanity.com</p>
+	</div>
+</div>

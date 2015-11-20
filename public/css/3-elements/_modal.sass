@@ -9,14 +9,15 @@
   opacity:0
   transition: opacity 300ms ease-in
   pointer-events: none
-  div 
-    width: 600px
-    position: relative
-    margin: 10% auto
-    padding: 30px
-    border-radius: 10px
-    background: #fff
-    color: black
+
+.modal-content
+  width: 600px
+  position: relative
+  margin: 10% auto
+  padding: 30px
+  border-radius: 10px
+  background: #fff
+  color: black
 
 .modal:target
   opacity: 1
@@ -27,4 +28,19 @@
   top: 10px
   right: 10px
 
+	// makes the 'X'
+	&:before,
+	&:after
+		content: ''
+		height: 25px
+		width: 4px
+		position: absolute
+		right: 10px
 
+		background-color: black
+
+	&:before
+		transform: rotate(45deg)
+
+	&:after
+		transform: rotate(-45deg)

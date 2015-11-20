@@ -9,7 +9,7 @@
 	border: 2px solid black
 	border-radius: $base-border-radius
 
-	font-size: 1.8rem
+	font-size: 1.5rem
 	line-height: 1.0em
 	font-weight: bold
 
@@ -64,23 +64,6 @@
 			position: absolute
 			top: 1rem
 			right: 1rem
-
-			// makes the 'X'
-			&:before,
-			&:after
-				content: ''
-				height: 25px
-				width: 4px
-				position: absolute
-				right: 10px
-
-				background-color: currentColor
-
-			&:before
-				transform: rotate(45deg)
-
-			&:after
-				transform: rotate(-45deg)
 
 		// media query for expanded modal position
 		@media screen and (max-width: 660px)
