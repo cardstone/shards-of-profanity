@@ -23,7 +23,6 @@ exports.initHome = function (sio, socket, games, socketsInfo) {
 	gameSocket.on('disconnect', disconnect);
 };
 
-// game object constructor
 function game (gameName, maxPlayers, privateMatch, maxPoints) {
 	this.gameName = gameName;
 	this.maxPlayers = maxPlayers;
@@ -38,7 +37,6 @@ function game (gameName, maxPlayers, privateMatch, maxPoints) {
 	this.whiteCardsOrig = null;
 }
 
-// socketInfo object constructor
 function socketInfo (room) {
 	this.room = room;
 	this.name = null;
@@ -46,7 +44,6 @@ function socketInfo (room) {
 	this.points = 0;
 }
 
-// helper function for leaving games
 function emitLeave (socketId) {
 	var gameNum = socketsObj[socketId].room;
 	var name = socketsObj[socketId].name;
@@ -56,16 +53,10 @@ function emitLeave (socketId) {
 }
 
 function createNewGame (data) {
-  // console.log('creating new game...');
-  // make gameId a random number in certain range hue hue hue
 	var thisGameId = Math.floor((Math.random() * 3141592) + 1);
 	thisGameId = thisGameId.toString();
-  // 'this' is a reference to the calling client's socket.io object
-  // game rooms are identified with a leading '#'
 	this.join('#' + thisGameId);
-  // send new list of games to clients in home state
 	sendGames();
-  // add this game to our 'global' games object
 	gamesObj['#' + thisGameId] = new game(
 		data.gameName,
 		data.maxPlayers,
@@ -82,28 +73,19 @@ function createNewGame (data) {
 		gamesObj['#' + thisGameId].whiteCardsOrig = cards;
 	});
 	this.emit('server:createSuccess', {gameId: thisGameId});
-  //console.log(gamesObj);
 }
 
 function joinGame (data) {
-  // console.log('a client is attempting join a game...');
-  // reference to the calling client's socket.io object
 	var sock = this;
-	// get a room called #<gameID> from socket.io adapter,
 	var gameNum = '#' + data.gameId;
 	var room = gameSocket.adapter.rooms[gameNum];
-	// ff the room exists...
 	if (room !== undefined && (gamesObj[gameNum].players.length < gamesObj[gameNum].maxPlayers)) {
-		// join the room
 		sock.join(gameNum);
-		// tell the client we were successful
 		sock.emit('server:joinSuccess');
 		socketsObj[this.id] = new socketInfo(gameNum);
 		gamesObj[gameNum].players.push(this.id);
-		// console.log('  the client joined game ' + data.gameId + ' successfully.');
 	} else {
 		sock.emit('server:joinFailure');
-		// console.log('  the client failed to join game ' + data.gameId);
 	}
 }
 
@@ -113,7 +95,6 @@ function leaveGame (data) {
 	socketsObj[this.id].room = null;
 }
 
-// add to default name to corresponding socketsObj
 function addDefaultName (data) {
 	socketsObj[this.id].name = data.playerName;
 	socketsObj[this.id].avatar = data.avatar;
@@ -129,7 +110,6 @@ function enterName (data) {
 }
 
 function sendGames () {
-  // console.log('forwarding games list to a client...');
 	var rooms = gameSocket.adapter.rooms;
 	var gameRooms = [];
 	for(var room in rooms) {
@@ -153,7 +133,6 @@ function sendGames () {
 			}
 		}
 	}
-	// send array of gameIDs to all clients in home state
 	io.sockets.emit('server:games', {games: gameRooms});
 }
 
@@ -163,17 +142,11 @@ function startGame () {
 	sendGames();
 }
 
-
-
-
-// function automatically leaves a socket room
 function disconnect () {
-	//console.log('client ' + this.id + ' disconnected');
 	leaveGame(this.id);
 	sendGames();
 }
 
-// TODO: delete gamesObj if last player leaves
 function leaveGame (socketId) {
 	if(socketsObj[socketId] === undefined) {
 		return;
@@ -182,11 +155,14 @@ function leaveGame (socketId) {
 		emitLeave(socketId);
 		var gameNum = socketsObj[socketId].room;
 		var index = gamesObj[gameNum].players.indexOf(socketId);
-		if(index === -1) { // this is hacky
+		if(index === -1) {
 			return;
 		}
 		else {
 			gamesObj[gameNum].players.splice(index, 1);
+			if(gamesObj[gameNum].players.length === 0) {
+				delete gamesObj[gameNum];
+			}
 			delete socketsObj[this.id];
 		}
 	}
