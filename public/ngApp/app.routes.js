@@ -50,10 +50,9 @@
 						controllerAs: 'scoreboard'
 					},
 					'timer': {
-						template: '<div class="timer">timer</div>'
-						// templateUrl: 'components/timer/timerView.html',
-						// controller: 'timerController',
-						// controllerAs: 'timer'
+						templateUrl: 'components/timer/timerView.html',
+						controller: 'TimerController',
+						controllerAs: 'timer'
 					}
 				}
 			})
