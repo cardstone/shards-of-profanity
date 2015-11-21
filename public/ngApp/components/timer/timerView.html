@@ -1,20 +1,7 @@
 <!-- timerController as timer -->
-<p>Timer</p>
-<h4>{{timer.myStatus}}</h4>
-<div ng-hide="czar">
-	<div ng-show="roundTime">
-		<h4>{{ roundTime }}</h4>
-	</div>
-	<div ng-hide="roundTime">
-		<h4>waiting for czar.</h4>
-	</div>
-</div>
-<div ng-show="czar">
-	<div ng-show="roundTime">
-		<h4>waiting for players.</h4>
-	</div>
-	<div ng-hide="roundTime">
-		<h4>select a winner</h4>
-	</div>
-</div>
+<h4>Round Time: {{roundTime}} </h4>
+<h4 ng-show="czar">Holy dogshit, you have been chosen as the Czar.</h4>
+<h4 ng-hide="czar">You are not the czar, you filthy pleb.</h4>
+<h4>{{ myStatus }}</h4>
+
 
