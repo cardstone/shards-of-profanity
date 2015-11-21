@@ -65,6 +65,23 @@
 			top: 1rem
 			right: 1rem
 
+			// makes the 'X'
+			&:before,
+			&:after
+				content: ''
+				height: 25px
+				width: 4px
+				position: absolute
+				right: 10px
+
+				background-color: currentColor
+
+			&:before
+				transform: rotate(45deg)
+
+			&:after
+				transform: rotate(-45deg)
+
 		// media query for expanded modal position
 		@media screen and (max-width: 660px)
 			left: 5vw
