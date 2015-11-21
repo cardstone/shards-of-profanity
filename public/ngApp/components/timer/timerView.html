@@ -1,5 +1,6 @@
 <!-- timerController as timer -->
-<h4>Round Time: {{roundTime}} </h4>
+<h4 ng-show="roundTime">Round time: {{roundTime}} </h4>
+<h4 ng-show="intermissionTime">Intermission time: {{intermissionTime}} </h4>
 <h4 ng-show="czar">Holy dogshit, you have been chosen as the Czar.</h4>
 <h4 ng-hide="czar">You are not the czar, you filthy pleb.</h4>
 <h4>{{ myStatus }}</h4>

@@ -123,7 +123,7 @@
 				var submission = $scope.submissions[index];
 				socket.emit('client:roundWinner', {id: submission.id});
 				socket.emit('client:displayWinner', {index: index});
-				$timeout(vm.startRound, 8 * 1000);
+				$timeout(vm.startRound, 10 * 1000);
 			}
 			else {
 				return;

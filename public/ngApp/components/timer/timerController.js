@@ -14,6 +14,7 @@
 		var vm = this;
 		var socket = $scope.mySocket;
 		$scope.roundTime = 0;
+		$scope.intermissionTime = 0;
 		$scope.czar = false;
 		$scope.myStatus = "waiting for host to start..";
 
@@ -24,6 +25,11 @@
 
 		socket.on('server:unCzar', function () {
 			$scope.czar = false;
+		});
+
+		socket.on('server:displayWinner', function () {
+			$scope.intermissionTime = 10;
+			$interval(function(){$scope.intermissionTime--;}, 1000, 10);
 		});
 
 		socket.on('server:enableSubmit', function () {
