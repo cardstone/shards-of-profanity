@@ -1,12 +1,12 @@
 var io;
 var gameSocket;
-var gamesObj;
+var games;
 var socketsObj;
 
-exports.initScoreboard = function (sio, socket, games, socketsInfo) {
+exports.initScoreboard = function (sio, socket, gamesInfo, socketsInfo) {
 	io = sio;
 	gameSocket = socket;
-	gamesObj = games;
+	games = gamesInfo;
 	socketsObj = socketsInfo;
 
 	gameSocket.on('client:joinSuccess', updatePlayerLists);
@@ -45,7 +45,7 @@ function sendPlayerList () {
 function addPoints (data) {
 	socketsObj[data.id].points += 1;
 	var gameNum = socketsObj[this.id].room;
-	if(socketsObj[data.id].points === gamesObj[gameNum].maxPoints) {
+	if(socketsObj[data.id].points === games[gameNum].maxPoints) {
 		console.log("Max Points Reached!");
 		//TODO: GAME WINNING LOGIC HERE
 	} 

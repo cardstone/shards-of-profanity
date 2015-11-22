@@ -1,14 +1,14 @@
 var io;
 var gameSocket;
-var gamesObj;
+var games;
 var socketsObj;
 
 var model = require('./models/Card');
 
-exports.initHome = function (sio, socket, games, socketsInfo) {
+exports.initHome = function (sio, socket, gamesInfo, socketsInfo) {
 	io = sio;
 	gameSocket = socket;
-	gamesObj = games;
+	games = gamesInfo;
 	socketsObj = socketsInfo;
 
   // listen for events from clients
@@ -56,7 +56,7 @@ function createNewGame (data) {
 	thisGameId = thisGameId.toString();
 	this.join('#' + thisGameId);
 	sendGames();
-	gamesObj['#' + thisGameId] = new game(
+	games['#' + thisGameId] = new game(
 		data.gameName,
 		data.maxPlayers,
 		data.privateMatch,
@@ -64,12 +64,12 @@ function createNewGame (data) {
 	);
   // TODO: put these queries in a function
 	model.find({color: 'black'}, 'text numWhites', function (err, cards) {
-		gamesObj['#' + thisGameId].blackCards = cards;
-		gamesObj['#' + thisGameId].blackCardsOrig = cards;
+		games['#' + thisGameId].blackCards = cards;
+		games['#' + thisGameId].blackCardsOrig = cards;
 	});
 	model.find({color: 'white'}, 'text', function (err, cards) {
-		gamesObj['#' + thisGameId].whiteCards = cards;
-		gamesObj['#' + thisGameId].whiteCardsOrig = cards;
+		games['#' + thisGameId].whiteCards = cards;
+		games['#' + thisGameId].whiteCardsOrig = cards;
 	});
 	this.emit('server:createSuccess', {gameId: thisGameId});
 }
@@ -78,11 +78,11 @@ function joinGame (data) {
 	var sock = this;
 	var gameNum = '#' + data.gameId;
 	var room = gameSocket.adapter.rooms[gameNum];
-	if (room !== undefined && (gamesObj[gameNum].players.length < gamesObj[gameNum].maxPlayers)) {
+	if (room !== undefined && (games[gameNum].players.length < games[gameNum].maxPlayers)) {
 		sock.join(gameNum);
 		sock.emit('server:joinSuccess');
 		socketsObj[this.id] = new socketInfo(gameNum);
-		gamesObj[gameNum].players.push(this.id);
+		games[gameNum].players.push(this.id);
 	} else {
 		sock.emit('server:joinFailure');
 	}
@@ -113,13 +113,13 @@ function sendGames () {
 	var gameRooms = [];
 	for(var room in rooms) {
 		if(room[0] == '#') {
-			if(gamesObj[room] !== undefined) {
-				if(Boolean(gamesObj[room].privateMatch) === false) {
-					var numPlayers = gamesObj[room].players.length;
-					var gameName = gamesObj[room].gameName;
-					var maxPlayers = gamesObj[room].maxPlayers;
+			if(games[room] !== undefined) {
+				if(Boolean(games[room].privateMatch) === false) {
+					var numPlayers = games[room].players.length;
+					var gameName = games[room].gameName;
+					var maxPlayers = games[room].maxPlayers;
 					var gameNum = room.slice(1);
-					var inProgress = gamesObj[room].inProgress;
+					var inProgress = games[room].inProgress;
 					var game = {
 						gameNum: gameNum,
 						gameName: gameName,
@@ -137,7 +137,7 @@ function sendGames () {
 
 function startGame () {
 	var gameNum = socketsObj[this.id].room;
-	gamesObj[gameNum].inProgress = true;
+	games[gameNum].inProgress = true;
 	sendGames();
 }
 
@@ -153,14 +153,14 @@ function leaveGame (socketId) {
 	else {
 		emitLeave(socketId);
 		var gameNum = socketsObj[socketId].room;
-		var index = gamesObj[gameNum].players.indexOf(socketId);
+		var index = games[gameNum].players.indexOf(socketId);
 		if(index === -1) {
 			return;
 		}
 		else {
-			gamesObj[gameNum].players.splice(index, 1);
-			if(gamesObj[gameNum].players.length === 0) {
-				delete gamesObj[gameNum];
+			games[gameNum].players.splice(index, 1);
+			if(games[gameNum].players.length === 0) {
+				delete games[gameNum];
 			}
 			delete socketsObj[this.id];
 		}
