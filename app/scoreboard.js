@@ -33,14 +33,12 @@ function getPlayerList (gameNum) {
 function updatePlayerLists () {
 	var gameNum = socketsObj[this.id].room;
 	var players = getPlayerList(gameNum);
-	// send new player list to all clients in room gameNum
 	io.sockets.in(gameNum).emit('server:players', {players: players});
 }
 
 function sendPlayerList () {
 	var gameNum = socketsObj[this.id].room;
 	var players = getPlayerList(gameNum);
-	// send new player list to 'this' client
 	this.emit('server:players', {players: players});
 }
 
@@ -49,6 +47,7 @@ function addPoints (data) {
 	var gameNum = socketsObj[this.id].room;
 	if(socketsObj[data.id].points === gamesObj[gameNum].maxPoints) {
 		console.log("Max Points Reached!");
+		//TODO: GAME WINNING LOGIC HERE
 	} 
 	var players = getPlayerList(gameNum);
 	io.sockets.in(gameNum).emit('server:players', {players: players});

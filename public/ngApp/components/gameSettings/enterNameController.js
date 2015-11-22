@@ -15,6 +15,7 @@
 			socket.emit('client:enterName', {playerName: vm.name});
 			vm.hide();
 		};
+		
 		vm.hide = function () {
 			vm.showModal = false;
 		};
