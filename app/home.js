@@ -16,7 +16,6 @@ exports.initHome = function (sio, socket, games, socketsInfo) {
 	gameSocket.on('client:joinGame', joinGame);
 	gameSocket.on('client:joinSuccess', addDefaultName);
 	gameSocket.on('client:joinSuccess', sendGames);
-	gameSocket.on('client:enterName', enterName);
 	gameSocket.on('client:getGames', sendGames);
 	gameSocket.on('client:exitGame', exitGame);
 	gameSocket.on('client:startGame', startGame);

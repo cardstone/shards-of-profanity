@@ -13,6 +13,7 @@ exports.initScoreboard = function (sio, socket, games, socketsInfo) {
 	gameSocket.on('client:updateName', updatePlayerLists);
 	gameSocket.on('client:getUpdatedPlayerList', sendPlayerList);
 	gameSocket.on('client:roundWinner', addPoints);
+	gameSocket.on('client:enterName', enterName);
 };
 
 function getPlayerList (gameNum) {
@@ -46,9 +47,20 @@ function sendPlayerList () {
 function addPoints (data) {
 	socketsObj[data.id].points += 1;
 	var gameNum = socketsObj[this.id].room;
-	if(socketsObj[data.id].points===gamesObj[gameNum].maxPoints) {
+	if(socketsObj[data.id].points === gamesObj[gameNum].maxPoints) {
 		console.log("Max Points Reached!");
 	} 
 	var players = getPlayerList(gameNum);
 	io.sockets.in(gameNum).emit('server:players', {players: players});
 }
+
+function enterName (data) {
+	var newName = data.playerName;
+	var oldName = socketsObj[this.id].name;
+	var gameNum = socketsObj[this.id].room;
+	var msg = oldName + ' has been renamed ' + newName;
+	socketsObj[this.id].name = newName;
+	var players = getPlayerList(gameNum);
+	io.sockets.in(gameNum).emit('server:message', {msg: msg});
+	io.sockets.in(gameNum).emit('server:players', {players: players});
+}	
