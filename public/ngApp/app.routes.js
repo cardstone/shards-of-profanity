@@ -32,28 +32,29 @@
 						templateUrl: 'components/nav/navView.html'
 					},
 					'chat': {
-						// template: '<div class="chat">chat</div>'
 						templateUrl: 'components/chat/chatView.html',
 						controller: 'ChatController',
 						controllerAs: 'chat'
 					},
 					'play': {
-						// template: '<div class="play">play</div>'
 						templateUrl: 'components/play/playView.html',
 						controller: 'PlayController',
 						controllerAs: 'play'
 					},
 					'scoreboard': {
-						// template: '<div class="scoreboard">scoreboard</div>'
 						templateUrl: 'components/scoreboard/scoreboardView.html',
 						controller: 'ScoreboardController',
 						controllerAs: 'scoreboard'
 					},
 					'timer': {
-						template: '<div class="timer">timer</div>'
-						// templateUrl: 'components/timer/timerView.html',
-						// controller: 'timerController',
-						// controllerAs: 'timer'
+						templateUrl: 'components/timer/timerView.html',
+						controller: 'TimerController',
+						controllerAs: 'timer'
+					},
+					'enterName':{
+						templateUrl: 'components/gameSettings/enterNameView.html',
+						controller: 'EnterNameController',
+						controllerAs: 'enterName'
 					}
 				}
 			})

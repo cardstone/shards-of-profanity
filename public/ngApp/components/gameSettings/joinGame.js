@@ -16,16 +16,11 @@
 		var gameId = $stateParams.gameId;
 
 		SocketService.on('server:joinSuccess', function() {
-			var userName = prompt('Please enter a username');
-			if(userName == null){
-				userName = NameService.get();
-			}
 			$state.go('game', {
 				myParam: {
 					mySocket: SocketService,
 					myGameId: gameId,
-					//myName: NameService.get(),
-					myName: userName,
+					myName: NameService.get(),
 					myAvatar: AvatarService.get(),
 					host: $stateParams.host
 				}

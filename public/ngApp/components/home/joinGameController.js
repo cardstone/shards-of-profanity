@@ -6,10 +6,8 @@
 		.controller('JoinGameController', ['$scope', '$state', '$stateParams', 'SocketService', JoinGameController]);
 
 	function JoinGameController($scope, $state, $stateParams, SocketService) {
-
 		$scope.gameToJoin = '';
 		$scope.games = [];
-
 
 		// ask the server for the list of games
 		SocketService.emit('client:getGames');

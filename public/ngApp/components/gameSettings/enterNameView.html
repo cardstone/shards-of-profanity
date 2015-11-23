@@ -1,0 +1,11 @@
+<div class="nameModal" ng-show="enterName.showModal">
+	<div class="nameModal-content">
+		<h3>Enter a username.</h3>
+		<form name="nameForm" ng-submit="nameForm.$valid && enterName.submitName()">
+			<input name="name" ng-model="enterName.name" type="text" ng-maxlength="16" autocomplete="off" required/>
+			<!-- <button>Enter</button> -->
+		</form>
+		<hr>
+		<button ng-click="enterName.hide()">Fuck the world, I want a random name.</button>
+	</div>
+</div>

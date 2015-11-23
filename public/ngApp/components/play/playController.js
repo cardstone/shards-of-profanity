@@ -57,9 +57,9 @@
 		});
 
 		socket.on('server:enableSubmit', function () {
-			$scope.submitCountdown = 20;
-			$interval(function(){$scope.submitCountdown--;}, 1000, 20);
-			$timeout(roundTimeUp, 21 * 1000);
+			$scope.submitCountdown = 25;
+			$interval(function(){$scope.submitCountdown--;}, 1000, 25);
+			$timeout(roundTimeUp, 25 * 1000);
 		});
 
 		socket.on('server:draw', function () {
@@ -123,7 +123,7 @@
 				var submission = $scope.submissions[index];
 				socket.emit('client:roundWinner', {id: submission.id});
 				socket.emit('client:displayWinner', {index: index});
-				$timeout(vm.startRound, 5 * 1000);
+				$timeout(vm.startRound, 10 * 1000);
 			}
 			else {
 				return;
