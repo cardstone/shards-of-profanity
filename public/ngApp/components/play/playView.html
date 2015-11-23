@@ -2,19 +2,19 @@
 <!-- <p ng-show="czar">I am the czar.</p>
 <p ng-show="submitCountdown > 0">Round over in {{submitCountdown}} seconds!<p>
 <p ng-show="numToSubmit > 0">Choose {{numToSubmit}} white cards.</p> -->
-<button class="play-start" ng-show="host" ng-click="play.startRound()">Start Game.</button>
+<button class="play--start" ng-show="host" ng-click="play.startRound()">Start Game.</button>
 
-<div class="play-board">
-	<black-card class="play-black" card="black" ng-show="black"></black-card>
-	<ul class="play-submissions">
-		<li ng-repeat="submission in submissions track by $index">
-			<card-group cards="submission.cards" ng-click="play.selectWinner($index)"></card-group>
-		</li>
-	</ul>
+<div class="play--board">
+	<black-card class="play--black" card="black" ng-show="black"></black-card>
+	<div class="play--submissions">
+		<card-group class="play--submissions--card" cards="submission.cards"
+			ng-click="play.selectWinner($index)"
+			ng-repeat="submission in submissions track by $index"></card-group>
+	</div>
 </div>
 
-<ul class="play-hand">
-	<li class="play-hand-card"ng-repeat="card in hand track by $index">
-		<white-card card="card" ng-click="play.submitCard($index)"></white-card>
-	</li>
-</ul>
+<div class="play--hand">
+	<white-card class="play--hand--card" card="card"
+		ng-click="play.submitCard($index)"
+		ng-repeat="card in hand track by $index"></white-card>
+</div>

@@ -3,7 +3,7 @@
 	flex-direction: column
 	height: 92vh
 
-	@media (min-width: 660px)
+	@include desktop
 		flex-direction: row
 
 	// & > *
@@ -13,6 +13,6 @@
 		display: flex
 		justify-content: space-between
 
-		@media (min-width: 660px)
+		@include desktop
 			flex-direction: column
 			flex-basis: 200px

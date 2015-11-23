@@ -1,14 +1,11 @@
-
-
-
 .chat
 	display: none
 
-	@media (min-width: 660px)
+	@include desktop
 		display: flex
 		flex-direction: column
 		justify-content: flex-end
-		flex-basis: 25vw
+		width: 25%
 
 .chat-input
 	display: flex

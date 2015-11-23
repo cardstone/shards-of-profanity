@@ -4,26 +4,45 @@
 	flex-direction: column
 	justify-content: space-around
 
-.play-board
-	display: flex
-	// background-color: pink
+	padding: 5px
 
-.play-hand
-	display: flex
-	// background-color: cyan
-	overflow-x: scroll
-	// overflow-y: visible
+	@include desktop
+		border-left: solid black 2px
+		border-right: solid black 2px
 
-	&-card
-		margin-left: -2.25rem
-		transition: $base-duration $base-timing
+	&--start
+		width: 200px
+		margin: auto
 
-		&:hover
-	    z-index: 10
-	    transform: translateY(-1rem)
+	&--board
+		display: flex
 
-	:nth-child(1)
-		margin-left: 0
+	&--submissions
+		display: flex
+		align-content: space-between
+		padding-left: 0.5rem
+
+	&--submission
+		padding-left: 0.5rem
+
+	&--hand
+		display: flex
+		position: relative
+		overflow-x: scroll
+		height: 11rem
+
+		&--card
+			position: relative
+			bottom: -1rem
+			margin-left: -2.25rem
+			transition: $base-duration $base-timing
+
+			.card:hover
+		    z-index: 10
+		    transform: translateY(-1rem)
+
+		:nth-child(1)
+			margin-left: 0
 
 .card-group
 	li
