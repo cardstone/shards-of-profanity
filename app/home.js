@@ -160,7 +160,8 @@ function leaveGame (socketId) {
 		else {
 			games[gameNum].players.splice(index, 1);
 			if(games[gameNum].players.length === 0) {
-				delete games[gameNum];
+				//delete games[gameNum];
+				//LEAK
 			}
 			delete socketsObj[this.id];
 		}
