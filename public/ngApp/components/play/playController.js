@@ -133,7 +133,7 @@
 		vm.startRound = function () {
 			$scope.host = false; // TODO: this is hacky, fix
 			socket.emit('client:startRound');
-			socket.emit('client:getUpdatedPlayerList');
+			socket.emit('client:updateAllScoreboard');
 		};
 
 		vm.startGame = function () {
