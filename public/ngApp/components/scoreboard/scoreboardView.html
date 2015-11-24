@@ -5,7 +5,6 @@
 		<span>Score</span>
 	</li>
 	<li ng-repeat="player in scoreboard.players track by $index">
-		<!-- <span class="avatar" ng-include='player.avatar'></span> -->
 		<div class="scoreboard-player" ng-if="player.czar"
 			ng-style="{'background-color':'gray', 'color': 'white'}">
 			<span class="user-name">{{player.name}} &#9812</span>
