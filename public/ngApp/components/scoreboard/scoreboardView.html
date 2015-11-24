@@ -1,7 +1,11 @@
 <!-- ScoreboardController as scoreboard -->
 <ul>
-	<li class="listElements" ng-repeat="player in scoreboard.players track by $index">
-		<span class="avatar" ng-include='player.avatar'></span>
+	<li class="scoreboard-player">
+		<span>Player</span>
+		<span>Score</span>
+	</li>
+	<li class="scoreboard-player" ng-repeat="player in scoreboard.players track by $index">
+		<!-- <span class="avatar" ng-include='player.avatar'></span> -->
 		<span class="user-name">{{ player.name }}</span>
 		<span class="user-name">{{ player.points }}</span>
 	</li>
