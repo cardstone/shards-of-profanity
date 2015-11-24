@@ -19,13 +19,25 @@ exports.initScoreboard = function (sio, socket, gamesInfo, socketsInfo) {
 function getPlayerList (gameNum) {
 	var players = [];
 	var sockets = gameSocket.adapter.rooms[gameNum];
+	var czar = games[gameNum].czar;
 	sockets = Object.keys(sockets);
 	for (var i = 0; i<sockets.length; i++) {
-		players.push({
-			name: socketsObj[sockets[i]].name,
-			avatar: socketsObj[sockets[i]].avatar,
-			points: socketsObj[sockets[i]].points
-		});
+		if(i === czar) {
+			players.push({
+				name: socketsObj[sockets[i]].name,
+				avatar: socketsObj[sockets[i]].avatar,
+				points: socketsObj[sockets[i]].points,
+				czar: true
+			});
+		}
+		else {
+			players.push({
+				name: socketsObj[sockets[i]].name,
+				avatar: socketsObj[sockets[i]].avatar,
+				points: socketsObj[sockets[i]].points,
+				czar: false
+			});
+		}
 	}
 	return players;
 }

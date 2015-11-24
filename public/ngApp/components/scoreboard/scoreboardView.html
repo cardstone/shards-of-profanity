@@ -7,6 +7,7 @@
 	<li class="scoreboard-player" ng-repeat="player in scoreboard.players track by $index">
 		<!-- <span class="avatar" ng-include='player.avatar'></span> -->
 		<span class="user-name">{{ player.name }}</span>
+		<span class="user-name">{{ player.czar }}</span>
 		<span class="user-name">{{ player.points }}</span>
 	</li>
 </ul>
