@@ -146,6 +146,7 @@ function disconnect () {
 	sendGames();
 }
 
+// this function is satan
 function leaveGame (socketId) {
 	if(socketsObj[socketId] === undefined) {
 		return;
@@ -153,24 +154,27 @@ function leaveGame (socketId) {
 	else {
 		emitLeave(socketId);
 		var gameNum = socketsObj[socketId].room;
-		var index = games[gameNum].players.indexOf(socketId);
-		if(index === -1) {
-			return;
-		}
-		else {
-			games[gameNum].players.splice(index, 1);
-			if(games[gameNum].players.length === 0) {
-				//delete games[gameNum];
-				//LEAK
+		if(games[gameNum] !== undefined) {
+			var index = games[gameNum].players.indexOf(socketId);
+			if(index === -1) {
+				return;
 			}
-			delete socketsObj[this.id];
+			else {
+				delete socketsObj[socketId];
+				games[gameNum].players.splice(index, 1);
+				if(games[gameNum].players.length === 0) {
+					delete games[gameNum];
+				}
+			}
 		}
 	}
 }
 
 // function manually leaves a socket room
 function exitGame () {
-	this.leave(socketsObj[this.id].room);
-	leaveGame(this.id);
-	sendGames();
+	if(socketsObj[this.id] !== undefined) {
+		this.leave(socketsObj[this.id].room);
+		leaveGame(this.id);
+		sendGames();
+	}
 }
