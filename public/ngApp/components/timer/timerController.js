@@ -16,7 +16,7 @@
 		$scope.roundTime = 0;
 		$scope.intermissionTime = 0;
 		$scope.czar = false;
-		$scope.myStatus = "waiting for host to start..";
+		$scope.myStatus = "Waiting for host to start..";
 
 		socket.on('server:czar', function () {
 			$scope.czar = true;
@@ -31,25 +31,25 @@
 			$scope.intermissionTime = 10;
 			$interval(function(){$scope.intermissionTime--;}, 1000, 10);
 		});
-
+		
 		socket.on('server:enableSubmit', function () {
 			$scope.roundTime = 25;
 			$interval(function(){$scope.roundTime--;}, 1000, 25);
 			$timeout(roundTimeUp, 25 * 1000);
 			if($scope.czar) {
-				$scope.myStatus = "waiting for players to submit...";
+				$scope.myStatus = "Wait for all cards to be submitted and then pick a winner";
 			}
 			else {
-				$scope.myStatus = "submit your white cards.";
+				$scope.myStatus = "Submit your white cards.";
 			}
 		});
 
 		function roundTimeUp() {
 			if($scope.czar) {
-				$scope.myStatus = "select a winner.";
+				$scope.myStatus = "Select a winner.";
 			}
 			else {
-				$scope.myStatus = "awaiting the Czar's almighty ruling...";
+				$scope.myStatus = "Awaiting the Czar's almighty ruling...";
 			}
 		}
 	}
