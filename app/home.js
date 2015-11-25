@@ -1,7 +1,7 @@
 var io;
 var gameSocket;
 var games;
-var socketsObj;
+var sockets;
 
 var model = require('./models/Card');
 
@@ -9,7 +9,7 @@ exports.initHome = function (sio, socket, gamesInfo, socketsInfo) {
 	io = sio;
 	gameSocket = socket;
 	games = gamesInfo;
-	socketsObj = socketsInfo;
+	sockets = socketsInfo;
 
   // listen for events from clients
 	gameSocket.on('client:createNewGame', createNewGame);
@@ -44,8 +44,8 @@ function socketInfo (room) {
 }
 
 function emitLeave (socketId) {
-	var gameNum = socketsObj[socketId].room;
-	var name = socketsObj[socketId].name;
+	var gameNum = sockets[socketId].room;
+	var name = sockets[socketId].name;
 	var leftMessage = name + ' has left the game. What a quitter.';
 	io.sockets.in(gameNum).emit('server:playerDisconnected');
 	io.sockets.in(gameNum).emit('server:message', {msg: leftMessage});
@@ -81,7 +81,7 @@ function joinGame (data) {
 	if (room !== undefined && (games[gameNum].players.length < games[gameNum].maxPlayers)) {
 		sock.join(gameNum);
 		sock.emit('server:joinSuccess');
-		socketsObj[this.id] = new socketInfo(gameNum);
+		sockets[this.id] = new socketInfo(gameNum);
 		games[gameNum].players.push(this.id);
 	} else {
 		sock.emit('server:joinFailure');
@@ -89,21 +89,21 @@ function joinGame (data) {
 }
 
 function leaveGame (data) {
-	this.leave(socketsObj[this.id].room);
+	this.leave(sockets[this.id].room);
 	emitLeave(this.id);
-	socketsObj[this.id].room = null;
+	sockets[this.id].room = null;
 }
 
 function addDefaultName (data) {
-	socketsObj[this.id].name = data.playerName;
-	socketsObj[this.id].avatar = data.avatar;
+	sockets[this.id].name = data.playerName;
+	sockets[this.id].avatar = data.avatar;
 }
 
 function enterName (data) {
 	var newName = data.playerName;
-	var oldName = socketsObj[this.id].name;
-	var gameNum = socketsObj[this.id].room;
-	socketsObj[this.id].name = newName;
+	var oldName = sockets[this.id].name;
+	var gameNum = sockets[this.id].room;
+	sockets[this.id].name = newName;
 	var msg = oldName + ' has been renamed ' + newName;
 	io.sockets.in(gameNum).emit('server:message', {msg: msg});
 }
@@ -136,7 +136,7 @@ function sendGames () {
 }
 
 function startGame () {
-	var gameNum = socketsObj[this.id].room;
+	var gameNum = sockets[this.id].room;
 	games[gameNum].inProgress = true;
 	sendGames();
 }
@@ -148,19 +148,19 @@ function disconnect () {
 
 // this function is satan
 function leaveGame (socketId) {
-	if(socketsObj[socketId] === undefined) {
+	if(sockets[socketId] === undefined) {
 		return;
 	}
 	else {
 		emitLeave(socketId);
-		var gameNum = socketsObj[socketId].room;
+		var gameNum = sockets[socketId].room;
 		if(games[gameNum] !== undefined) {
 			var index = games[gameNum].players.indexOf(socketId);
 			if(index === -1) {
 				return;
 			}
 			else {
-				delete socketsObj[socketId];
+				delete sockets[socketId];
 				games[gameNum].players.splice(index, 1);
 				if(games[gameNum].players.length === 0) {
 					delete games[gameNum];
@@ -172,8 +172,8 @@ function leaveGame (socketId) {
 
 // function manually leaves a socket room
 function exitGame () {
-	if(socketsObj[this.id] !== undefined) {
-		this.leave(socketsObj[this.id].room);
+	if(sockets[this.id] !== undefined) {
+		this.leave(sockets[this.id].room);
 		leaveGame(this.id);
 		sendGames();
 	}

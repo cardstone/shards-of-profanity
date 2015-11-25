@@ -1,13 +1,13 @@
 var io;
 var gameSocket;
 var games;
-var socketsObj;
+var sockets;
 
 exports.initScoreboard = function (sio, socket, gamesInfo, socketsInfo) {
 	io = sio;
 	gameSocket = socket;
 	games = gamesInfo;
-	socketsObj = socketsInfo;
+	sockets = socketsInfo;
 
 	gameSocket.on('client:joinSuccess', updatePlayerLists);
 	gameSocket.on('client:updateAllScoreboard', updatePlayerLists);
@@ -16,25 +16,34 @@ exports.initScoreboard = function (sio, socket, gamesInfo, socketsInfo) {
 	gameSocket.on('client:enterName', enterName);
 };
 
+function getRoom (socketId) {
+	if (sockets[socketId] === undefined) {
+		return -1;
+	}
+	else {
+		return sockets[socketId].room;
+	}
+}
+
 function getPlayerList (gameNum) {
 	var players = [];
-	var sockets = gameSocket.adapter.rooms[gameNum];
+	var connectedSockets = gameSocket.adapter.rooms[gameNum];
 	var czar = games[gameNum].czar;
-	sockets = Object.keys(sockets);
-	for (var i = 0; i<sockets.length; i++) {
+	connectedSockets = Object.keys(connectedSockets);
+	for (var i = 0; i < connectedSockets.length; i++) {
 		if(i === czar) {
 			players.push({
-				name: socketsObj[sockets[i]].name,
-				avatar: socketsObj[sockets[i]].avatar,
-				points: socketsObj[sockets[i]].points,
+				name: sockets[connectedSockets[i]].name,
+				avatar: sockets[connectedSockets[i]].avatar,
+				points: sockets[connectedSockets[i]].points,
 				czar: true
 			});
 		}
 		else {
 			players.push({
-				name: socketsObj[sockets[i]].name,
-				avatar: socketsObj[sockets[i]].avatar,
-				points: socketsObj[sockets[i]].points,
+				name: sockets[connectedSockets[i]].name,
+				avatar: sockets[connectedSockets[i]].avatar,
+				points: sockets[connectedSockets[i]].points,
 				czar: false
 			});
 		}
@@ -43,21 +52,21 @@ function getPlayerList (gameNum) {
 }
 
 function updatePlayerLists () {
-	var gameNum = socketsObj[this.id].room;
+	var gameNum = getRoom(this.id);
 	var players = getPlayerList(gameNum);
 	io.sockets.in(gameNum).emit('server:players', {players: players});
 }
 
 function sendPlayerList () {
-	var gameNum = socketsObj[this.id].room;
+	var gameNum = getRoom(this.id);
 	var players = getPlayerList(gameNum);
 	this.emit('server:players', {players: players});
 }
 
 function addPoints (data) {
-	socketsObj[data.id].points += 1;
-	var gameNum = socketsObj[this.id].room;
-	if(socketsObj[data.id].points === games[gameNum].maxPoints) {
+	sockets[data.id].points += 1;
+	var gameNum = getRoom(this.id);
+	if(sockets[data.id].points === games[gameNum].maxPoints) {
 		console.log("Max Points Reached!");
 		//TODO: GAME WINNING LOGIC HERE
 	} 
@@ -67,10 +76,10 @@ function addPoints (data) {
 
 function enterName (data) {
 	var newName = data.playerName;
-	var oldName = socketsObj[this.id].name;
-	var gameNum = socketsObj[this.id].room;
+	var oldName = sockets[this.id].name;
+	var gameNum = getRoom(this.id);
 	var msg = oldName + ' has been renamed ' + newName;
-	socketsObj[this.id].name = newName;
+	sockets[this.id].name = newName;
 	var players = getPlayerList(gameNum);
 	io.sockets.in(gameNum).emit('server:message', {msg: msg});
 	io.sockets.in(gameNum).emit('server:players', {players: players});
