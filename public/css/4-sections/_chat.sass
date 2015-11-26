@@ -6,40 +6,45 @@
 	margin-left : 0px
 	background-color: white
 	max-height: 16%
-	overflow-y: scroll
+	overflow-y: auto
 	border-radius: 14px
 	
+	.avatar
+		
 	@include desktop
 		display: flex
 		flex-direction: column
 		justify-content: flex-end
 		width: 25%
 		max-height: 100%
+		overflow-y: hidden
 
-    
-  //.message
+	//.message
   
-  .messages-wrap li
-    margin-bottom: 5px
+	.messages-wrap li
+		margin-bottom: 5px
 
-  .messages-wrap
-    text-indent: 5px
-    margin-top: 5px
-    font-size: 12px
-    margin-bottom: 8px
-    padding-left: 5px
-    word-wrap: break-word
-    width: 95%
-    background: white
+	.messages-wrap
+		text-indent: 5px
+		margin-top: 5px
+		font-size: 12px
+		margin-bottom: 8px
+		padding-left: 5px
+		word-wrap: break-word
+		width: 95%
+		background: white
+		overflow-y: auto
 
-  .chat-input
-    display: flex
-    width: 95%
-    margin: 0 auto
-    height: 50px
-    
+	.chat-input
+		margin: 0 auto
+		width: 95%
+		height: 50px
 
-
+	.send
+		width: 95%
+		//margin: 0 auto
+	
+	
 // .chat
   // border-style: solid
   // border-left-color: #232323
@@ -47,10 +52,7 @@
   // border-width: 1px
   // font-family: "Times New Roman", Times, serif
 	//
-  // .send
-  //   float: left
-  //   width: 100%
-  //   margin-bottom: 10px
+
 	//
 
 	//
