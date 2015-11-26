@@ -1,18 +1,21 @@
 .chat
-	display: none
-  margin-top: 7px
-  margin-right: 7px
-  margin-bottom: 7px
-  margin-left : 0px
-
-  background-color: white
-
 	//display: none
+	margin-top: 7px
+	margin-right: 7px
+	margin-bottom: 7px
+	margin-left : 0px
+	background-color: white
+	max-height: 16%
+	overflow-y: scroll
+	border-radius: 14px
+	
 	@include desktop
 		display: flex
 		flex-direction: column
 		justify-content: flex-end
 		width: 25%
+		max-height: 100%
+
     
   //.message
   
@@ -20,8 +23,6 @@
     margin-bottom: 5px
 
   .messages-wrap
-    
-    height: 100%
     text-indent: 5px
     margin-top: 5px
     font-size: 12px
@@ -29,7 +30,7 @@
     padding-left: 5px
     word-wrap: break-word
     width: 95%
-    cbackground: white
+    background: white
 
   .chat-input
     display: flex
