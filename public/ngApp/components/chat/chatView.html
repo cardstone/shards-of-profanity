@@ -2,7 +2,7 @@
 <div class="messages-wrap" scroll-glue>
 	<ul id="messages">
 		<li ng-repeat="message in chat.messages track by $index">
-			<!--<span class="avatar" ng-include='message.avatar'></span>-->
+			<span class="avatar" ng-include='message.avatar'></span>
 			<span class="user-name"> {{ message.name }}:</span>
 			<span class="message">{{ message.msg }}</span>
 		</li>
@@ -12,5 +12,5 @@
 <form class="chat-input" name="chatForm" ng-submit="chatForm.$valid && chat.sendMessage()">
 	<div ng-show="chatForm.message.$error.maxlength">Message too long yo, keep it to 256 characters.</div>
 	<input name="message" ng-model="chat.msg" type="text" autocomplete="off" ng-maxlength="256" required autofocus/>
-	<!--<button class="send">Send</button>-->
+	<button class="send">Send</button>
 </form>

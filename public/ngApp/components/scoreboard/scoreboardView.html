@@ -4,9 +4,15 @@
 		<span>Player</span>
 		<span>Score</span>
 	</li>
-	<li class="scoreboard-player" ng-repeat="player in scoreboard.players track by $index">
-		<!-- <span class="avatar" ng-include='player.avatar'></span> -->
-		<span class="user-name">{{ player.name }}</span>
-		<span class="user-name">{{ player.points }}</span>
+	<li ng-repeat="player in scoreboard.players track by $index">
+		<div class="scoreboard-player" ng-if="player.czar"
+			ng-style="{'background-color':'gray', 'color': 'white'}">
+			<span class="user-name">{{player.name}} &#9812</span>
+			<span class="user-name">{{player.points}}</span>
+		</div>
+		<div class="scoreboard-player" ng-if="!player.czar">
+			<span class="user-name">{{player.name}}</span>
+			<span class="user-name">{{player.points}}</span>
+		</div>
 	</li>
 </ul>

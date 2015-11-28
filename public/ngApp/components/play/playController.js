@@ -60,6 +60,7 @@
 			$scope.submitCountdown = 25;
 			$interval(function(){$scope.submitCountdown--;}, 1000, 25);
 			$timeout(roundTimeUp, 25 * 1000);
+			socket.emit('client:updateAllScoreboard');
 		});
 
 		socket.on('server:draw', function () {

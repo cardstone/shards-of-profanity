@@ -1,13 +1,13 @@
 var io;
 var gameSocket;
 var games;
-var socketsObj;
+var sockets;
 
 exports.initPlay = function (sio, socket, gamesInfo, socketsInfo) {
 	io = sio;
 	gameSocket = socket;
 	games = gamesInfo;
-	socketsObj = socketsInfo;
+	sockets = socketsInfo;
 
 	gameSocket.on('client:getRandWhite', sendRandWhite);
 	gameSocket.on('client:whiteSelected', displayWhiteAll);
@@ -15,7 +15,15 @@ exports.initPlay = function (sio, socket, gamesInfo, socketsInfo) {
 	gameSocket.on('client:startRound', startRound);
 };
 
- 
+function getRoom (socketId) {
+	if (sockets[socketId] === undefined) {
+		return -1;
+	}
+	else {
+		return sockets[socketId].room;
+	}
+}
+
 function sendBlackAll (gameNum) {
 	var blackCards = games[gameNum].blackCards;
 	var random = Math.floor(Math.random() * blackCards.length);
@@ -24,7 +32,7 @@ function sendBlackAll (gameNum) {
 }
 
 function sendRandWhite (data) {
-	var gameNum = socketsObj[this.id].room;
+	var gameNum = getRoom(this.id);
 	var whiteCards = games[gameNum].whiteCards;
 	var cards = [];
 	for(var i = 0; i < data.numCards; i++) {
@@ -37,18 +45,18 @@ function sendRandWhite (data) {
 
 function displayWhiteAll (data) {
 	var socketId = this.id;
-	var gameNum = socketsObj[this.id].room; 
+	var gameNum = getRoom(this.id); 
 	io.sockets.in(gameNum).emit('server:displayWhite', {id: socketId, cards: data.cards});
 }
 
 function displayWinner (data) {
 	var socketId = this.id;
-	var gameNum = socketsObj[this.id].room; 
+	var gameNum = getRoom(this.id); 
 	io.sockets.in(gameNum).emit('server:displayWinner', {index: data.index});
 }
 
 function startRound () {
-	var gameNum = socketsObj[this.id].room; 
+	var gameNum = getRoom(this.id); 
 	newRound(gameNum);
 	incrementCzar(gameNum);
 	sendBlackAll(gameNum);
