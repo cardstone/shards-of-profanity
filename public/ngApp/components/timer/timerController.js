@@ -37,7 +37,7 @@
 			$interval(function(){$scope.roundTime--;}, 1000, 25);
 			$timeout(roundTimeUp, 25 * 1000);
 			if($scope.czar) {
-				$scope.myStatus = "Pick winner after round is over";
+				$scope.myStatus = "Wait for players to submit their cards";
 			}
 			else {
 				$scope.myStatus = "Submit your white cards.";
@@ -49,7 +49,7 @@
 				$scope.myStatus = "Select a winner.";
 			}
 			else {
-				$scope.myStatus = "The Czar is picking the winner";
+				$scope.myStatus = "Wait for czar's decision";
 			}
 		}
 	}
