@@ -1,5 +1,11 @@
-<ul class="card-group">
+<ul class="card-group" ng-hide="dummy">
 	<li ng-repeat="card in cards track by $index">
 		<white-card card="card"></white-card>
+	</li>
+</ul>
+
+<ul class="card-group" ng-show="dummy">
+	<li ng-repeat="card in cards track by $index">
+		<white-card card="{'text': 'Shards of Profanity.'}"></white-card>
 	</li>
 </ul>

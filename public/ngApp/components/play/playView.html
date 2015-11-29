@@ -2,9 +2,13 @@
 
 <div class="play--board">
 	<black-card class="play--black" card="black" ng-show="black"></black-card>
-	<div class="play--submissions">
-		<card-group class="play--submissions--card" cards="submission.cards"
+	<div class="play--submissions" ng-hide="submitCountdown">
+		<card-group class="play--submissions--card" cards="submission.cards" dummy="false"
 			ng-click="play.selectWinner($index)"
+			ng-repeat="submission in submissions track by $index"></card-group>
+	</div>
+	<div class="play--submissions" ng-show="submitCountdown">
+		<card-group class="play--submissions--card" cards="submission.cards" dummy="true"
 			ng-repeat="submission in submissions track by $index"></card-group>
 	</div>
 </div>
