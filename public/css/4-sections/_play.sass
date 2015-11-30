@@ -22,9 +22,11 @@
 		background-size: cover
 		background-repeat: no-repeat
 		animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1)
-		
-	@keyframes pulse {to {box-shadow: 0 0 0 32px rgba(69, 69, 69, 0.2);}}
-	
+
+	@keyframes pulse
+		to
+			box-shadow: 0 0 0 32px rgba(69, 69, 69, 0.2)
+
 	&--board
 		display: flex
 
@@ -40,6 +42,7 @@
 		display: flex
 		position: relative
 		overflow-x: scroll
+		overflow-y: hidden
 		height: 11.5rem
 
 		&--card
@@ -48,7 +51,7 @@
 			margin-left: -2.25rem
 			transition: $base-duration $base-timing
 
-			.card:hover
+			&:hover
 		    z-index: 10
 		    transform: translateY(-1rem)
 
@@ -61,39 +64,3 @@
 
 	:nth-child(1)
 		margin-top: auto
-
-// .play
-// 	display: flex
-// 	flex-direction: column
-// 	position: absolute
-// 	bottom: 0
-// 	left: 0
-// 	right: 350px
-// 	height: 100%
-// 	background-color: gray
-//
-// 	.submissions
-// 		.group
-// 			float:left
-// 			margin-left: 5px
-// 			margin-right 5px
-// 			&:hover
-// 				.card
-// 					z-index: 10
-// 					transform: translateY(-33%)
-//
-//
-// 	.hand
-// 		margin: auto
-// 		transform: scale(0.75)
-// 		position: absolute
-// 		bottom: 0
-// 		left: 0
-// 		li
-// 			position: relative
-// 			.card
-// 				margin-bottom: -120px
-// 				margin-left: 1px
-// 				margin-right 1px
-// 				&:hover
-//     				transform: translateY(-120px)

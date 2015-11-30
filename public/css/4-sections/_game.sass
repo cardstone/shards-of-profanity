@@ -7,9 +7,6 @@
 	@include desktop
 		flex-direction: row
 
-	// & > *
-	// 	border: 2px solid yellow
-
 	.info
 		margin-top: 7px
 		margin-left: 7px
@@ -27,6 +24,7 @@
 
 	.enterName
 		position: absolute
+
 		.nameModal
 			position: fixed
 			top: 0
@@ -38,12 +36,14 @@
 			opacity: 1
 
 		.nameModal-content
-			width: 600px
+			width: 80%
+			max-width: 600px
 			position: relative
-			margin: 10% auto
+			margin: 25vh auto
 			padding: 30px
 			border-radius: 10px
 			background: #fff
 			color: black
+
 			button
 				width: 100%
