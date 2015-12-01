@@ -23,6 +23,15 @@
 		$scope.czar = false;
 		$scope.faceUp = false;
 		$scope.showWinner = false;
+		var submitPromise = null;
+		var startPromise = null;
+		var countdownPromise = null;
+
+		$scope.$on('$destroy', function(){
+			$timeout.cancel(submitPromise);
+			$timeout.cancel(startPromise);
+			$interval.cancel(countdownPromise);
+		});
 
 		socket.on('server:czar', function () {
 			$scope.czar = true;
@@ -58,8 +67,8 @@
 
 		socket.on('server:enableSubmit', function () {
 			$scope.submitCountdown = 25;
-			$interval(function(){$scope.submitCountdown--;}, 1000, 25);
-			$timeout(roundTimeUp, 25 * 1000);
+			countdownPromise = $interval(function(){$scope.submitCountdown--;}, 1000, 25);
+			submitPromise = $timeout(roundTimeUp, 25 * 1000);
 			socket.emit('client:updateAllScoreboard');
 		});
 
@@ -124,7 +133,7 @@
 				var submission = $scope.submissions[index];
 				socket.emit('client:roundWinner', {id: submission.id});
 				socket.emit('client:displayWinner', {index: index});
-				$timeout(vm.startRound, 10 * 1000);
+				startPromise = $timeout(vm.startRound, 10 * 1000);
 			}
 			else {
 				return;
