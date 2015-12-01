@@ -8,29 +8,29 @@
 	function NameService() {
 
 		var adjectives = [
-			'anonymous',
+			//'anonymous',
 			'random',
-			'mysterious',
+			//'mysterious',
 			'vulgar',
 			'vile',
 			'weak',
-			'pathetic',
-			'milquetoast',
+			//'pathetic',
+			//'milquetoast',
 			'rusty',
 			'poopy',
 			'crusty',
 			'musty',
 			'dusty',
 			'filthy',
-			'smelly',
-			'butt-faced'
+			'smelly'
+			//'butt-faced'
 		];
 
 		var nouns = [
-			'shit-bag',
+			//'shit-bag',
 			'plumbus',
-			'jerk-off',
-			'butthole',
+			//'jerk-off',
+			//'butthole',
 			'fart',
 			'casual',
 			'plebian',
