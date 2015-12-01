@@ -2,7 +2,10 @@
 	flex-grow: 1
 	background: white
 	border-radius: 14px
+	border: 2px solid #000
 	padding: 5px
+	max-height: 150px
+	overflow-y: auto
 
 	@media (min-width: 660px)
 		order: 2
@@ -12,6 +15,9 @@
 		justify-content: space-between 
 		border-bottom: solid
 		border-color: black
+		
+	@include desktop
+		max-height: 9000000000px // my brain cant compute, but it works
 
 
 // .scoreboard

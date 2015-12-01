@@ -25,7 +25,7 @@
 		vm.messages.push({
 			name: 'SERVER',
 			avatar: 'icons/robot.svg',
-			msg: `Misery loves company so give this url to a friend: ${location}`
+			msg: `Give this url to a friend: ${location}`
 		});
 
 		// listen for socket events
