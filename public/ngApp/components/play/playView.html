@@ -2,8 +2,8 @@
 
 <div class="play--board">
 	<black-card class="play--black" card="black" ng-show="black"></black-card>
-	<div class="play--submissions" ng-hide="submitCountdown">
-		<card-group class="play--submissions--card" ng-class="{'highlight' : czar && !submitCountdown}" 
+	<div class="play--submissions" ng-class="{'highlight' : czar && !submitCountdown}"  ng-hide="submitCountdown">
+		<card-group class="play--submissions--card"
 		cards="submission.cards" dummy="false"
 			ng-click="play.selectWinner($index)"
 			ng-repeat="submission in submissions track by $index"></card-group>
@@ -14,7 +14,7 @@
 	</div>
 </div>
 
-<div class="play--hand">
+<div class="play--hand" ng-class="{'highlight' : numToSubmit > 0}">
 	<white-card class="play--hand--card" card="card"
 		ng-click="play.submitCard($index)"
 		ng-repeat="card in hand track by $index"></white-card>
