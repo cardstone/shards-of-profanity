@@ -23,6 +23,7 @@
 		$scope.czar = false;
 		$scope.faceUp = false;
 		$scope.showWinner = false;
+		$scope.postGame = null;
 		var submitPromise = null;
 		var startPromise = null;
 		var countdownPromise = null;
@@ -83,6 +84,25 @@
 			$scope.faceUp = false;
 			$scope.showWinner = false;
 		});
+
+		socket.on('server:gameOver', function (data) {
+			// nuke everything
+			$scope.black = null;
+			$scope.hand = [];
+			$scope.mySubmissions = [];
+			$scope.submissions = [];
+			$scope.winningCards = null;
+			$scope.numToSubmit = 0;
+			$scope.submitCountdown = 0;
+			$scope.czar = false;
+			$scope.faceUp = false;
+			$scope.showWinner = false;
+			$timeout.cancel(submitPromise);
+			$timeout.cancel(startPromise);
+			$interval.cancel(countdownPromise);
+			$scope.postGame = {status: true, gameWinner: data.gameWinner};
+
+		})
 
 		function roundTimeUp () {
 			while($scope.numToSubmit > 0) {
