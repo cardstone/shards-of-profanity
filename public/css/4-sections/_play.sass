@@ -8,7 +8,7 @@
 	border-radius: 14px
 	border: 2px solid #000
 
-	padding: 5px
+	padding: 12px
 
 	@include desktop
 
@@ -25,10 +25,15 @@
 		display: flex
 		align-content: space-between
 		overflow-x: scroll
-		padding-left: 0.5rem
+		margin-left: 2.5rem
+		border: 2px solid white
+		padding: 4px
+		border-radius: 10px
 
-	&--submission
-		padding-left: 0.5rem
+		&--card
+			margin-left: 2px
+			margin-right: 2px
+
 
 	&--hand
 		display: flex
@@ -36,6 +41,9 @@
 		overflow-x: scroll
 		overflow-y: hidden
 		height: 11.5rem
+		border: 2px solid white
+		padding: 4px
+		border-radius: 18px
 
 		&--card
 			position: relative
@@ -60,7 +68,6 @@
 
 .highlight
 	box-shadow: 0 0 0 0 rgba(69, 69, 69, 0.9)
-	border-radius: 5%
 	background-size: cover
 	background-repeat: no-repeat
 	animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1)
