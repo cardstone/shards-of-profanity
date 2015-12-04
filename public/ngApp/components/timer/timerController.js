@@ -49,7 +49,7 @@
 			countdownPromise = $interval(function(){$scope.roundTime--;}, 1000, 25);
 			submitPromise = $timeout(roundTimeUp, 25 * 1000);
 			if($scope.czar) {
-				$scope.myStatus = "Wait for players to submit their cards";
+				$scope.myStatus = "Wait for players to submit their cards...";
 			}
 			else {
 				$scope.myStatus = "Submit your white cards.";
@@ -61,7 +61,7 @@
 				$scope.myStatus = "Select a winner.";
 			}
 			else {
-				$scope.myStatus = "Wait for czar's decision";
+				$scope.myStatus = "Wait for czar's decision...";
 			}
 		}
 	}
