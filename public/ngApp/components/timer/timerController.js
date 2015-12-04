@@ -16,6 +16,7 @@
 		$scope.roundTime = 0;
 		$scope.intermissionTime = 0;
 		$scope.czar = false;
+		$scope.roundNum = 0;
 		$scope.myStatus = "Waiting for host to start..";
 		var submitPromise = null;
 		var intermissionPromise= null;
@@ -43,6 +44,7 @@
 		});
 
 		socket.on('server:enableSubmit', function () {
+			$scope.roundNum++;
 			$scope.roundTime = 25;
 			countdownPromise = $interval(function(){$scope.roundTime--;}, 1000, 25);
 			submitPromise = $timeout(roundTimeUp, 25 * 1000);
