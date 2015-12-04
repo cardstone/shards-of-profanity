@@ -12,6 +12,7 @@
 		// get variables from our parent state scope
 		var socket = $scope.mySocket;
 		var myGameId = $scope.myGameId;
+		$scope.joinUrl = 'shardsofprofanity.com/join/' + myGameId;
 		// var myName = $scope.myName;
 
 		vm.msg = ``;
