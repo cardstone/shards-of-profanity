@@ -30,6 +30,7 @@
     "lazy": "*",
     "method-override": "~2.3.5",
     "mongoose": "~4.1.5",
+    "node-bourbon": "^4.2.3",
     "socket.io": "^1.3.6",
     "split": "*",
     "through2": "*"
