@@ -6,8 +6,10 @@
 	padding: 5px
 	overflow-y: auto
 	min-height: 100px
+	max-height: 120px
 	
 	@include desktop
+		max-height: none
 		height: auto
 	@media (min-width: 660px)
 		order: 2
