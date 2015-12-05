@@ -63,7 +63,12 @@
 
 		socket.on('server:displayBlack', function (data) {
 			$scope.black = data.card;
-			$scope.numToSubmit = Number($scope.black.numWhites);
+			if($scope.czar) {
+				$scope.numToSubmit = 0;
+			}
+			else {
+				$scope.numToSubmit = Number($scope.black.numWhites);
+			}
 		});
 
 		socket.on('server:enableSubmit', function () {
@@ -127,7 +132,7 @@
 		};
 
 		vm.submitCard = function (index) {
-			if($scope.numToSubmit > 0 && !czar) {
+			if($scope.numToSubmit > 0) {
 				var card = $scope.hand.splice(index, 1);
 				card = card[0];
 				$scope.mySubmissions.push(card);
