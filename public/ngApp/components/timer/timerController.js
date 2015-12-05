@@ -29,6 +29,10 @@
 
 		});
 
+		socket.on('server:newRound', function (data) {
+			$scope.roundNum = data.roundNum;
+		});
+
 		socket.on('server:czar', function () {
 			$scope.czar = true;
 			$scope.myStatus = "";
@@ -44,7 +48,6 @@
 		});
 
 		socket.on('server:enableSubmit', function () {
-			$scope.roundNum++;
 			$scope.roundTime = 25;
 			countdownPromise = $interval(function(){$scope.roundTime--;}, 1000, 25);
 			submitPromise = $timeout(roundTimeUp, 25 * 1000);

@@ -1,14 +1,10 @@
 .modal
-  position: fixed
-  top: 0
-  right: 0
-  bottom: 0
-  left: 0
-  background: rgba(0,0,0,0.8)
-  z-index: 99999
-  opacity: 0
-  transition: opacity 300ms ease-in
-  pointer-events: none
+	+position(fixed, 0 0 0 0)
+	background: rgba(0,0,0,0.8)
+	z-index: 100
+	opacity: 0
+	transition: opacity 300ms ease-in
+	pointer-events: none
 
 .modal-content
   width: 600px

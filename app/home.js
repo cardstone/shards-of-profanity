@@ -29,6 +29,7 @@ function game (gameName, maxPlayers, privateMatch, maxPoints) {
 	this.maxPoints = maxPoints;
 	this.players = [];
 	this.czar = -1;
+	this.roundNum = 0;
 	this.inProgress = false;
 	this.blackCards = null;
 	this.whiteCards = null;
