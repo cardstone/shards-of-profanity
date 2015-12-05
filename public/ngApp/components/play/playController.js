@@ -24,6 +24,7 @@
 		$scope.faceUp = false;
 		$scope.showWinner = false;
 		$scope.postGame = null;
+		$scope.numPlayers = null;
 		var submitPromise = null;
 		var startPromise = null;
 		var countdownPromise = null;
@@ -32,6 +33,10 @@
 			$timeout.cancel(submitPromise);
 			$timeout.cancel(startPromise);
 			$interval.cancel(countdownPromise);
+		});
+
+		socket.on('server:players', function (data) {
+			$scope.numPlayers = data.players.length;
 		});
 
 		socket.on('server:czar', function () {
@@ -167,11 +172,14 @@
 		};
 
 		vm.startRound = function () {
-			$scope.host = false; // TODO: this is hacky, fix
+			$scope.host = false;
 			socket.emit('client:startRound');
 		};
 
 		vm.startGame = function () {
+			// if($scope.numPlayers < 3 ) {
+			// 	return;
+			// }
 			socket.emit('client:startGame');
 			vm.startRound();
 		};

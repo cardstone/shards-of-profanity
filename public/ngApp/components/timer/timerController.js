@@ -17,10 +17,17 @@
 		$scope.intermissionTime = 0;
 		$scope.czar = false;
 		$scope.roundNum = 0;
-		$scope.myStatus = "Waiting for the host to start..";
+		$scope.myStatus = null;
 		var submitPromise = null;
 		var intermissionPromise= null;
 		var countdownPromise = null;
+
+		if ($scope.host) {
+			$scope.myStatus = "Start the game when there at at least 3 other players.";
+		}
+		else {
+			$scope.myStatus = "Waiting for the host to start...";
+		}
 
 		$scope.$on('$destroy', function () {
 			$timeout.cancel(submitPromise);
@@ -64,7 +71,7 @@
 				$scope.myStatus = "Select the submission that makes you lol the most.";
 			}
 			else {
-				$scope.myStatus = "Waiting for the czar's decision...";
+				$scope.myStatus = "Awaiting the Card-Czar's decision...";
 			}
 		}
 	}
