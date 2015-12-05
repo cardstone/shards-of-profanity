@@ -127,7 +127,7 @@
 		};
 
 		vm.submitCard = function (index) {
-			if($scope.numToSubmit > 0) {
+			if($scope.numToSubmit > 0 && !czar) {
 				var card = $scope.hand.splice(index, 1);
 				card = card[0];
 				$scope.mySubmissions.push(card);

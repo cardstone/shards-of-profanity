@@ -26,6 +26,6 @@
 
 <div class="play--hand" ng-class="{'highlight' : numToSubmit > 0}">
 	<white-card class="play--hand--card" card="card"
-		ng-click="play.submitCard($index) && !czar"
+		ng-click="play.submitCard($index)"
 		ng-repeat="card in hand track by $index"></white-card>
 </div>
