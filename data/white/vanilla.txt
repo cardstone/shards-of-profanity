@@ -1,3 +1,6 @@
+No merge conflicts.
+More merge conflicts than lines you added.
+Trying to exit Vim.
 “Tweeting.”
 72 virgins.
 8 oz. of sweet Mexican black-tar heroin.

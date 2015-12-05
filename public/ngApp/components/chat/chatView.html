@@ -2,7 +2,7 @@
 <div class="messages-wrap" scroll-glue>
 	<ul id="messages">
 		<li ng-class-odd="'odd'" ng-class-even="'even'" ng-repeat="message in chat.messages track by $index">
-			<span class="user-name"> {{ message.name }}:</span>
+			<span class="user-name">{{ message.name }}:</span>
 			<span class="message">{{ message.msg }}</span>
 		</li>
 	</ul>
