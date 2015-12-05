@@ -9,7 +9,7 @@
 
 <button class="play--start highlight" ng-show="host" ng-click="play.startGame()">Start Game.</button>
 <div class="play--board">
-	<div class="play--black">
+	<div class="play--black" ng-class="{'blackHighlight' : numToSubmit > 0 || czar}">
 		<black-card card="black" ng-show="black"></black-card>
 	</div>
 	<div class="play--submissions" ng-class="{'highlight' : czar && !submitCountdown}"  ng-hide="submitCountdown">

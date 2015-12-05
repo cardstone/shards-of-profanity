@@ -55,16 +55,16 @@
 				$scope.myStatus = "Waiting for players to submit their cards...";
 			}
 			else {
-				$scope.myStatus = "Play white cards from your hand.";
+				$scope.myStatus = "Play white cards from your hand to complete the black card.";
 			}
 		});
 
 		function roundTimeUp() {
 			if($scope.czar) {
-				$scope.myStatus = "Select the winner.";
+				$scope.myStatus = "Select the submission that makes you lol the most.";
 			}
 			else {
-				$scope.myStatus = "Waiting for czar's decision...";
+				$scope.myStatus = "Waiting for the czar's decision...";
 			}
 		}
 	}
