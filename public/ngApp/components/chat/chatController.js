@@ -12,7 +12,7 @@
 		// get variables from our parent state scope
 		var socket = $scope.mySocket;
 		var myGameId = $scope.myGameId;
-		$scope.joinUrl = 'shardsofprofanity.com/join/' + myGameId;
+		$scope.joinUrl = `${location}`;
 		// var myName = $scope.myName;
 
 		vm.msg = ``;
@@ -21,12 +21,7 @@
 		vm.messages.push({
 			name: 'SERVER',
 			avatar: 'icons/robot.svg',
-			msg: `Welcome to game ${myGameId} ya filthy animal.`
-		});
-		vm.messages.push({
-			name: 'SERVER',
-			avatar: 'icons/robot.svg',
-			msg: `Give this url to a friend: ${location}`
+			msg: `Welcome to game ${myGameId}.`
 		});
 
 		// listen for socket events
