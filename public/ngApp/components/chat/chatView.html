@@ -1,10 +1,4 @@
 <!-- ChatController as chat -->
-<div class="link">
-
-	<input type="text" ng-model="joinUrl" onClick="this.select()" readonly>
-
-</div>
-
 <div class="messages-wrap" scroll-glue>
 	<ul id="messages">
 		<li ng-class-odd="'odd'" ng-class-even="'even'" ng-repeat="message in chat.messages track by $index">

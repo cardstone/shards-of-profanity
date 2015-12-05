@@ -14,6 +14,7 @@
 		$scope.myAvatar = gameData.myAvatar;
 		$scope.submitCountdown = 0;
 		$scope.host = gameData.host;
+		$scope.joinUrl = `${location}`;
 
 		$scope.mySocket.emit('client:joinSuccess', {
 			gameId: $scope.myGameId,
