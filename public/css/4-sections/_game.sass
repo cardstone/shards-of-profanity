@@ -6,21 +6,22 @@
 	flex-direction: column
 	background: lighten($light-black, .03)
 	height: 92vh
+	padding: $section-spacing
 
 .info,
 .play,
 .communication
 	border-radius: 5px
 
-
 .info
 	display: flex
 
 .play
 	display: flex
-	// flex-grow: 1
 	flex-direction: column
-	justify-content: space-around
+	flex-grow: 1
+
+	margin-top: $section-spacing
 
 .communication
 	display: none
@@ -31,8 +32,6 @@
 
 	.gameView
 		flex-direction: row
-
-		padding: $section-spacing
 
 	.info
 		flex-direction: column
