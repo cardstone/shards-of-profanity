@@ -17,7 +17,7 @@
 		$scope.intermissionTime = 0;
 		$scope.czar = false;
 		$scope.roundNum = 0;
-		$scope.myStatus = "Waiting for host to start..";
+		$scope.myStatus = "Waiting for the host to start..";
 		var submitPromise = null;
 		var intermissionPromise= null;
 		var countdownPromise = null;
@@ -26,7 +26,6 @@
 			$timeout.cancel(submitPromise);
 			$interval.cancel(intermissionPromise);
 			$interval.cancel(countdownPromise);
-
 		});
 
 		socket.on('server:newRound', function (data) {
@@ -44,6 +43,7 @@
 
 		socket.on('server:displayWinner', function () {
 			$scope.intermissionTime = 10;
+			$scope.myStatus = "Get ready for the next round...";
 			intermissionPromise = $interval(function(){$scope.intermissionTime--;}, 1000, 10);
 		});
 
@@ -52,19 +52,19 @@
 			countdownPromise = $interval(function(){$scope.roundTime--;}, 1000, 25);
 			submitPromise = $timeout(roundTimeUp, 25 * 1000);
 			if($scope.czar) {
-				$scope.myStatus = "Wait for players to submit their cards...";
+				$scope.myStatus = "Waiting for players to submit their cards...";
 			}
 			else {
-				$scope.myStatus = "Submit your white cards.";
+				$scope.myStatus = "Play white cards from your hand.";
 			}
 		});
 
 		function roundTimeUp() {
 			if($scope.czar) {
-				$scope.myStatus = "Select a winner.";
+				$scope.myStatus = "Select the winner.";
 			}
 			else {
-				$scope.myStatus = "Wait for czar's decision...";
+				$scope.myStatus = "Waiting for czar's decision...";
 			}
 		}
 	}
