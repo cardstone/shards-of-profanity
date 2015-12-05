@@ -1,63 +1,49 @@
+// for overall layout of the game view
+
+// small screen layout
 .gameView
 	display: flex
 	flex-direction: column
 	background: lighten($light-black, .03)
 	height: 92vh
 
-	@include desktop
+.info
+	display: flex
+	justify-content: space-between
+
+	margin: 7px
+	margin-right: 0px
+	border-radius: 14px
+
+.play
+	display: flex
+	flex-grow: 1
+	flex-direction: column
+	justify-content: space-around
+
+.communication
+	display: none
+
+
+
+// big screen layout
+@include desktop
+
+	.gameView
 		flex-direction: row
 
 	.info
-		margin-top: 7px
-		margin-left: 7px
-		margin-bottom: 7px
-		margin-right: 0px
-		border-radius: 14px
+		flex-direction: column
+		width: 20%
 
-		display: flex
-		justify-content: space-between
-
-		@include desktop
-			flex-direction: column
-			flex-basis: 200px
-
+	.play
+		width: 60%
 
 	.communication
-		display: none
-		margin-top: 7px
-		margin-left: 0px
-		margin-bottom: 7px
-		margin-right: 7px
+		display: flex
+		flex-direction: column
+		width: 20%
+
+		margin: 7px 7px 7px 0
 		border-radius: 14px
 		justify-content: space-between
-
-		@include desktop
-			display: flex
-			flex-direction: column
-			flex-basis: 275px
-
-	.enterName
-		position: absolute
-
-		.nameModal
-			position: fixed
-			top: 0
-			right: 0
-			bottom: 0
-			left: 0
-			background: rgba(0,0,0,0.8)
-			z-index: 99999
-			opacity: 1
-
-		.nameModal-content
-			width: 80%
-			max-width: 600px
-			position: relative
-			margin: 25vh auto
-			padding: 30px
-			border-radius: 10px
-			background: #fff
-			color: black
-
-			button
-				width: 100%
