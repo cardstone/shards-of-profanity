@@ -7,17 +7,18 @@
 	background: lighten($light-black, .03)
 	height: 92vh
 
+.info,
+.play,
+.communication
+	border-radius: 5px
+
+
 .info
 	display: flex
-	justify-content: space-between
-
-	margin: 7px
-	margin-right: 0px
-	border-radius: 14px
 
 .play
 	display: flex
-	flex-grow: 1
+	// flex-grow: 1
 	flex-direction: column
 	justify-content: space-around
 
@@ -25,12 +26,13 @@
 	display: none
 
 
-
 // big screen layout
 @include desktop
 
 	.gameView
 		flex-direction: row
+
+		padding: $section-spacing
 
 	.info
 		flex-direction: column
@@ -44,6 +46,5 @@
 		flex-direction: column
 		width: 20%
 
-		margin: 7px 7px 7px 0
-		border-radius: 14px
+
 		justify-content: space-between
