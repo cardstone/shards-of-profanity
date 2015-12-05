@@ -101,8 +101,7 @@
 			$timeout.cancel(startPromise);
 			$interval.cancel(countdownPromise);
 			$scope.postGame = {status: true, gameWinner: data.gameWinner};
-
-		})
+		});
 
 		function roundTimeUp () {
 			while($scope.numToSubmit > 0) {
