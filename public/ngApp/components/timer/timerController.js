@@ -80,15 +80,12 @@
 				$scope.myStatus = "Waiting for players to submit their cards...";
 			}
 			else {
+				$scope.myStatus = "Submit " + $scope.black.numWhites;
 				if($scope.black.numWhites < 2) {
-					$scope.myStatus = "Submit " +
-					$scope.black.numWhites + 
-					" white card from your hand to complete the black card.";
+					$scope.myStatus = $scope.myStatus + " white card from your hand to complete the black card.";
 				}
 				else {
-					$scope.myStatus = "Submit " +
-					$scope.black.numWhites + 
-					" white cards from your hand to complete the black card.";
+					$scope.myStatus = $scope.myStatus + " white cards from your hand to complete the black card.";
 				}
 			}
 		});
