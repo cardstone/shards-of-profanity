@@ -23,7 +23,7 @@
 		var countdownPromise = null;
 
 		if ($scope.host) {
-			$scope.myStatus = "Start the game when there at at least 3 other players.";
+			$scope.myStatus = "Start the game when there are at least 3 other players.";
 		}
 		else {
 			$scope.myStatus = "Waiting for the host to start...";
