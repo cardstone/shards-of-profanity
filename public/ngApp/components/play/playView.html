@@ -13,7 +13,7 @@
 		<div class="play--black" ng-class="{'blackHighlight' : numToSubmit > 0 || czar}">
 			<black-card card="black" ng-show="black"></black-card>
 		</div>
-		<div class="vRule"></div>
+		<div class="vRule" ng-show="black"></div>
 		<div class="play--submissions" ng-class="{'highlight' : czar && !submitCountdown}"  ng-hide="submitCountdown">
 			<card-group class="play--submissions--card"
 			cards="submission.cards" dummy="false"
