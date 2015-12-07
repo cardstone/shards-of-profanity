@@ -9,7 +9,7 @@ exports.initChat = function (sio, socket, socketsInfo) {
 
 	gameSocket.on('client:message', sendMessage);
 	gameSocket.on('client:joinSuccess', messagePlayerJoined);
-	gameSocket.on('client:displayWinner', messagePlayerWon);
+	gameSocket.on('client:roundWinner', messagePlayerWon);
 };
 
 function sendMessage(data) {
@@ -33,7 +33,7 @@ function messagePlayerJoined(data) {
 
 function messagePlayerWon(data){
 	var gameNum = socketsObj[this.id].room;
-	var name = socketsObj[this.id].name;
+	var name = socketsObj[data.id].name;
 	var winningMessage = name + ' won the round!';
 	io.sockets.in(gameNum).emit('server:message', {
 		msg: winningMessage
