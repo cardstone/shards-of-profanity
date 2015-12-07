@@ -8,4 +8,5 @@
 </b>
 <hr>
 <p><i>{{myStatus}}</i></p>
-<p ng-show="roundTime"><i>{{submissions.length}}/{{numPlayers - 1}} players submitted.</i></p>
+<p ng-hide="czar"><i> </i></p>
+<p ng-show="roundTime"><i>{{numSubmitted}}/{{numPlayers - 1}} players submitted.</i></p>

@@ -14,7 +14,7 @@
 		var vm = this;
 		var socket = $scope.mySocket;
 		$scope.numPlayers = 0;
-		$scope.submissions = [];
+		$scope.numSubmitted = 0;
 		$scope.roundTime = 0;
 		$scope.intermissionTime = 0;
 		$scope.czar = false;
@@ -39,7 +39,7 @@
 
 		socket.on('server:newRound', function (data) {
 			$scope.roundNum = data.roundNum;
-			$scope.submissions = [];
+			$scope.numSubmitted = 0;
 		});
 
 		socket.on('server:czar', function () {
@@ -51,13 +51,13 @@
 			$scope.czar = false;
 		});
 
-		socket.on('server:players', function(data){
+		socket.on('server:players', function (data) {
 			//does not count czar
 			$scope.numPlayers = data.players.length;
 		});
 
-		socket.on('server:displayWhite', function(data){
-			$scope.submissions.push(data);
+		socket.on('server:displayWhite', function () {
+			$scope.numSubmitted++;
 		});
 
 		socket.on('server:displayWinner', function () {
