@@ -15,6 +15,7 @@
 		var socket = $scope.mySocket;
 		$scope.numPlayers = 0;
 		$scope.numSubmitted = 0;
+		$scope.black = null;
 		$scope.roundTime = 0;
 		$scope.intermissionTime = 0;
 		$scope.czar = false;
@@ -56,6 +57,11 @@
 			$scope.numPlayers = data.players.length;
 		});
 
+
+		socket.on('server:displayBlack', function (data) {
+			$scope.black = data.card;
+		});
+
 		socket.on('server:displayWhite', function () {
 			$scope.numSubmitted++;
 		});
@@ -80,7 +86,7 @@
 
 		function roundTimeUp() {
 			if($scope.czar) {
-				$scope.myStatus = "Select the submission that makes you lol the most.";
+				$scope.myStatus = "Select the funniest submission that completes the black card.";
 			}
 			else {
 				$scope.myStatus = "Awaiting the Card-Czar's decision...";
