@@ -13,6 +13,9 @@
 	function TimerController($scope, $interval, $timeout) {
 		var vm = this;
 		var socket = $scope.mySocket;
+		$scope.numPlayers = 0;
+		$scope.numSubmitted = 0;
+		$scope.black = null;
 		$scope.roundTime = 0;
 		$scope.intermissionTime = 0;
 		$scope.czar = false;
@@ -37,6 +40,7 @@
 
 		socket.on('server:newRound', function (data) {
 			$scope.roundNum = data.roundNum;
+			$scope.numSubmitted = 0;
 		});
 
 		socket.on('server:czar', function () {
@@ -46,6 +50,20 @@
 
 		socket.on('server:unCzar', function () {
 			$scope.czar = false;
+		});
+
+		socket.on('server:players', function (data) {
+			//does not count czar
+			$scope.numPlayers = data.players.length;
+		});
+
+
+		socket.on('server:displayBlack', function (data) {
+			$scope.black = data.card;
+		});
+
+		socket.on('server:displayWhite', function () {
+			$scope.numSubmitted++;
 		});
 
 		socket.on('server:displayWinner', function () {
@@ -62,13 +80,13 @@
 				$scope.myStatus = "Waiting for players to submit their cards...";
 			}
 			else {
-				$scope.myStatus = "Play white cards from your hand to complete the black card.";
+				$scope.myStatus = "Submit white cards from your hand to complete the black card.";
 			}
 		});
 
 		function roundTimeUp() {
 			if($scope.czar) {
-				$scope.myStatus = "Select the submission that makes you lol the most.";
+				$scope.myStatus = "Select the funniest submission that completes the black card.";
 			}
 			else {
 				$scope.myStatus = "Awaiting the Card-Czar's decision...";
