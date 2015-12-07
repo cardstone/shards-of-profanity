@@ -9,9 +9,5 @@
 <hr>
 <p><i>{{myStatus}}</i></p>
 <div ng-show="roundTime">
-	<p ng-hide="czar">
-		<i ng-show="black.numWhites > 1">{{black.numWhites}} white cards required.</i>
-		<i ng-hide="black.numWhites > 1">{{black.numWhites}} white card required.</i>
-	</p>
 	<p ng-show="roundTime"><i>{{numSubmitted}} of {{numPlayers - 1}} players have finished submitting.</i></p>
 </div>
