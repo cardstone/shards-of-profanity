@@ -13,6 +13,9 @@
 	function TimerController($scope, $interval, $timeout) {
 		var vm = this;
 		var socket = $scope.mySocket;
+		$scope.leftToSubmit = 0;
+		$scope.submissions = [];
+		$scope.remainingSubmits = 0;
 		$scope.roundTime = 0;
 		$scope.intermissionTime = 0;
 		$scope.czar = false;
@@ -46,6 +49,16 @@
 
 		socket.on('server:unCzar', function () {
 			$scope.czar = false;
+		});
+
+		socket.on('server:players', function(data){
+			//does not count czar
+			$scope.leftToSubmit = data.players.length;
+		});
+
+		socket.on('server:displayWhite', function(data){
+			$scope.submissions.push(data);
+			$scope.remainingSubmits = $scope.submissions.length;
 		});
 
 		socket.on('server:displayWinner', function () {
