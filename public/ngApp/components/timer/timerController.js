@@ -13,9 +13,8 @@
 	function TimerController($scope, $interval, $timeout) {
 		var vm = this;
 		var socket = $scope.mySocket;
-		$scope.leftToSubmit = 0;
+		$scope.numPlayers = 0;
 		$scope.submissions = [];
-		$scope.remainingSubmits = 0;
 		$scope.roundTime = 0;
 		$scope.intermissionTime = 0;
 		$scope.czar = false;
@@ -40,6 +39,7 @@
 
 		socket.on('server:newRound', function (data) {
 			$scope.roundNum = data.roundNum;
+			$scope.submissions = [];
 		});
 
 		socket.on('server:czar', function () {
@@ -53,12 +53,11 @@
 
 		socket.on('server:players', function(data){
 			//does not count czar
-			$scope.leftToSubmit = data.players.length;
+			$scope.numPlayers = data.players.length;
 		});
 
 		socket.on('server:displayWhite', function(data){
 			$scope.submissions.push(data);
-			$scope.remainingSubmits = $scope.submissions.length;
 		});
 
 		socket.on('server:displayWinner', function () {
@@ -75,7 +74,7 @@
 				$scope.myStatus = "Waiting for players to submit their cards...";
 			}
 			else {
-				$scope.myStatus = "Play white cards from your hand to complete the black card.";
+				$scope.myStatus = "Submit white cards from your hand to complete the black card.";
 			}
 		});
 

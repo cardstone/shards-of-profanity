@@ -4,8 +4,8 @@
 	<p ng-show="czar">You are the Card-Czar.</p>
 	<p ng-hide="czar">You are not this round's Card-Czar.</p>
 	<p ng-show="roundTime">Time: {{roundTime}}</p>
-	<p ng-show="roundTime">{{leftToSubmit - remainingSubmits}} plebs still need to submit.</p>
 	<p ng-show="intermissionTime">Intermission Time: {{intermissionTime}}</p>
 </b>
 <hr>
 <p><i>{{myStatus}}</i></p>
+<p ng-show="roundTime"><i>{{submissions.length}}/{{numPlayers - 1}} players submitted.</i></p>
