@@ -18,6 +18,7 @@
 		display: flex
 
 	&--blackWhite
+		width: 100%
 		display: flex
 		border: 2px solid white
 		padding: 4px
@@ -29,12 +30,14 @@
 		border: 2px solid white
 		padding: 4px
 		border-radius: 10px
+		margin-right: 1.2rem
 
 	&--submissions
 		display: flex
-		align-content: space-between
+		justify-content: space-around
+		flex-grow: 1
 		overflow-x: auto
-		margin-left: 1.4rem
+		margin-left: 1.2rem
 		border: 2px solid white
 		padding: 4px
 		border-radius: 10px
@@ -67,6 +70,10 @@
 
 		:nth-child(1)
 			margin-left: 0
+
+.vRule
+	height: 100%
+	border-left: 2px solid black 
 
 .card-group
 	li

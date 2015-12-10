@@ -163,6 +163,7 @@
 				$scope.czar = false;
 				var submission = $scope.submissions[index];
 				socket.emit('client:roundWinner', {id: submission.id});
+				socket.emit('client:displayWinner', {index: index});
 				startPromise = $timeout(vm.startRound, 10 * 1000);
 			}
 			else {
