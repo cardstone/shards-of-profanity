@@ -1,11 +1,10 @@
 .play
-	min-width: 574px
+
 	background: white
 	padding: 12px
 	justify-content: space-around
 
 	@include desktop
-		min-width: none
 		margin: 0 $section-spacing
 		padding: 36px 24px
 
@@ -63,8 +62,8 @@
 			transition: $base-duration $base-timing
 
 			&:hover
-			    z-index: 10
-			    transform: translateY(-1rem)
+			  z-index: 10
+			  transform: translateY(-1rem)
 
 		:nth-child(1)
 			margin-left: 0
@@ -75,7 +74,7 @@
 
 	:nth-child(1)
 		margin-top: auto
-		    
+
 .highlight
 	box-shadow: 0 0 0 0 rgba(69, 69, 69, 0.9)
 	background-size: cover
