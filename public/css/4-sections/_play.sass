@@ -12,7 +12,6 @@
 		width: 200px
 		height: 50px
 		margin: auto
-		border: none
 
 	&--board
 		display: flex
@@ -20,14 +19,12 @@
 	&--blackWhite
 		width: 100%
 		display: flex
-		border: 2px solid white
 		padding: 4px
 		border-radius: 10px
 
 	&--black
 		display: flex
 		align-content: space-between
-		border: 2px solid white
 		padding: 4px
 		border-radius: 10px
 		margin-right: 1.2rem
@@ -38,14 +35,11 @@
 		flex-grow: 1
 		overflow-x: auto
 		margin-left: 1.2rem
-		border: 2px solid white
 		padding: 4px
 		border-radius: 10px
 
 		&--card
-			margin-left: 2px
 			margin-right: 2px
-
 
 	&--hand
 		display: flex
@@ -54,9 +48,8 @@
 		overflow-x: auto
 		overflow-y: hidden
 		height: 13rem
-		border: 2px solid transparent
 		padding: 4px
-		border-radius: 18px
+		border-radius: 10px
 
 		&--card
 			position: relative
@@ -71,9 +64,14 @@
 		:nth-child(1)
 			margin-left: 0
 
+// if there are 5 or more submissions
+.play--submissions--card:nth-last-child(n+5),
+.play--submissions--card:nth-last-child(n+5) ~ .play--submissions--card
+	margin-right: -2.25rem
+
 .vRule
 	height: 100%
-	border-left: 2px solid black 
+	border-left: 2px solid black
 
 .card-group
 	li
