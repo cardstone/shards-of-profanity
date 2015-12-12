@@ -18,7 +18,7 @@
 		margin-left: 10px
 
 	li
-		
+
 		width: 100px
 		padding-left: 4px
 		color: white
@@ -33,3 +33,23 @@
 	.poo svg
 		+size(1.5rem)
 		color: white
+
+@media (max-width: 585px)
+	.nav-links li:nth-child(4)
+		display: none
+
+@media (max-width: 480px)
+	.nav-links li:nth-child(3)
+		display: none
+
+@media (max-width: 425px)
+	.logo-text
+		// i know i shouldnt use !important, and i know why, and i know how to fix this but im too lazy
+		display: none !important
+	.nav-links li:nth-child(3),
+	.nav-links li:nth-child(4)
+		display: inline
+
+@media (max-width: 350px)
+	.nav-links li:nth-child(4)
+		display: none
