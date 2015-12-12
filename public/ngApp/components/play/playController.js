@@ -68,14 +68,12 @@
 
 		socket.on('server:displayBlack', function (data) {
 			$scope.black = data.card;
-			// use this to disable czar submitting white cards
-			// if($scope.czar) {
-			// 	$scope.numToSubmit = 0;
-			// }
-			// else {
-			// 	$scope.numToSubmit = Number($scope.black.numWhites);
-			// }
-			$scope.numToSubmit = Number($scope.black.numWhites);
+			if($scope.czar) {
+				$scope.numToSubmit = 0;
+			}
+			else {
+				$scope.numToSubmit = Number($scope.black.numWhites);
+			}
 		});
 
 		socket.on('server:enableSubmit', function () {
