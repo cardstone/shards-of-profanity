@@ -3,6 +3,8 @@ var gameSocket;
 var games;
 var sockets;
 
+var roundTimePromise = null;
+
 exports.initPlay = function (sio, socket, gamesInfo, socketsInfo) {
 	io = sio;
 	gameSocket = socket;
@@ -12,7 +14,7 @@ exports.initPlay = function (sio, socket, gamesInfo, socketsInfo) {
 	gameSocket.on('client:getRandWhite', sendRandWhite);
 	gameSocket.on('client:whiteSelected', displayWhiteAll);
 	gameSocket.on('client:displayWinner', displayWinner);
-	gameSocket.on('client:startRound', startRound);
+	gameSocket.on('client:startRound', start);
 };
 
 function getRoom (socketId) {
@@ -55,13 +57,21 @@ function displayWinner (data) {
 	io.sockets.in(gameNum).emit('server:displayWinner', {index: data.index});
 }
 
-function startRound () {
-	var gameNum = getRoom(this.id); 
+function start () {
+	var gameNum = getRoom(this.id);
+	startRound(gameNum);
+}
+
+function startRound (gameNum) {
+	clearTimeout(roundTimePromise);
 	newRound(gameNum);
 	incrementCzar(gameNum);
 	sendBlackAll(gameNum);
 	draw(gameNum);
 	enableSubmit(gameNum);
+	roundTimePromise = setTimeout(function() {
+		startRound(gameNum);
+	}, 1000 * 60);
 }
 
 function incrementCzar (gameNum) {
@@ -71,7 +81,7 @@ function incrementCzar (gameNum) {
 		undeclareCzar(players[game.czar]);
 	}
 	game.czar++;
-	if(game.czar == players.length) {
+	if(game.czar >= players.length) {
 		game.czar = 0;
 	}
 	io.to(players[game.czar]).emit('server:czar');
