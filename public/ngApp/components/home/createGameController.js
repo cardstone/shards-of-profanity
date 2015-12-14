@@ -8,7 +8,7 @@
 	function createGameController($scope, $state, $stateParams, SocketService) {
 		$scope.gameName = "boring default name";
 		$scope.maxPlayers = 5;
-		$scope.maxPoints = 20;
+		$scope.maxPoints = 10;
 		$scope.privateMatch = "0";
 
 		SocketService.on('server:createSuccess', function (data) {
