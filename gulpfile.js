@@ -88,7 +88,7 @@ gulp.task('css', function () {
 
 // HTML Task
 gulp.task('html', function () {
-	return gulp.src(['./public/index.html'])
+	return gulp.src(['./public/index.html', './public/manifest.json'])
 		.pipe(gulp.dest('./dist'))
 		.pipe(browserSync.reload({
 			stream: true
