@@ -88,8 +88,10 @@ function incrementCzar (gameNum) {
 }
 
 function newRound (gameNum) {
-	var roundNum = ++games[gameNum].roundNum;
-	io.sockets.in(gameNum).emit('server:newRound', {roundNum: roundNum});
+	if (games[gameNum] !== undefined) {
+		var roundNum = ++games[gameNum].roundNum;
+		io.sockets.in(gameNum).emit('server:newRound', {roundNum: roundNum});
+	}
 }
 
 function draw (gameNum) {
