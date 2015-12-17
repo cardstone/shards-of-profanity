@@ -74,7 +74,7 @@ function startRound (gameNum) {
 	enableSubmit(gameNum);
 	roundTimePromise = setTimeout(function() {
 		startRound(gameNum);
-	}, 1000 * 60);
+	}, 1000 * 120);
 }
 
 function incrementCzar (gameNum) {
