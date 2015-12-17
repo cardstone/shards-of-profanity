@@ -1,13 +1,13 @@
 <!-- timerController as timer -->
 <b>
 	<p>Round {{roundNum}}.</p>
-	<p ng-show="czar">You are the Card-Czar.</p>
-	<p ng-hide="czar">You are not this round's Card-Czar.</p>
+	<p ng-show="czar">You are the Czar</p>
+	<!-- <p ng-hide="czar">You are not this round's Card-Czar.</p> -->
 	<p ng-show="roundTime">Time: {{roundTime}}</p>
-	<p ng-show="intermissionTime">Intermission Time: {{intermissionTime}}</p>
+	<p ng-show="intermissionTime">Intermission: {{intermissionTime}}</p>
 </b>
-<hr>
-<p><i>{{myStatus}}</i></p>
-<div ng-show="roundTime">
+<!-- <hr>
+<p><i>{{myStatus}}</i></p> -->
+<!-- <div ng-show="roundTime">
 	<p ng-show="roundTime"><i>{{numSubmitted}} of {{numPlayers - 1}} players have finished submitting.</i></p>
-</div>
+</div> -->

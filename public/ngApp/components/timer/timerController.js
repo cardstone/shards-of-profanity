@@ -68,7 +68,7 @@
 
 		socket.on('server:displayWinner', function () {
 			$scope.intermissionTime = 10;
-			$scope.myStatus = "The Card-Czar has chosen a winner! Get ready for the next round...";
+			$scope.myStatus = "The Card-Czar has chosen a winner!";
 			intermissionPromise = $interval(function(){$scope.intermissionTime--;}, 1000, 10);
 		});
 
@@ -77,25 +77,25 @@
 			countdownPromise = $interval(function(){$scope.roundTime--;}, 1000, 25);
 			submitPromise = $timeout(roundTimeUp, 25 * 1000);
 			if($scope.czar) {
-				$scope.myStatus = "Waiting for players to submit their cards...";
+				$scope.myStatus = "Waiting for players to submit...";
 			}
 			else {
 				$scope.myStatus = "Submit " + $scope.black.numWhites;
 				if($scope.black.numWhites < 2) {
-					$scope.myStatus = $scope.myStatus + " white card from your hand to complete the black card.";
+					$scope.myStatus = $scope.myStatus + " white card.";
 				}
 				else {
-					$scope.myStatus = $scope.myStatus + " white cards from your hand to complete the black card.";
+					$scope.myStatus = $scope.myStatus + " white cards.";
 				}
 			}
 		});
 
 		function roundTimeUp() {
 			if($scope.czar) {
-				$scope.myStatus = "Select the funniest submission that completes the black card.";
+				$scope.myStatus = "Select the best white Card-Czar.";
 			}
 			else {
-				$scope.myStatus = "Awaiting the Card-Czar's decision...";
+				$scope.myStatus = "Waiting fot the Card-Czar.";
 			}
 		}
 	}
