@@ -66,9 +66,9 @@ function sendPlayerList () {
 function addPoints (data) {
 	sockets[data.id].points += 1;
 	var gameNum = getRoom(this.id);
-	if(sockets[data.id].points == games[gameNum].maxPoints) {	
+	if(sockets[data.id].points == games[gameNum].maxPoints) {
 		io.sockets.in(gameNum).emit('server:gameOver', {gameWinner: sockets[data.id].name});
-	} 
+	}
 	var players = getPlayerList(gameNum);
 	io.sockets.in(gameNum).emit('server:players', {players: players});
 }
@@ -82,4 +82,4 @@ function enterName (data) {
 	var players = getPlayerList(gameNum);
 	io.sockets.in(gameNum).emit('server:message', {msg: msg});
 	io.sockets.in(gameNum).emit('server:players', {players: players});
-}	
+}

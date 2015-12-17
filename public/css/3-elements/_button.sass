@@ -1,40 +1,40 @@
 // credit to bourbon bitters
 #{$all-buttons}
-  appearance: none
-  background-color: $action-color
-  border: $base-border
-  border-radius: $base-border-radius
-  color: $base-background-color
-  cursor: pointer
-  display: inline-block
-  font-family: $base-font-family
-  font-size: $base-font-size
-  -webkit-font-smoothing: antialiased
-  font-weight: 600
-  line-height: 1.2
-  padding: 0.75rem 1.5rem
-  text-decoration: none
-  transition: all $base-duration $base-timing
-  user-select: none
-  vertical-align: middle
-  white-space: nowrap
-  position: relative
+	appearance: none
+	background-color: $action-color
+	border: $base-border
+	border-radius: $base-border-radius
+	color: $base-background-color
+	cursor: pointer
+	display: inline-block
+	font-family: $base-font-family
+	font-size: $base-font-size
+	-webkit-font-smoothing: antialiased
+	font-weight: 600
+	line-height: 1.2
+	padding: 0.75rem 1.5rem
+	text-decoration: none
+	transition: all $base-duration $base-timing
+	user-select: none
+	vertical-align: middle
+	white-space: nowrap
+	position: relative
 
-  // TODO: fix focus / active outline
-  &:hover,
-  &:focus
-    background-color: $base-background-color
-    color: $action-color
-    outline: 0
+	// TODO: fix focus / active outline
+	&:hover,
+	&:focus
+		background-color: $base-background-color
+		color: $action-color
+		outline: 0
 
-  &:active
-    transform: scale(.95, .95)
-    outline: 0
+	&:active
+		transform: scale(.95, .95)
+		outline: 0
 
-  &:disabled
-    cursor: not-allowed
-    opacity: 0.5
+	&:disabled
+		cursor: not-allowed
+		opacity: 0.5
 
-    &:hover
-      background-color: $action-color
-      color: $base-background-color
+		&:hover
+			background-color: $action-color
+			color: $base-background-color

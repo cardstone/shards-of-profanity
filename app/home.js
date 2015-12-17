@@ -11,7 +11,7 @@ exports.initHome = function (sio, socket, gamesInfo, socketsInfo) {
 	games = gamesInfo;
 	sockets = socketsInfo;
 
-  // listen for events from clients
+	// listen for events from clients
 	gameSocket.on('client:createNewGame', createNewGame);
 	gameSocket.on('client:joinGame', joinGame);
 	gameSocket.on('client:joinSuccess', addDefaultName);
@@ -63,7 +63,7 @@ function createNewGame (data) {
 		data.privateMatch,
 		data.maxPoints
 	);
-  // TODO: put these queries in a function
+	// TODO: put these queries in a function
 	model.find({color: 'black'}, 'text numWhites', function (err, cards) {
 		games['#' + thisGameId].blackCards = cards;
 		games['#' + thisGameId].blackCardsOrig = cards;

@@ -38,14 +38,14 @@ gulp.task('javascript', function () {
 		'public/ngApp/app.module.js',
 		'public/ngApp/**/*.js'
 	])
-  .pipe(plumber(onError))
-  .pipe(sourcemaps.init())
+	.pipe(plumber(onError))
+	.pipe(sourcemaps.init())
 	.pipe(babel({
 		only: 'public/ngApp/**/*.js'
 	}))
-  .pipe(concat('app.js'))
-  .pipe(sourcemaps.write())
-  .pipe(gulp.dest('./dist/js'))
+	.pipe(concat('app.js'))
+	.pipe(sourcemaps.write())
+	.pipe(gulp.dest('./dist/js'))
 	.pipe(browserSync.reload({
 		stream: true
 	}));
@@ -61,16 +61,16 @@ gulp.task('javascript-min', function () {
 		'public/ngApp/app.module.js',
 		'public/ngApp/**/*.js'
 	])
-  .pipe(plumber(onError))
-  .pipe(sourcemaps.init())
+	.pipe(plumber(onError))
+	.pipe(sourcemaps.init())
 	.pipe(babel({
 		only: 'public/ngApp/**/*.js'
 	}))
-  .pipe(ngAnnotate())
-  .pipe(uglify())
-  .pipe(concat('app.js'))
-  .pipe(sourcemaps.write())
-  .pipe(gulp.dest('./dist/js'));
+	.pipe(ngAnnotate())
+	.pipe(uglify())
+	.pipe(concat('app.js'))
+	.pipe(sourcemaps.write())
+	.pipe(gulp.dest('./dist/js'));
 });
 
 // CSS Task
@@ -83,7 +83,7 @@ gulp.task('css', function () {
 		.pipe(prefix(['last 2 versions', 'ie 9'], {
 			cascade: true
 		}))
-    .pipe(gulp.dest('./dist/css/'));
+		.pipe(gulp.dest('./dist/css/'));
 });
 
 // HTML Task
@@ -102,7 +102,7 @@ gulp.task('templates', function () {
 		standalone: true,
 		moduleSystem: 'IIFE'
 	}))
-  .pipe(gulp.dest('./public/ngApp'))
+	.pipe(gulp.dest('./public/ngApp'))
 	.pipe(browserSync.reload({
 		stream: true
 	}));
@@ -121,14 +121,14 @@ gulp.task('icons', function () {
 				pretty: true
 			}
 		}))
-    .pipe(gulp.dest('dist/icons/'));
-    //.pipe(gulp.dest('public/icons/'));
+		.pipe(gulp.dest('dist/icons/'));
+		//.pipe(gulp.dest('public/icons/'));
 });
 
 // nodemon task
 // runs and refreshes node server
 gulp.task('nodemon', function (cb) {
-  // We use this `called` variable to make sure the callback is only executed once
+	// We use this `called` variable to make sure the callback is only executed once
 	var called = false;
 	return nodemon({
 		script: 'server.js',
@@ -142,7 +142,7 @@ gulp.task('nodemon', function (cb) {
 	})
 	.on('restart', function onRestart() {
 
-  // Also reload the browsers after a slight delay
+	// Also reload the browsers after a slight delay
 		setTimeout(function reload() {
 			browserSync.reload({
 				stream: true
@@ -157,17 +157,17 @@ gulp.task('browser-sync', ['nodemon'], function () {
 
 	browserSync.init({
 
-    // All of the following files will be watched
+		// All of the following files will be watched
 		files: ['public/**/*.*'],
 
-    // Tells BrowserSync on where the express app is running
-    // so when this is localhost it doesnt load the page but when it is 127.0.0.1 it works
+		// Tells BrowserSync on where the express app is running
+		// so when this is localhost it doesnt load the page but when it is 127.0.0.1 it works
 		proxy: 'http://127.0.0.1:' + port,
 
-    // This port should be different from the express app port
+		// This port should be different from the express app port
 		port: 4000,
 
-    // Do not mirror any actions across browsers
+		// Do not mirror any actions across browsers
 		ghostMode: false,
 
 		notify: false

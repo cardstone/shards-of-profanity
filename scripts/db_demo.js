@@ -1,6 +1,6 @@
 var mongoose = require('mongoose'),
 Schema = mongoose.Schema,
-Card = require('../app/models/Card'); //get Card model	
+Card = require('../app/models/Card'); //get Card model
 
 //Connect to db
 var connect = mongoose.connect(require('../config/db'));
@@ -67,7 +67,7 @@ function getBlackCards( pack ){
 		};
 	}
 	else{
-		
+
 		q = {
 			"color": "black"
 		};

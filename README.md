@@ -93,7 +93,7 @@ $ gulp
 # TO REINITIALIZE THE DB
 # Start the mongodb CLI
 $ mongo shell
-# Switch to the db 
+# Switch to the db
 > use shard
 # Delete the db
 > db.dropDatabase()

@@ -47,13 +47,13 @@ function sendRandWhite (data) {
 
 function displayWhiteAll (data) {
 	var socketId = this.id;
-	var gameNum = getRoom(this.id); 
+	var gameNum = getRoom(this.id);
 	io.sockets.in(gameNum).emit('server:displayWhite', {id: socketId, cards: data.cards});
 }
 
 function displayWinner (data) {
 	var socketId = this.id;
-	var gameNum = getRoom(this.id); 
+	var gameNum = getRoom(this.id);
 	io.sockets.in(gameNum).emit('server:displayWinner', {index: data.index});
 }
 
@@ -112,4 +112,3 @@ function declareCzar (socketId) {
 function undeclareCzar (socketId) {
 	io.to(socketId).emit('server:unCzar');
 }
-
