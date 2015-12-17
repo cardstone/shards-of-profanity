@@ -63,6 +63,9 @@ function start () {
 }
 
 function startRound (gameNum) {
+	if(games[gameNum] === undefined) {
+		return;
+	}
 	clearTimeout(roundTimePromise);
 	newRound(gameNum);
 	incrementCzar(gameNum);
