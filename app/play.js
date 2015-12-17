@@ -63,6 +63,9 @@ function start () {
 }
 
 function startRound (gameNum) {
+	if(games[gameNum] === undefined) {
+		return;
+	}
 	clearTimeout(roundTimePromise);
 	newRound(gameNum);
 	incrementCzar(gameNum);
@@ -71,7 +74,7 @@ function startRound (gameNum) {
 	enableSubmit(gameNum);
 	roundTimePromise = setTimeout(function() {
 		startRound(gameNum);
-	}, 1000 * 60);
+	}, 1000 * 120);
 }
 
 function incrementCzar (gameNum) {
@@ -88,8 +91,10 @@ function incrementCzar (gameNum) {
 }
 
 function newRound (gameNum) {
-	var roundNum = ++games[gameNum].roundNum;
-	io.sockets.in(gameNum).emit('server:newRound', {roundNum: roundNum});
+	if (games[gameNum] !== undefined) {
+		var roundNum = ++games[gameNum].roundNum;
+		io.sockets.in(gameNum).emit('server:newRound', {roundNum: roundNum});
+	}
 }
 
 function draw (gameNum) {

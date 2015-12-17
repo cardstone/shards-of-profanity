@@ -66,8 +66,7 @@ function sendPlayerList () {
 function addPoints (data) {
 	sockets[data.id].points += 1;
 	var gameNum = getRoom(this.id);
-	if(sockets[data.id].points === games[gameNum].maxPoints) {	
-		console.log("Max Points Reached!");
+	if(sockets[data.id].points == games[gameNum].maxPoints) {	
 		io.sockets.in(gameNum).emit('server:gameOver', {gameWinner: sockets[data.id].name});
 	} 
 	var players = getPlayerList(gameNum);
