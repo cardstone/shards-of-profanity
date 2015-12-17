@@ -1,10 +1,11 @@
-<div ng-show="postGame.status" >
-	<h2>Game over man, game over.</h2>
-	<h3>{{postGame.gameWinner}} is victorious!</h3>
-	<h4>Thanks for playing! Donate plz. -Shards of Profanity team</h4>
-	<a ui-sref="home">
-		<button>Return to Lobby</button>
-	</a> 
+<div class="modal" ng-class="{'modalShow' : postGame.status}">>
+	<div class="modal-content">
+		<h3>Game Over, {{postGame.gameWinner}} is victorious!</h3>
+		<h3>Thanks for playing!</h3>
+		<a ui-sref="home">
+			<button>Return to Lobby</button>
+		</a> 
+	</div>
 </div>
 
 <button class="play--start highlight" ng-show="host" ng-click="play.startGame()">Start Game.</button>
